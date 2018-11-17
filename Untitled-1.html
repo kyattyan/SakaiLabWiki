@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <title>test</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=320, minimum-scale=1.0, maximum-scale=2.0">
+
+        <link rel = "stylesheet" type = "text/css" href = "PreviewWindow.css">
+
+        <!--jQueryの読み込み（よくわかっていない）-->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.slim.min.js"></script>
+
+        <script type="text/javascript" src="PreviewWindow.js"></script>
+        <script type="text/javascript" src="Uploader.js"></script>
+
+        
+
+    </head>
+
+    <body>
+        <div class="editorwrapper">
+            
+            <div class="preview">
+                <p style="background-color:Black; color:white;">Preview</p>
+                <div id="livepreview"></div>
+            </div>
+
+
+            <div class="editor">
+                <p style="background-color:Black; color:white;">Editor</p>
+                <form name="js">
+                    <p>ページタイトル(ファイル名にも適用されます)</p>
+                    <input class="bottomspace" type="text" name="title" value="index"><br>
+
+                    <p><!--ページの内容(htmlタグが使えます)--></p>
+                    <textarea id="liveeditor" name="htmlbody" rows="5" cols="100"></textarea>
+                </form>
+                <div class="ButtonsForEditer">
+                    <!--文字装飾タグ用-->
+                    <button  onclick="AddTag('B')"><B>B</B></button>
+                    <button  onclick="AddTag('I')"><I>I</I></button>
+                    <button  onclick="AddTag('U')"><U>U</U></button>
+                    <button  onclick="AddTag('sup')">X<sup>n</sup></button>
+                    <button  onclick="AddTag('sub')">X<sub>n</sub></button>
+                    <br>
+                    <button onclick="AddText('<LocalFig1>')"> test </button>
+                    <br>
+                    
+                    <!--ファイルアップロード-->
+                    
+                    <div id="drop_zone">
+                        ここに画像をドラッグ&ドロップしてください。<br>
+                        Drop files here.
+                    </div>
+                    <!--input type="file" id="files" name="files[]" multiple /-->
+                    <br>
+                    <output id="ThumbList"></output>
+                    <br>
+                    <form id="my_form" action="file/upload.php" method="post" enctype="multipart/form-data" >
+                        <!--<input type="file" name="input_file" > <br-->
+                        <input type="submit" value="送信" >
+                    </form>
+                    <br>
+
+                </div>
+            </div>
+
+
+            <div class="procedure">
+                <p style="background-color:Black; color:white;">Procedure</p>
+                <button class="button" onclick="openmanual()">How to Use</button>
+                <button class="button" onclick="downloadfile()">Download</button>
+            </div>
+        </div>
+
+        <div class="footer">
+                <!--Copyright &#169; 2016 Trouble_SUM All Rights Reserved.-->
+                Structing is now in progress. Made by Yatsuduka.
+        </div>
+
+
+    </body>
+</html>
