@@ -128,10 +128,15 @@ function AddTag(AddedTag){
 
 function GetLocalFig(LocalFigNum){
     alert('LocalFileReader()');
-    var E_TargetedTag = document.getElementById('LocalFig'+LocalFigNum);
+
+    var S_AddedTag;
+    var S_TargettedParentTag = 'LocalFig'+LocalFigNum;
+    var E_TargetedTag = document.getElementById(S_TargettedParentTag);
     var S_LocalFigSrc = E_TargetedTag.src;
 
 
-    return '<img width = "100" src = "' + S_LocalFigSrc + '">' ;
+    S_AddedTag = '<img width = "100" src = "' + S_LocalFigSrc + '">' ;
+
+    return S_AddedTag;
 
 }

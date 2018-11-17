@@ -97,11 +97,20 @@ function handleFileSelect(evt) {
       reader.onload = (function(theFile, Int) {
         return function(e) {
           // Render thumbnail.
-          var span = document.createElement('span');
+            var span = document.createElement('span');
           
-          span.innerHTML = ['Figure'+ escape(String(Int+1)) + ': <img class="thumb" src="', e.target.result,
-                            '" title="', escape(theFile.name), '", id="LocalFig',Int+1,'"/><br>'].join('');
-          document.getElementById('ThumbList').insertBefore(span, null);
+            span.innerHTML = ['Figure'+ escape(String(Int+1)) + ': <img class="thumb" src="', e.target.result,
+                            '" title="', escape(theFile.name), '", id="LocalFig',Int+1,'"/>',
+                            //表示位置用コンボボックス
+                            '表示位置/Float: <select name="Float_LocalFig' + escape(String(Int+1)) + '" size = "1" ',
+                            'id = "Float_LocalFig"' + escape(String(Int+1)) + '">',
+                            '<option>左/Left</option>',
+                            '<option>右/Right</option>',
+                            '</select>',
+                            //最後に改行
+                            '<br>'
+                            ].join('');
+            document.getElementById('ThumbList').insertBefore(span, null);
         };
       })(f, i);
 
