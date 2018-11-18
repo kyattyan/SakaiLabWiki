@@ -54,12 +54,18 @@
                     </div>
                     <!--input type="file" id="files" name="files[]" multiple /-->
                     <br>
-                    <output id="ThumbList"></output>
+                    <output id="ThumbList">
+                        <!--Next:1-->
+                    </output>
                     <br>
+                    
                     <form id="my_form" action="file/upload.php" method="post" enctype="multipart/form-data" >
                         <!--<input type="file" name="input_file" > <br-->
                         <input type="submit" value="送信" >
                     </form>
+                    <button onclick = "test()">TEST</button>
+                    <button onclick = "SetNextNum()">TSET</button>
+
                     <br>
 
                 </div>
