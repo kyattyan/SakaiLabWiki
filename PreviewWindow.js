@@ -26,10 +26,10 @@ function UpdatePreview(){
         
         var S_LocalFigNumber = String(S_LocalFig).slice(9,-1);
         var I_LocalFigNumber = parseInt(S_LocalFigNumber, 10); 
-        alert(I_LocalFigNumber);
+        //alert(S_LocalFig);
         EditerContent = EditerContent.replace(S_LocalFig, GetLocalFig(I_LocalFigNumber));
 
-        var S_LocalFig = EditerContent.match(/<LocalFig\d{1,}/);
+        S_LocalFig = EditerContent.match(/<LocalFig\d{1,}>/);
         i++;
     }
 
@@ -127,7 +127,7 @@ function AddTag(AddedTag){
 }
 
 function GetLocalFig(LocalFigNum){
-    alert('LocalFileReader()');
+    //alert('LocalFileReader()');
 
     var S_AddedTag;
     var S_TargettedParentTag = 'LocalFig'+LocalFigNum;
@@ -136,6 +136,7 @@ function GetLocalFig(LocalFigNum){
 
 
     S_AddedTag = '<img width = "100" src = "' + S_LocalFigSrc + '">' ;
+    //S_AddedTag = S_TargettedParentTag;
 
     return S_AddedTag;
 

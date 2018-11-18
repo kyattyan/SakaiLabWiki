@@ -106,6 +106,7 @@ function handleFileSelect(evt) {
                             'id = "Float_LocalFig"' + escape(String(Int+1)) + '">',
                             '<option>左/Left</option>',
                             '<option>右/Right</option>',
+                            '<option>行内/In line</option>',
                             '</select>',
                             //最後に改行
                             '<br>'
