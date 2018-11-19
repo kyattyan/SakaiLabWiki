@@ -25,6 +25,7 @@ $(function() {
         var dropZone = document.getElementById('drop_zone');
         dropZone.addEventListener('dragover', handleDragOver, false);
         dropZone.addEventListener('drop', handleFileSelect, false);
+        //dropZone.addEventListener('drop', CheckLocalFigNum, false);
         //document.getElementById('files').addEventListener('change', handleFileSelect, false);
         alert('OK');
 
@@ -102,19 +103,22 @@ function handleFileSelect(evt) {
             var span = document.createElement('span');
             
             //'Figure'+ escape(String(Int+1)) + 
-            span.innerHTML = ['<img class="thumb" align = "left" src="', e.target.result,
-                            '" title="', escape(theFile.name), '", id="LocalFig',Int+1,'"/>',
+            span.innerHTML = [
+                            '<div class = "LocalFigure", id="LocalFigure0',escape(String(Int+1)),'">\n'+
+                            'LocalFigure'+ escape(String(Int+1)) + '<img class="thumb" align = "left" src="', e.target.result,
+                            '" title="', escape(theFile.name), '">',
                             //表示位置用コンボボックス
-                            '表示位置/Float: <select name="Float_LocalFig' + escape(String(Int+1)) + '" size = "1" ',
-                            'id = "Float_LocalFig"' + escape(String(Int+1)) + '">',
+                            '表示位置/Float: <select name="Float" size = "1" ',
+                            'id = "Float_LocalFigure0' + escape(String(Int+1)) + '">',
                             '<option>左/Left</option>',
                             '<option>右/Right</option>',
                             '<option>行内/In line</option>',
                             '</select>',
-                            //最後に改行
-                            '<br>'
+                            //最後にdiv閉じタグと改行
+                            '</div><br><br>'
                             ].join('');
             document.getElementById('ThumbList').insertBefore(span, null);
+            CheckLocalFigNum();
         };
         
       })(f, i);
@@ -201,4 +205,28 @@ function SetNextNum(){
 //各関数動作確認用
 function test(){
     alert(FindNextNum());
+}
+
+function CheckLocalFigNum(){
+    var S_HTMLSource = document.getElementById('ThumbList').outerHTML;
+    
+    var S_FigID;
+    var i = 1;
+    //疑似do-while。比較ではなく代入演算子
+    while(S_FigID=S_HTMLSource.match(/id="LocalFigure\d{1,}"/)){
+        var S_FigNum = String(S_FigID).slice(4,-1);
+        
+        while (S_HTMLSource != S_HTMLSource.replace(S_FigNum, 'Local_Figure'+String(i))){
+            S_HTMLSource = S_HTMLSource.replace(S_FigNum, 'Local_Figure'+String(i))
+        };
+
+        alert(S_FigNum + '--Local_Figure'+String(i));
+        i++;
+    }
+
+    S_HTMLSource = S_HTMLSource.replace('Local_Figure', 'LocalFigure');
+
+    document.getElementById('ThumbList').outerHTML = S_HTMLSource;
+    alert(S_HTMLSource);
+    return;
 }
