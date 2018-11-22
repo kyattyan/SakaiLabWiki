@@ -2,7 +2,7 @@
 
 *{
     font-family: Meiryo;
-    text-align: center;
+    
     margin: 0;
     padding: 0;
 }
@@ -15,15 +15,12 @@
     margin-bottom: 20px;
 }
 
-.editorwrapper{
-
-}
 
 .editor{
     float: bottom;
     width: 100%;
     min-height: 60%;
-
+    text-align: center;
 }
 
 .preview{
@@ -32,13 +29,17 @@
     height: 40%;
     background-color: DDDDDD;
     overflow-y: scroll;
-
+    
 }
 
 .procedure{
     background-color: white;
     min-height: 100%;
     clear: both;
+}
+
+.livepreview{
+    text-align: left;
 }
 
 .button{
@@ -68,6 +69,10 @@
     width: 100%;
     padding: 5px 10px 5px 10px;
     bottom: 0;
+}
+
+#Preview_Title{
+    text-align: center;
 }
 
 #drop_zone {
