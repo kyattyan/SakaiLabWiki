@@ -126,6 +126,17 @@ function AddTag(AddedTag){
     UpdatePreview();
 }
 
+function Coverter_Float(FloatType){
+    switch(FloatType){
+        case '左/Left':
+            return 'align = "left"';
+        case '右/Right':
+            return 'align = right';
+        case '行内/In line':
+            return '';
+    }
+}
+
 function GetLocalFig(LocalFigNum){
     //alert('LocalFileReader()');
 
@@ -134,10 +145,13 @@ function GetLocalFig(LocalFigNum){
     var E_TargetedTag = document.getElementById(S_TargettedParentTag);
     var S_LocalFigSrc = E_TargetedTag.src;
 
+    var E_TargettedFloat = document.getElementById('Float_LocalFigure'+LocalFigNum);
+    var S_TargettedFloat = E_TargettedFloat.value;
 
-    S_AddedTag = '<img width = "100" src = "' + S_LocalFigSrc + '">' ;
+    S_AddedTag = '<img width = "100" src = "' + S_LocalFigSrc + '"'+ Coverter_Float(S_TargettedFloat) +'>' ;
     //S_AddedTag = S_TargettedParentTag;
 
     return S_AddedTag;
 
 }
+

@@ -73,7 +73,12 @@ $(function() {
     });
 });
 
-
+function ReplaceAll(ReplacedStr, ReplacedFrom, ReplacedTo){
+    while(ReplacedStr!=ReplacedStr.replace(ReplacedFrom, ReplacedTo)){
+        ReplacedStr=ReplacedStr.replace(ReplacedFrom, ReplacedTo);
+    }
+    return ReplacedStr;
+}
 
 
 //-----------------------------ここより、ローカルファイル用---------------------------------------------------------
@@ -109,7 +114,7 @@ function handleFileSelect(evt) {
                             //イメージ本体
                             '<img class="thumb" align = "left" src="', e.target.result,
                             '" title="', escape(theFile.name),
-                            '" id="img_LocalFigure'+escape(String(Int+1))+'">',
+                            '" id="img_LocalFigure0'+escape(String(Int+1))+'">',
                             //表示位置用コンボボックス
                             '表示位置/Float: <select name="Float" size = "1" ',
                             'id = "Float_LocalFigure0' + escape(String(Int+1)) + '">',
@@ -151,6 +156,7 @@ function FindNextNum(){
     return parseInt(S_Next,10);
 }
 
+//跡地
 function SetNextNum(){
 
     var S_LowHTML = document.getElementById('ThumbList').outerHTML;
@@ -219,16 +225,16 @@ function CheckLocalFigNum(){
     while(S_FigID=S_HTMLSource.match(/id="LocalFigure\d{1,}"/)){
         var S_FigNum = String(S_FigID).slice(4,-1);
         
-        while (S_HTMLSource != S_HTMLSource.replace(S_FigNum, 'Local_Figure'+String(i))){
+        /*while (S_HTMLSource != S_HTMLSource.replace(S_FigNum, 'Local_Figure'+String(i))){
             S_HTMLSource = S_HTMLSource.replace(S_FigNum, 'Local_Figure'+String(i))
-        };
-
-        alert(S_FigNum + '--Local_Figure'+String(i));
+        };*/
+        S_HTMLSource = ReplaceAll(S_HTMLSource,S_FigNum,'Local_Figure'+String(i));
+        //alert(S_FigNum + '--Local_Figure'+String(i));
         i++;
     }
-
-    S_HTMLSource = S_HTMLSource.replace('Local_Figure', 'LocalFigure');
-
+    
+    //S_HTMLSource = S_HTMLSource.replace('Local_Figure', 'LocalFigure');
+    S_HTMLSource = ReplaceAll(S_HTMLSource,'Local_Figure', 'LocalFigure')
     document.getElementById('ThumbList').outerHTML = S_HTMLSource;
     alert(S_HTMLSource);
     return;
