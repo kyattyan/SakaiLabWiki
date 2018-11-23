@@ -105,8 +105,11 @@ function handleFileSelect(evt) {
             //'Figure'+ escape(String(Int+1)) + 
             span.innerHTML = [
                             '<div class = "LocalFigure", id="LocalFigure0',escape(String(Int+1)),'">\n'+
-                            'LocalFigure'+ escape(String(Int+1)) + '<img class="thumb" align = "left" src="', e.target.result,
-                            '" title="', escape(theFile.name), '">',
+                            'LocalFigure'+ escape(String(Int+1)),
+                            //イメージ本体
+                            '<img class="thumb" align = "left" src="', e.target.result,
+                            '" title="', escape(theFile.name),
+                            '" id="img_LocalFigure'+escape(String(Int+1))+'">',
                             //表示位置用コンボボックス
                             '表示位置/Float: <select name="Float" size = "1" ',
                             'id = "Float_LocalFigure0' + escape(String(Int+1)) + '">',

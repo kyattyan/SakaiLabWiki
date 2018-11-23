@@ -130,7 +130,7 @@ function GetLocalFig(LocalFigNum){
     //alert('LocalFileReader()');
 
     var S_AddedTag;
-    var S_TargettedParentTag = 'LocalFig'+LocalFigNum;
+    var S_TargettedParentTag = 'img_LocalFigure'+LocalFigNum;
     var E_TargetedTag = document.getElementById(S_TargettedParentTag);
     var S_LocalFigSrc = E_TargetedTag.src;
 
