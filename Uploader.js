@@ -27,7 +27,7 @@ $(function() {
         dropZone.addEventListener('drop', handleFileSelect, false);
         //dropZone.addEventListener('drop', CheckLocalFigNum, false);
         //document.getElementById('files').addEventListener('change', handleFileSelect, false);
-        alert('OK');
+        //alert('OK');
 
 		// ------------------------------------------------------------
 		// サブミット直前に実行されるイベント
@@ -93,7 +93,7 @@ function handleFileSelect(evt) {
 
     // Loop through the FileList and render image files as thumbnails.
     for (var i = 0, f; f = files[i]; i++) {
-        alert('Looping: ' + i);
+        //alert('Looping: ' + i);
       // Only process image files.
       if (!f.type.match('image.*')) {
         continue;
@@ -110,7 +110,7 @@ function handleFileSelect(evt) {
             //'Figure'+ escape(String(Int+1)) + 
             span.innerHTML = [
                             '<div class = "LocalFigure", id="LocalFigure0',escape(String(Int+1)),'">\n'+
-                            'LocalFigure'+ escape(String(Int+1)),
+                            'LocalFigure0'+ escape(String(Int+1)) + '    :',
                             //イメージ本体
                             '<img class="thumb" align = "left" src="', e.target.result,
                             '" title="', escape(theFile.name),
@@ -121,9 +121,12 @@ function handleFileSelect(evt) {
                             '<option>左/Left</option>',
                             '<option>右/Right</option>',
                             '<option>行内/In line</option>',
-                            '</select>',
+                            '</select>'+'<br>',
+                            //画像追加用ボタン
+                            '<button onclick="AddText(\'<LocalFigure0'+ escape(String(Int+1))+
+                                '>\')"> Add this figure</button>',
                             //最後にdiv閉じタグと改行
-                            '</div><br><br>'
+                            '</div><br><br><br>'
                             ].join('');
             document.getElementById('ThumbList').insertBefore(span, null);
             CheckLocalFigNum();
@@ -236,6 +239,6 @@ function CheckLocalFigNum(){
     //S_HTMLSource = S_HTMLSource.replace('Local_Figure', 'LocalFigure');
     S_HTMLSource = ReplaceAll(S_HTMLSource,'Local_Figure', 'LocalFigure')
     document.getElementById('ThumbList').outerHTML = S_HTMLSource;
-    alert(S_HTMLSource);
+    //alert(S_HTMLSource);
     return;
 }
