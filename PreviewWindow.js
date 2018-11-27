@@ -118,10 +118,14 @@ function AddTag(AddedTag){
     O_textarea.value = S_sentence;
 
     //カーソル位置変更
+    var O_OldScroll = $('#liveeditor').scrollTop();
+    
     O_textarea.focus();
-
+    
     O_textarea.setSelectionRange(I_pos + AddedTag.length+2, I_pos + AddedTag.length+2);
-
+    //$(textArea).trigger("blur").trigger("focus");
+    document.getElementById('liveeditor').scroll(0, O_OldScroll);
+    
     //プレビュー反映
     UpdatePreview();
 }
