@@ -109,22 +109,27 @@ function handleFileSelect(evt) {
             
             //'Figure'+ escape(String(Int+1)) + 
             span.innerHTML = [
+                            //<div>タグ追加
                             '<div class = "LocalFigure", id="LocalFigure0',escape(String(Int+1)),'">\n'+
                             'LocalFigure0'+ escape(String(Int+1)) + '    :',
-                            //イメージ本体
-                            '<img class="thumb" align = "left" src="', e.target.result,
-                            '" title="', escape(theFile.name),
-                            '" id="img_LocalFigure0'+escape(String(Int+1))+'">',
-                            //表示位置用コンボボックス
-                            '表示位置/Float: <select name="Float" size = "1" ',
-                            'id = "Float_LocalFigure0' + escape(String(Int+1)) + '">',
-                            '<option>左/Left</option>',
-                            '<option>右/Right</option>',
-                            '<option>行内/In line</option>',
-                            '</select>'+'<br>',
-                            //画像追加用ボタン
-                            '<button onclick="AddText(\'<LocalFigure0'+ escape(String(Int+1))+
+                                //イメージ本体
+                                '<img class="thumb" align = "left" src="', e.target.result,
+                                '" title="', escape(theFile.name),
+                                '" id="img_LocalFigure0'+escape(String(Int+1))+'">',
+                                //表示位置用コンボボックス
+                                '表示位置/Float: <select name="Float" size = "1" ',
+                                'id = "Float_LocalFigure0' + escape(String(Int+1)) + '">',
+                                '<option>左/Left</option>',
+                                '<option>右/Right</option>',
+                                '<option>行内/In line</option>',
+                                '</select> ',
+                                //大きさ変更
+                                '幅/Width: <input type="number" id="Width_LocalFigure0' + escape(String(Int+1))
+                                +'" min = "10" value = "100">'+'<br>',
+                                //画像追加用ボタン
+                                '<button onclick="AddText(\'<LocalFigure0'+ escape(String(Int+1))+
                                 '>\')"> Add this figure</button>',
+                                
                             //最後にdiv閉じタグと改行
                             '</div><br><br><br>'
                             ].join('');

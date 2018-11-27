@@ -126,8 +126,18 @@ function AddTag(AddedTag){
     UpdatePreview();
 }
 
-function Coverter_Float(FloatType){
-    switch(FloatType){
+//WidgetNameはFloatやWidthなどの具体的役割のこと。ID名の一部と対応
+function FindOutWidgetValue(I_LocalFigNum, S_WidgetName){
+    var E_TargettedTag = document.getElementById(S_WidgetName + '_LocalFigure' + I_LocalFigNum);
+    var S_TargettedTag = String(E_TargettedTag.value);
+    return S_TargettedTag;
+}
+
+function Converter_Float(I_LocalFigNum){
+
+    var S_FloatType = FindOutWidgetValue(I_LocalFigNum, 'Float');
+
+    switch(S_FloatType){
         case '左/Left':
             return 'align = "left"';
         case '右/Right':
@@ -135,6 +145,22 @@ function Coverter_Float(FloatType){
         case '行内/In line':
             return '';
     }
+}
+
+function Converter_Width(I_LocalFigNum){
+    var S_Width = FindOutWidgetValue(I_LocalFigNum, 'Width');
+    return 'width = "' + S_Width + '"';
+}
+
+//返り値はimgタグ内部に追加するCSS、例えば「width = "100" align = "left"」など
+function ConvertWidgetToStyle(I_LocalFigNum){
+    var S_Style = '';
+
+    S_Style += Converter_Float(I_LocalFigNum);
+
+    S_Style += Converter_Width(I_LocalFigNum);
+
+    return S_Style;
 }
 
 function GetLocalFig(LocalFigNum){
@@ -148,8 +174,8 @@ function GetLocalFig(LocalFigNum){
     var E_TargettedFloat = document.getElementById('Float_LocalFigure'+LocalFigNum);
     var S_TargettedFloat = E_TargettedFloat.value;
 
-    S_AddedTag = '<img width = "100" src = "' + S_LocalFigSrc + '"'+ Coverter_Float(S_TargettedFloat) +'>' ;
-    //S_AddedTag = S_TargettedParentTag;
+    S_AddedTag = '<img src = "' + S_LocalFigSrc + '"'+ ConvertWidgetToStyle(LocalFigNum) +'>' ;
+    //S_AddedTag = S_TargettedParentTag; width = "100" 
 
     return S_AddedTag;
 
