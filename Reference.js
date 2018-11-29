@@ -2,6 +2,10 @@ function AddReferenceToText(I_RefNumber){
 
 }
 
+function UpdateRefNumbers(){
+    
+}
+
 function AddInnerHTML(S_AddedStr, S_AddedElementID){
     var E_Span = document.createElement('span');
     E_Span.innerHTML = S_AddedStr;
@@ -48,6 +52,7 @@ function NewReference(){
             break;
     
     }
-    S_AddedHTML+='<button onclick="AddText(\'<sup>R_0</sup>\')">Add this reference</button><br><br>';
+    S_AddedHTML+='<button onclick="AddText(\'<sup>[0]</sup>\')">Add this reference</button> '+
+        '<button onclick="RemoveRef(\'[0]\')">Remove this reference</button><br><br>';
     AddInnerHTML(S_AddedHTML,'RefList');
 }
