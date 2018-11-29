@@ -126,6 +126,9 @@ function handleFileSelect(evt) {
                                 //大きさ変更
                                 '幅/Width: <input type="number" id="Width_LocalFigure0' + escape(String(Int+1))
                                 +'" min = "10" value = "100">'+'<br>',
+                                //その他用のテキストボックス
+                                'その他のオプション/Other options: <input type = "text" '+
+                                'id="Other_LocalFigure0'+escape(String(Int+1))+ '"> <br>',
                                 //画像追加用ボタン
                                 '<button onclick="AddText(\'<LocalFigure0'+ escape(String(Int+1))+
                                 '>\')"> Add this figure</button>',

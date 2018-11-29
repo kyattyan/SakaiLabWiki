@@ -118,12 +118,18 @@ function AddTag(AddedTag){
     O_textarea.value = S_sentence;
 
     //カーソル位置変更
+
+    //スクロール位置保存
     var O_OldScroll = $('#liveeditor').scrollTop();
     
+    //このフォーカスでスクロールがテキストの一番最後までずれる
     O_textarea.focus();
     
+    //カーソル移動、このとき火狐以外はスクロールがカーソルを追従しないため、スクロールが一番下のまま
     O_textarea.setSelectionRange(I_pos + AddedTag.length+2, I_pos + AddedTag.length+2);
     //$(textArea).trigger("blur").trigger("focus");
+
+    //保存したスクロール位置まで移動して、スクロール位置を疑似的にキープする
     document.getElementById('liveeditor').scroll(0, O_OldScroll);
     
     //プレビュー反映
@@ -163,6 +169,8 @@ function ConvertWidgetToStyle(I_LocalFigNum){
     S_Style += Converter_Float(I_LocalFigNum);
 
     S_Style += Converter_Width(I_LocalFigNum);
+
+    S_Style += FindOutWidgetValue(I_LocalFigNum, "Other")
 
     return S_Style;
 }
