@@ -12,6 +12,7 @@
 
         <script type="text/javascript" src="PreviewWindow.js"></script>
         <script type="text/javascript" src="Uploader.js"></script>
+        <script type="text/javascript" src="Reference.js"></script>
 
         
 
@@ -28,46 +29,66 @@
 
             <div class="editor">
                 <p style="background-color:Black; color:white;">Editor</p>
-                <form name="js">
-                    <p>ページタイトル(ファイル名にも適用されます)</p>
-                    <input class="bottomspace" type="text" name="title" value="index"><br>
+                <div id = "EditorMain">
+                    <form name="js">
+                        <p>ページタイトル(ファイル名にも適用されます)</p>
+                        <input class="bottomspace" type="text" name="title" value="index"><br>
 
-                    <p><!--ページの内容(htmlタグが使えます)--></p>
-                    <textarea id="liveeditor" name="htmlbody" rows="5" cols="100" textalign = "left"></textarea>
-                </form>
-                <div class="ButtonsForEditer">
-                    <!--文字装飾タグ用-->
-                    <button  onclick="AddTag('B')"><B>B</B></button>
-                    <button  onclick="AddTag('I')"><I>I</I></button>
-                    <button  onclick="AddTag('U')"><U>U</U></button>
-                    <button  onclick="AddTag('sup')">X<sup>n</sup></button>
-                    <button  onclick="AddTag('sub')">X<sub>n</sub></button>
-                    <br>
-                    <!----button onclick="AddText('<LocalFig1>')"> Add Figure 1</button-->
-                    <br>
-                    
-                    <!--ファイルアップロード-->
-                    
-                    <div id="drop_zone">
-                        ここに画像をドラッグ&ドロップしてください。<br>
-                        Drop files here.
-                    </div>
-                    <!--input type="file" id="files" name="files[]" multiple /-->
-                    <br>
-                    <output id="ThumbList">
-                        <!--Next:1-->
-                    </output>
-                    <br>
-                    <br><br><br>
-                    <form id="my_form" action="file/upload.php" method="post" enctype="multipart/form-data" >
-                        <!--<input type="file" name="input_file" > <br-->
-                        <!--input type="submit" value="送信" -->
+                        <p><!--ページの内容(htmlタグが使えます)--></p>
+                        <textarea id="liveeditor" name="htmlbody" rows="5" cols="100" textalign = "left"></textarea>
                     </form>
-                    <!--button onclick = "test()">TEST</button>
-                    <button onclick = "SetNextNum()">TSET</button-->
+                    <div class="ButtonsForEditer">
+                        <!--文字装飾タグ用-->
+                        <button  onclick="AddTag('B')"><B>B</B></button>
+                        <button  onclick="AddTag('I')"><I>I</I></button>
+                        <button  onclick="AddTag('U')"><U>U</U></button>
+                        <button  onclick="AddTag('sup')">X<sup>n</sup></button>
+                        <button  onclick="AddTag('sub')">X<sub>n</sub></button>
+                        <br>
+                        <!----button onclick="AddText('<LocalFig1>')"> Add Figure 1</button-->
+                        <br>
+                        
+                        <!--ファイルアップロード-->
+                        
+                        <div id="drop_zone">
+                            ここに画像をドラッグ&ドロップしてください。<br>
+                            Drop files here.
+                        </div>
+                        <!--input type="file" id="files" name="files[]" multiple /-->
+                        <br>
+                        <output id="ThumbList">
+                        </output>
+                        <br>
+                        <br>
+                        <form id="my_form" action="file/upload.php" method="post" enctype="multipart/form-data" >
+                            <!--<input type="file" name="input_file" > <br-->
+                            <!--input type="submit" value="送信" -->
+                        </form>
+                        <!--button onclick = "test()">TEST</button>
+                        <button onclick = "SetNextNum()">TSET</button-->
 
-                    <br>
 
+                    </div>
+                    <!--引用文献-->
+                    <div class = "Refernce" aligne = "left">
+                        引用文献、リンク/References and links<br>
+                        <select name="ReferenceType" size = 1 id = "AddedReferenceType">
+                            <option>論文/Journal</option>
+                            <option>本/Book</option>
+                            <option>URL</option>
+                            <option>その他/The other</option>
+                        </select>
+                        <button onclick = "NewReference()">追加/Add</button><br>
+                        
+                        <span id="RefList">
+                            <br>
+                            
+                            <!--ここに参考文献のリスト-->
+                            
+                        </span>
+                        <br>
+                        <br>
+                    </div>
                 </div>
             </div>
 
