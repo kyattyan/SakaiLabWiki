@@ -20,9 +20,7 @@ function UpdatePreview(){
     
     //ローカルの図の読み込み
     var S_LocalFig = EditerContent.match(/<LocalFigure\d{1,}>/);
-    var i = 0;
     while(S_LocalFig!==null){
-        //alert(i);
         
         var S_LocalFigNumber = String(S_LocalFig).slice(12,-1);
         var I_LocalFigNumber = parseInt(S_LocalFigNumber, 10); 
@@ -30,7 +28,17 @@ function UpdatePreview(){
         EditerContent = EditerContent.replace(S_LocalFig, GetLocalFig(I_LocalFigNumber));
 
         S_LocalFig = EditerContent.match(/<LocalFigure\d{1,}>/);
-        i++;
+    }
+
+    //参考文献用制御文字変換
+    var S_Reference = EditerContent.match(/\[R\d{1,}\]/);
+    while(S_Reference!==null){
+        
+        var I_RefNumber = parseInt(String(S_Reference).slice(2,-1),10);
+        //alert(S_LocalFig);
+        EditerContent = EditerContent.replace(S_Reference,'<sup>['+I_RefNumber+']</sup>');
+
+        S_Reference = EditerContent.match(/\[R\d{1,}\]/);
     }
 
 

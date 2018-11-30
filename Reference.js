@@ -1,9 +1,5 @@
-function AddReferenceToText(I_RefNumber){
-
-}
-
 function UpdateRefNumbers(){
-    
+
 }
 
 function AddInnerHTML(S_AddedStr, S_AddedElementID){
@@ -27,14 +23,14 @@ function NewReference(){
                 'Published year: <input type="number" Name="J_Year" value="2000" min="1800" max="2100"> '+
                 'page: <input type="number" Name="J_PageBegin" value="1" min="1" max="99999">'+
                 '-<input type="number" Name="J_PageEnd" value="1" min="1" max="99999">.'+
-                '</span><br>';
+                '<br>';
             break;
         case  '本/Book':
             S_AddedHTML+='<span id="Refrence0">Refernce 0　　'+
                 'Title: <input type="text" Name="B_Title"  style="width: 50%;"> '+
                 'Author: <input type="text" Name="Authors"  style="width: 25%;"> '+
                 'Publisher: <input type="text" Name="B_Publisher" > '+
-                '</span><br>';
+                '<br>';
             break;
         case 'URL':
             S_AddedHTML+='<span id="Refrence0">Refernce 0　　'+
@@ -42,7 +38,7 @@ function NewReference(){
                 '閲覧日/Date you saw: Y<input type="number" Name="U_SeenDate_Y" value = "2018" min="2018" max="3000"> '+
                 'M<input type="number" Name="U_SeenDate_M" value="1" min="1" max="12"> '+
                 'D<input type="number" Name="U_SeenDate_D" value="1" min="1" max="31"> '+
-                '</span><br>';
+                '<br>';
             break;
         case 'その他/The other':
             
@@ -52,7 +48,11 @@ function NewReference(){
             break;
     
     }
-    S_AddedHTML+='<button onclick="AddText(\'<sup>[0]</sup>\')">Add this reference</button> '+
-        '<button onclick="RemoveRef(\'[0]\')">Remove this reference</button><br><br>';
+    S_AddedHTML+='<button onclick="AddText(\'[R0]\')">Add this reference</button> '+
+        '<button onclick="RemoveRef(\'0\')">Remove this reference</button></span><br><br>';
     AddInnerHTML(S_AddedHTML,'RefList');
+}
+
+function RemoveRef(I_RefNumber){
+    
 }
