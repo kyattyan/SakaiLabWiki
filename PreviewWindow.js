@@ -161,7 +161,7 @@ function Converter_Float(I_LocalFigNum){
         case '左/Left':
             return 'align = "left"';
         case '右/Right':
-            return 'align = right';
+            return 'align = "right"';
         case '行内/In line':
             return '';
     }

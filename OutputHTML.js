@@ -84,7 +84,7 @@ function OutputHTML(){
     // ------------------------------------------------------------
     // 「POST メソッド」「接続先 URL」を指定
     // ------------------------------------------------------------
-    xhr.open("POST" , "http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Files/uploader.php");
+    xhr.open("POST" , "http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Files/Uploader.php");
 
     // ------------------------------------------------------------
     // 「送信データに FormData を指定」「XHR 通信を開始する」
