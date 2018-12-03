@@ -52,7 +52,7 @@ function OutputHTML(){
     //a要素を作成してクリックイベント実行
     var a = document.createElement("a");
     //a.href = URL.createObjectURL(blob);
-    a.href='Uploader.php?html='+html+'&Filname='+title;
+    a.href='Uploader.php?html='+html+'&title='+title+".html";
     a.target = '_blank';
     //a.download = title + '.html';
     a.click();

@@ -6,5 +6,7 @@
     var_dump(file_get_contents(TESTFILE));*/
     echo($_GET['title']);
     echo($_GET['html']);
+
+    file_put_contents($_GET['title'],$_GET['html']);
     
 ?>
