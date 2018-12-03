@@ -1,3 +1,4 @@
+//HTMLが読み込まれたときに実行……なのだが、このファイルに記述すべきではないかも。今後要注意。
 $(function() {
     $('body').ready(function() {
         // ------------------------------------------------------------
@@ -25,7 +26,7 @@ $(function() {
         var dropZone = document.getElementById('drop_zone');
         dropZone.addEventListener('dragover', handleDragOver, false);
         dropZone.addEventListener('drop', handleFileSelect, false);
-        //dropZone.addEventListener('drop', CheckLocalFigNum, false);
+        //dropZone.addEventListener('drop', UpdateLocalFigNum, false);
         //document.getElementById('files').addEventListener('change', handleFileSelect, false);
         //alert('OK');
 
@@ -73,6 +74,8 @@ $(function() {
     });
 });
 
+//全置換用。なんで全部置換されないのか謎。
+//逆にその理由が分かればこの関数は削除
 function ReplaceAll(ReplacedStr, ReplacedFrom, ReplacedTo){
     while(ReplacedStr!=ReplacedStr.replace(ReplacedFrom, ReplacedTo)){
         ReplacedStr=ReplacedStr.replace(ReplacedFrom, ReplacedTo);
@@ -137,7 +140,7 @@ function handleFileSelect(evt) {
                             '</div><br><br><br>'
                             ].join('');
             document.getElementById('ThumbList').insertBefore(span, null);
-            CheckLocalFigNum();
+            UpdateLocalFigNum();
         };
         
       })(f, i);
@@ -147,8 +150,9 @@ function handleFileSelect(evt) {
       
     }
     
-  }
+}
 
+//ドラッグされたときに呼ばれる。ドラッグ中ずっと呼ばれ続けるので、Alertとかを呼んではいけない。
 function handleDragOver(evt) {
     //alert('Step in HandleDragOver()');
     evt.stopPropagation();
@@ -156,6 +160,7 @@ function handleDragOver(evt) {
     evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
 }
 
+//墓場。時が来たら削除
 function FindNextNum(){
     SetNextNum();
     //サムネイルリスト部分のHTMLの生のコード取得
@@ -167,7 +172,7 @@ function FindNextNum(){
     return parseInt(S_Next,10);
 }
 
-//跡地
+//跡地。時が来たら削除
 function SetNextNum(){
 
     var S_LowHTML = document.getElementById('ThumbList').outerHTML;
@@ -227,7 +232,8 @@ function test(){
     alert(FindNextNum());
 }
 
-function CheckLocalFigNum(){
+//LocalFiguresの番号再設定
+function UpdateLocalFigNum(){
     var S_HTMLSource = document.getElementById('ThumbList').outerHTML;
     
     var S_FigID;

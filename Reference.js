@@ -1,6 +1,8 @@
+//リファレンス番号振り直し
 function UpdateRefNumbers(){
 
 }
+
 
 function AddInnerHTML(S_AddedStr, S_AddedElementID){
     var E_Span = document.createElement('span');
@@ -10,6 +12,8 @@ function AddInnerHTML(S_AddedStr, S_AddedElementID){
     return;
 }
 
+//Addボタンの参照先の関数。ReferenceTypeの値に応じたウィジェットを作成してRefList spanタグに追加。
+//リファレンス番号は仮に0が与えられる。これはUpdateRefeerenceで変更されるようにする予定
 function NewReference(){
     var S_ReferenceType = document.getElementById('AddedReferenceType').value;
     var S_AddedHTML='';
@@ -53,6 +57,8 @@ function NewReference(){
     AddInnerHTML(S_AddedHTML,'RefList');
 }
 
+//実装するのは難しくないが、誤消去したものを戻す機能の実装がこの上なくめんどそうなので、作るべきか否か…
+//消去ではなく、コメントアウトにすることによって解決できるかもしれないが……Figureに対しても同じことをするのか？
 function RemoveRef(I_RefNumber){
     
 }

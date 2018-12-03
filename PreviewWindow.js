@@ -62,6 +62,7 @@ $(function() {
     });
 });
 
+/*
 function downloadfile(){
     //BOM(文字コード指定みたいな感じ)
     var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
@@ -83,6 +84,7 @@ function downloadfile(){
     a.download = title + '.html';
     a.click();
 }
+*/
 
 function openmanual(){
     window.open('manual.html','_blank','top=50,left=50,width=500,height=500,scrollbars=1,location=0,menubar=0,toolbar=0,status=1,directories=0,resizable=1');
@@ -191,8 +193,8 @@ function GetLocalFig(LocalFigNum){
     var E_TargetedTag = document.getElementById(S_TargettedParentTag);
     var S_LocalFigSrc = E_TargetedTag.src;
 
-    var E_TargettedFloat = document.getElementById('Float_LocalFigure'+LocalFigNum);
-    var S_TargettedFloat = E_TargettedFloat.value;
+    //var E_TargettedFloat = document.getElementById('Float_LocalFigure'+LocalFigNum);
+    //var S_TargettedFloat = E_TargettedFloat.value;
 
     S_AddedTag = '<img src = "' + S_LocalFigSrc + '"'+ ConvertWidgetToStyle(LocalFigNum) +'>' ;
     //S_AddedTag = S_TargettedParentTag; width = "100" 

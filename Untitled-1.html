@@ -13,9 +13,17 @@
         <script type="text/javascript" src="PreviewWindow.js"></script>
         <script type="text/javascript" src="Uploader.js"></script>
         <script type="text/javascript" src="Reference.js"></script>
-
+        <script type="text/javascript" src="OutputHTML.js"></script>
         
-
+        <script typr="javascript">
+            if (window.File) {
+                // File APIに関する処理を記述
+                //window.alert("File APIが実装されてます。");
+                } else {
+                window.alert("本ブラウザではFile APIが使えません。最新のGoogle ChromeなどをDLしてご利用ください\n",
+                    "Your browser cannot use File API. Please use any other browser, such as newest Google chrome.");
+            }
+        </script>
     </head>
 
     <body>
@@ -32,7 +40,7 @@
                 <div id = "EditorMain">
                     <form name="js">
                         <p>ページタイトル(ファイル名にも適用されます)</p>
-                        <input class="bottomspace" type="text" name="title" value="index"><br>
+                        <input class="bottomspace" type="text" name="title" id = "FileName" value="index"><br>
 
                         <p><!--ページの内容(htmlタグが使えます)--></p>
                         <textarea id="liveeditor" name="htmlbody" rows="5" cols="100" textalign = "left"></textarea>
@@ -93,11 +101,11 @@
             </div>
 
 
-            <!--div class="procedure">
+            <div class="procedure" aligne = "center">
                 <p style="background-color:Black; color:white;">Procedure</p>
-                <button class="button" onclick="openmanual()">How to Use</button>
-                <button class="button" onclick="downloadfile()">Download</button>
-            </div-->
+                <!--button class="button" onclick="openmanual()">How to Use</button-->
+                <button class="button" onclick="OutputHTML()" >HTMLファイルを出力/Output as a HTML</button>
+            </div>
         </div>
 
         <div class="footer">

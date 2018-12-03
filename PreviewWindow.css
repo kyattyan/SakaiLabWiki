@@ -45,6 +45,7 @@
     background-color: white;
     min-height: 100%;
     clear: both;
+    text-align: center;
 }
 
 .livepreview{
@@ -55,7 +56,7 @@
     border: 1px solid plum;
     color: black;
     line-height: 50px;
-    width: 200px;
+    width: 300px;
     margin: 20px;
     background-color: aliceblue;
     padding: 5px 10px 5px 10px;
