@@ -40,7 +40,7 @@
                 <div id = "EditorMain">
                     <form name="js">
                         <p>ページタイトル(ファイル名にも適用されます)</p>
-                        <input class="bottomspace" type="text" name="title" id = "FileName" value="index"><br>
+                        <input class="bottomspace" type="text" name="title" id = "FileName" value="TestFile"><br>
 
                         <p><!--ページの内容(htmlタグが使えます)--></p>
                         <textarea id="liveeditor" name="htmlbody" rows="5" cols="100" textalign = "left"></textarea>
@@ -104,7 +104,7 @@
             <div class="procedure" aligne = "center">
                 <p style="background-color:Black; color:white;">Procedure</p>
                 <!--button class="button" onclick="openmanual()">How to Use</button-->
-                <button class="button" onclick="OutputHTML()" >HTMLファイルを出力/Output as a HTML</button>
+                <button id="output" class="button" onclick="OutputHTML()">HTMLファイルを出力/Output as a HTML</button>
             </div>
         </div>
 

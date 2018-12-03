@@ -1,4 +1,5 @@
 //HTMLが読み込まれたときに実行……なのだが、このファイルに記述すべきではないかも。今後要注意。
+//早くも障害発生。このファイルが無駄にでかくなりつつある。要リファクタリング
 $(function() {
     $('body').ready(function() {
         // ------------------------------------------------------------
@@ -8,7 +9,7 @@ $(function() {
         if(!(window.FormData)) return;
 
         if (window.File && window.FileReader && window.FileList && window.Blob) {
-            // Great success! All the File APIs are supported.
+            //alert('Great success! All the File APIs are supported.');
         } else {
             alert('The File APIs are not fully supported in this browser.');
         }
@@ -17,7 +18,7 @@ $(function() {
 		// フォーム要素を取得する
 		// ------------------------------------------------------------
 		// "my_form" という ID 属性のエレメントを取得する
-        var form = document.getElementById("my_form");
+        //var form = document.getElementById("my_form");
         
         //-------------------------------------------------------------
         //ローカルファイル用セットアップ
@@ -32,9 +33,11 @@ $(function() {
 
 		// ------------------------------------------------------------
 		// サブミット直前に実行されるイベント
-		// ------------------------------------------------------------
-		form.addEventListener("submit" , function(e){
-
+        // ------------------------------------------------------------
+        //var O_Submit = document.getElementById("output");
+        
+		/*O_Submit.addEventListener("onclick" , function(e){
+            alert('test');
 			// ------------------------------------------------------------
 			// デフォルトの動作をキャンセル（フォームの送信を中止）
 			// ------------------------------------------------------------
@@ -43,7 +46,15 @@ $(function() {
 			// ------------------------------------------------------------
 			// FormData オブジェクトを作成する
 			// ------------------------------------------------------------
-			var form_data = new FormData(form);
+            var form_data = new FormData();
+            
+            //------------------------------
+            //非コピペ部分；Formオブジェクトにデータを突っ込む
+            //------------------------------
+            
+            form_data.append("HTML_Source", getElementById('livepreview').innerHTML);
+            form_data.append("FileName", document.js.title.value);
+            alert(document.js.title.value);
 
 			// ------------------------------------------------------------
 			// XMLHttpRequest オブジェクトを作成
@@ -63,14 +74,14 @@ $(function() {
 			// ------------------------------------------------------------
 			// 「POST メソッド」「接続先 URL」を指定
 			// ------------------------------------------------------------
-			xhr.open("POST" , "http://example.com/cgi-bin/upload.cgi?type=json");
+			//xhr.open("POST" , "http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Files/uploader.php");
 
 			// ------------------------------------------------------------
 			// 「送信データに FormData を指定」「XHR 通信を開始する」
 			// ------------------------------------------------------------
-			xhr.send(form_data);
+			//xhr.send(form_data);
             alert('OK');
-		});
+		});*/
     });
 });
 

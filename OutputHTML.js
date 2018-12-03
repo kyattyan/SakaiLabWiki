@@ -5,6 +5,7 @@ function OutputHTML(){
     //require("fs"): 同じくWeb上では使えない？
         //詳細->https://nodejs.org/api/fs.html#fs_file_system
     //要するに、クライアントサイドでテキストファイルを作ってアップロードするしかない？
+    //URLに引数指定してPHP: URLが長い、と言われてはじかれる
     
     /*var S_FileName = $("FileName").value;
     var S_FileContent = $("livepreview").value;
@@ -32,7 +33,7 @@ function OutputHTML(){
 
     FS_OutputFile.close();*/
 
-
+    /*
     //BOM(文字コード指定みたいな感じ)
     var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
 
@@ -56,6 +57,38 @@ function OutputHTML(){
     a.target = '_blank';
     //a.download = title + '.html';
     a.click();
+    */
 
+    //空フォーム作成→データ追加
 
+    var form_data = new FormData();
+
+    form_data.append("HTML_Source", document.getElementById('livepreview').innerHTML);
+    form_data.append("FileName", document.js.title.value+".html");
+    //alert(document.getElementById('livepreview').innerHTML);
+    // ------------------------------------------------------------
+    // XMLHttpRequest オブジェクトを作成
+    // ------------------------------------------------------------
+    var xhr = new XMLHttpRequest();
+
+    // ------------------------------------------------------------
+    // XHR 通信に成功すると実行されるイベント
+    // ------------------------------------------------------------
+    xhr.onload = function (e){
+
+        // レスポンスボディを取得する
+        console.log(xhr.responseText );
+
+    };
+
+    // ------------------------------------------------------------
+    // 「POST メソッド」「接続先 URL」を指定
+    // ------------------------------------------------------------
+    xhr.open("POST" , "http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Files/uploader.php");
+
+    // ------------------------------------------------------------
+    // 「送信データに FormData を指定」「XHR 通信を開始する」
+    // ------------------------------------------------------------
+    xhr.send(form_data);
+    alert('OK');
 }
