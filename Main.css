@@ -4,3 +4,7 @@
     作成されたHTMLに適用されるcssファイル
     仕様は未定
 */
+
+.livepreviw.h1{
+    color: red;
+}
