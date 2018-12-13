@@ -7,8 +7,8 @@ function UpdateRefNumbers(){
 
     var i=1;
     while(S_Reference=S_RefList.match(/id="Reference\d{1,}"/)){
-        alert(S_Reference);
-        alert(String(S_Reference).slice(13,-1));
+        //alert(S_Reference);
+        //alert(String(S_Reference).slice(13,-1));
         I_OldRefNumber=parseInt(String(S_Reference).slice(13,-1),10);
         
         //replace祭り
@@ -57,11 +57,11 @@ function NewReference(){
     switch(S_ReferenceType){
         case '論文/Journal':
             S_AddedHTML+=
-                'Authors: <input type="text" Name="Authors" style="width: 50%;"> '+
-                'doi: <input type="text" Name="doi" style="width: 25%;"><br>'+
-                'Journal: <input type="text" Name="J_Name" > '+
-                'Vol: <input type="number" Name="J_Vol" value="1" width = "80" min = "1" max = "200"> '+
-                'Published year: <input type="number" Name="J_Year" value="2000" min="1800" max="2100"> '+
+                'Authors: <input type="text" Name="Authors" style="width: 50%;"><br>'+
+                'doi: <input type="text" Name="doi" style="width: 25%;">'+
+                'Journal: <input type="text" Name="J_Name" ><br>'+
+                'Vol: <input type="number" Name="J_Vol" value="1" width = "80" min = "1" max = "200">'+
+                'Published year: <input type="number" Name="J_Year" value="2000" min="1800" max="2100"><br>'+
                 'page: <input type="number" Name="J_PageBegin" value="1" min="1" max="99999">'+
                 '-<input type="number" Name="J_PageEnd" value="1" min="1" max="99999">.'+
                 '<br>';

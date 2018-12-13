@@ -24,8 +24,19 @@
     
 }
 #EditorMain{
-    height: 55%;
+    height: 40%;
+    width: 50%;
+    float: left;
     overflow-y: scroll;
+}
+
+#EditorSub{
+    height: 40%;
+    width: 50%;
+    float: right;
+    overflow-y: scroll;
+    overflow-x: scroll;
+
 }
 
 .preview{
@@ -87,8 +98,8 @@
 
 #drop_zone {
     
-    width: 50%;
-    margin-left: 25%;
+    width: 80%;
+    margin-left: 5%;
     border: 2px dashed #bbb;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
