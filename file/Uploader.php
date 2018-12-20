@@ -15,7 +15,7 @@
 	header("Content-type:text/plain");
 	
 	# 名前を指定してフォーム情報を取得する
-    $HTML_Source = "<head><meta charset = \"UTF-8\"></head>" . $_POST["HTML_Source"];
+    $HTML_Source = $_POST["HTML_Source"];
     $FileName = $_POST["FileName"];
 
 	# 拡張子を取得する
