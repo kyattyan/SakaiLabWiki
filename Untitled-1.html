@@ -10,6 +10,10 @@
         <!--jQueryの読み込み（よくわかっていない）-->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.slim.min.js"></script>
 
+        <!--クラス（仮）-->
+        <script type="text/javascript" src="Figure.js"></script>
+
+        <!--その他、実際に動く関数とかいろいろ-->
         <script type="text/javascript" src="PreviewWindow.js"></script>
         <script type="text/javascript" src="Uploader.js"></script>
         <script type="text/javascript" src="Reference.js"></script>
@@ -38,13 +42,11 @@
             <div class="editor">
                 <p style="background-color:Black; color:white;">Editor</p>
                 <div id = "EditorMain">
-                    <form name="js">
-                        <p>ページタイトル/A name of this page</p>
-                        <input class="bottomspace" type="text" name="title" id = "FileName" value="TestFile"><br>
+                    <p>ページタイトル/A name of this page</p>
+                    <input class="bottomspace" type="text" name="title" id = "FileName" value="TestFile"><br>
 
-                        <p><!--ページの内容(htmlタグが使えます)--></p>
-                        <textarea id="liveeditor" name="htmlbody" rows="5" cols="75" textalign = "left"></textarea>
-                    </form>
+                    <p><!--ページの内容(htmlタグが使えます)--></p>
+                    <textarea id="liveeditor" name="htmlbody" rows="5" cols="75" textalign = "left"></textarea>
                     <div class="ButtonsForEditer">
                         <!--文字装飾タグ用-->
                         <button  onclick="AddTag('B')"><B>B</B></button>

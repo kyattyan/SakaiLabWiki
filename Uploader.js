@@ -248,10 +248,17 @@ function UpdateLocalFigNum(){
     var S_HTMLSource = document.getElementById('ThumbList').outerHTML;
     
     var S_FigID;
-    var i = 1;
+    var i = 1; //while出てからも使用
+
+    //input系の値一時避難場所
+    var S_Width=[];
+    
     //疑似do-while。比較ではなく代入演算子
     while(S_FigID=S_HTMLSource.match(/id="LocalFigure\d{1,}"/)){
         var S_FigNum = String(S_FigID).slice(4,-1);
+        alert(S_FigNum);
+        S_Width.push(document.getElementById("Width_"+S_FigNum).value);
+        
         
         /*while (S_HTMLSource != S_HTMLSource.replace(S_FigNum, 'Local_Figure'+String(i))){
             S_HTMLSource = S_HTMLSource.replace(S_FigNum, 'Local_Figure'+String(i))
@@ -262,8 +269,17 @@ function UpdateLocalFigNum(){
     }
     
     //S_HTMLSource = S_HTMLSource.replace('Local_Figure', 'LocalFigure');
-    S_HTMLSource = ReplaceAll(S_HTMLSource,'Local_Figure', 'LocalFigure')
+    S_HTMLSource = ReplaceAll(S_HTMLSource,'Local_Figure', 'LocalFigure');
     document.getElementById('ThumbList').outerHTML = S_HTMLSource;
+
+    //避難した値を戻す
+    var j;
+    for(j=1;j<i;j++){
+        alert(j);
+        document.getElementById("Width_LocalFigure"+j).value=S_Width[j-1];
+        alert(S_Width[j-1]);
+    }
+
     //alert(S_HTMLSource);
     return;
 }
