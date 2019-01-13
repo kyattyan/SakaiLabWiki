@@ -5,25 +5,25 @@ const FLOAT_RIGHT: string ="右/Right";
 const FLOAT_IN_LINE: string ="行内/In line";
 
 
-enum fig_float_E{
+enum fig_float_type{
     Left,
     Right,
     InLine
 }
 
 class fig_float{
-    private Float: fig_float_E;
+    private Float: fig_float_type;
     
-    public SetFloatByStr(Str: string): fig_float_E{
+    public SetFloatByStr(Str: string): fig_float_type{
         switch(Str){
         case FLOAT_LEFT:
-            this.Float = fig_float_E.Left;
+            this.Float = fig_float_type.Left;
             break;
         case FLOAT_RIGHT:
-            this.Float = fig_float_E.Right;
+            this.Float = fig_float_type.Right;
             break;
         case FLOAT_IN_LINE:
-            this.Float = fig_float_E.InLine;
+            this.Float = fig_float_type.InLine;
             break;
         }
         return this.Float;
@@ -31,13 +31,13 @@ class fig_float{
 
     public Str(): string{
         switch(this.Float){
-            case fig_float_E.Left:
+            case fig_float_type.Left:
                 return FLOAT_LEFT;
 
-            case fig_float_E.Right:
+            case fig_float_type.Right:
                 return FLOAT_RIGHT;
 
-            case fig_float_E.InLine:
+            case fig_float_type.InLine:
                 return FLOAT_IN_LINE;
         }
     }    
@@ -46,19 +46,64 @@ class fig_float{
 class figure{
     //private Src: string;
 
-    constructor(public Number_S: string, public Width: number, public Float: fig_float, public Others){
+    constructor(public Number_S: string, public Width: string, public Float: string, public Others: string){
     }
     public SetFloatByString(Str: string){
 
     }
 }
 
+function ReplaceAll(ReplacedStr, ReplacedFrom, ReplacedTo){
+    while(ReplacedStr!=ReplacedStr.replace(ReplacedFrom, ReplacedTo)){
+        ReplacedStr=ReplacedStr.replace(ReplacedFrom, ReplacedTo);
+    }
+    return ReplacedStr;
+}
+
+
 function UpdateLocalFigNum_Rev(){
     var HTMLSource: string;
-    HTMLSource = document.getElementById('ThumList').outerHTML;
-    var Figures: figure[];
+    HTMLSource = document.getElementById('ThumbList').outerHTML;
+    console.log(HTMLSource);
+    var Figures: figure[]=new Array();
 
+    var S_FigureID: string;
 
+    var i:number =1;
+    
+    while(S_FigureID=HTMLSource.match(/id="LocalFigure\d{1,}"/)[0]){
+        console.log(S_FigureID);
+        
+        S_FigureID = S_FigureID.slice(4,-1); //(LocalFigure00)
+
+        var S_FigNum: string
+        var FigWidth: string;
+        var FigFloat: string;
+        var FigOthers: string;
+
+        S_FigNum = S_FigureID.slice(15,-1); //(00)
+        console.log(S_FigureID);
+        FigWidth = (<HTMLInputElement>document.getElementById("Width_"+S_FigureID)).value
+        FigFloat = (<HTMLInputElement>document.getElementById("Float_"+S_FigureID)).value
+        FigOthers = (<HTMLInputElement>document.getElementById("Float_"+S_FigureID)).value
+
+        Figures[i-1]=(new figure(S_FigNum,FigWidth,FigFloat,FigOthers));
+
+        HTMLSource=ReplaceAll(HTMLSource, S_FigureID, "Local_Figure"+i);
+        
+        i++;
+    }
+
+    HTMLSource=ReplaceAll(HTMLSource, "Local_Figure", "LocalFigure");
+    
+    var j:number;
+    for(j=1;j<=Figures.length;j++){
+        (<HTMLInputElement>document.getElementById("Width_LocalFigure"+j)).value=Figures[j-1].Width;
+        (<HTMLInputElement>document.getElementById("Floar_LocalFigure"+j)).value=Figures[j-1].Float;
+        (<HTMLInputElement>document.getElementById("Others_LocalFigure"+j)).value=Figures[j-1].Others;
+    }
+
+    return;
 }
 
 /*

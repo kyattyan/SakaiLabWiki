@@ -87,7 +87,7 @@ $(function() {
 
 //全置換用。なんで全部置換されないのか謎。
 //逆にその理由が分かればこの関数は削除
-function ReplaceAll(ReplacedStr, ReplacedFrom, ReplacedTo){
+function ReplaceAll_(ReplacedStr, ReplacedFrom, ReplacedTo){
     while(ReplacedStr!=ReplacedStr.replace(ReplacedFrom, ReplacedTo)){
         ReplacedStr=ReplacedStr.replace(ReplacedFrom, ReplacedTo);
     }
@@ -124,7 +124,7 @@ function handleFileSelect(evt) {
             //'Figure'+ escape(String(Int+1)) + 
             span.innerHTML = [
                             //<div>タグ追加
-                            '<div class = "LocalFigure", id="LocalFigure0',escape(String(Int+1)),'">\n'+
+                            '<div class = "LocalFigure" id="LocalFigure0',escape(String(Int+1)),'">\n'+
                             'LocalFigure0'+ escape(String(Int+1)) + '    :',
                                 //イメージ本体
                                 '<img class="thumb" align = "left" src="', e.target.result,
@@ -151,7 +151,7 @@ function handleFileSelect(evt) {
                             '</div><br><br><br>'
                             ].join('');
             document.getElementById('ThumbList').insertBefore(span, null);
-            UpdateLocalFigNum();
+            //UpdateLocalFigNum();
         };
         
       })(f, i);
@@ -256,28 +256,28 @@ function UpdateLocalFigNum(){
     //疑似do-while。比較ではなく代入演算子
     while(S_FigID=S_HTMLSource.match(/id="LocalFigure\d{1,}"/)){
         var S_FigNum = String(S_FigID).slice(4,-1);
-        alert(S_FigNum);
+        //alert(S_FigNum);
         S_Width.push(document.getElementById("Width_"+S_FigNum).value);
         
         
         /*while (S_HTMLSource != S_HTMLSource.replace(S_FigNum, 'Local_Figure'+String(i))){
             S_HTMLSource = S_HTMLSource.replace(S_FigNum, 'Local_Figure'+String(i))
         };*/
-        S_HTMLSource = ReplaceAll(S_HTMLSource,S_FigNum,'Local_Figure'+String(i));
+        S_HTMLSource = ReplaceAll_(S_HTMLSource,S_FigNum,'Local_Figure'+String(i));
         //alert(S_FigNum + '--Local_Figure'+String(i));
         i++;
     }
     
     //S_HTMLSource = S_HTMLSource.replace('Local_Figure', 'LocalFigure');
-    S_HTMLSource = ReplaceAll(S_HTMLSource,'Local_Figure', 'LocalFigure');
+    S_HTMLSource = ReplaceAll_(S_HTMLSource,'Local_Figure', 'LocalFigure');
     document.getElementById('ThumbList').outerHTML = S_HTMLSource;
 
     //避難した値を戻す
     var j;
     for(j=1;j<i;j++){
-        alert(j);
+        //alert(j);
         document.getElementById("Width_LocalFigure"+j).value=S_Width[j-1];
-        alert(S_Width[j-1]);
+        //alert(S_Width[j-1]);
     }
 
     //alert(S_HTMLSource);
