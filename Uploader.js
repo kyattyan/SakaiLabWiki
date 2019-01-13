@@ -125,7 +125,7 @@ function handleFileSelect(evt) {
             span.innerHTML = [
                             //<div>タグ追加
                             '<div class = "LocalFigure" id="LocalFigure0',escape(String(Int+1)),'">\n'+
-                            'LocalFigure0'+ escape(String(Int+1)) + '    :',
+                            'LocalFigure0'+ escape(String(Int+1)) + '<br>',
                                 //イメージ本体
                                 '<img class="thumb" align = "left" src="', e.target.result,
                                 '" title="', escape(theFile.name),
@@ -136,22 +136,22 @@ function handleFileSelect(evt) {
                                 '<option>左/Left</option>',
                                 '<option>右/Right</option>',
                                 '<option>行内/In line</option>',
-                                '</select> ',
+                                '</select><br>',
                                 //大きさ変更
                                 '幅/Width: <input type="number" id="Width_LocalFigure0' + escape(String(Int+1))
                                 +'" min = "10" value = "100">'+'<br>',
                                 //その他用のテキストボックス
                                 'その他のオプション/Other options: <input type = "text" '+
-                                'id="Other_LocalFigure0'+escape(String(Int+1))+ '"> <br>',
+                                'id="Others_LocalFigure0'+escape(String(Int+1))+ '"> <br>',
                                 //画像追加用ボタン
                                 '<button onclick="AddText(\'<LocalFigure0'+ escape(String(Int+1))+
                                 '>\')"> Add this figure</button>',
                                 
                             //最後にdiv閉じタグと改行
-                            '</div><br><br><br>'
+                            '</div><br>'
                             ].join('');
             document.getElementById('ThumbList').insertBefore(span, null);
-            //UpdateLocalFigNum();
+            UpdateLocalFigNum();
         };
         
       })(f, i);
@@ -172,6 +172,7 @@ function handleDragOver(evt) {
 }
 
 //墓場。時が来たら削除
+/*
 function FindNextNum(){
     SetNextNum();
     //サムネイルリスト部分のHTMLの生のコード取得
@@ -181,9 +182,10 @@ function FindNextNum(){
     //alert(S_FullComment_Next);
     var S_Next = String(S_FullComment_Next).slice(9,-3);
     return parseInt(S_Next,10);
-}
+}*/
 
 //跡地。時が来たら削除
+/*
 function SetNextNum(){
 
     var S_LowHTML = document.getElementById('ThumbList').outerHTML;
@@ -235,14 +237,10 @@ function SetNextNum(){
 
     return;
    
-}
+}*/
 
 
-//各関数動作確認用
-function test(){
-    alert(FindNextNum());
-}
-
+/*
 //LocalFiguresの番号再設定
 function UpdateLocalFigNum(){
     var S_HTMLSource = document.getElementById('ThumbList').outerHTML;
@@ -262,7 +260,7 @@ function UpdateLocalFigNum(){
         
         /*while (S_HTMLSource != S_HTMLSource.replace(S_FigNum, 'Local_Figure'+String(i))){
             S_HTMLSource = S_HTMLSource.replace(S_FigNum, 'Local_Figure'+String(i))
-        };*/
+        };* /
         S_HTMLSource = ReplaceAll_(S_HTMLSource,S_FigNum,'Local_Figure'+String(i));
         //alert(S_FigNum + '--Local_Figure'+String(i));
         i++;
@@ -282,4 +280,4 @@ function UpdateLocalFigNum(){
 
     //alert(S_HTMLSource);
     return;
-}
+}*/

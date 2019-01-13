@@ -61,17 +61,19 @@ function ReplaceAll(ReplacedStr, ReplacedFrom, ReplacedTo){
 }
 
 
-function UpdateLocalFigNum_Rev(){
+function UpdateLocalFigNum(){
     var HTMLSource: string;
     HTMLSource = document.getElementById('ThumbList').outerHTML;
-    console.log(HTMLSource);
+    //console.log(HTMLSource);
     var Figures: figure[]=new Array();
 
     var S_FigureID: string;
 
     var i:number =1;
     
-    while(S_FigureID=HTMLSource.match(/id="LocalFigure\d{1,}"/)[0]){
+    while(HTMLSource.match(/id="LocalFigure\d{1,}"/)){
+        
+        S_FigureID=HTMLSource.match(/id="LocalFigure\d{1,}"/)[0]
         console.log(S_FigureID);
         
         S_FigureID = S_FigureID.slice(4,-1); //(LocalFigure00)
@@ -85,21 +87,23 @@ function UpdateLocalFigNum_Rev(){
         console.log(S_FigureID);
         FigWidth = (<HTMLInputElement>document.getElementById("Width_"+S_FigureID)).value
         FigFloat = (<HTMLInputElement>document.getElementById("Float_"+S_FigureID)).value
-        FigOthers = (<HTMLInputElement>document.getElementById("Float_"+S_FigureID)).value
+        FigOthers = (<HTMLInputElement>document.getElementById("Others_"+S_FigureID)).value
 
         Figures[i-1]=(new figure(S_FigNum,FigWidth,FigFloat,FigOthers));
 
-        HTMLSource=ReplaceAll(HTMLSource, S_FigureID, "Local_Figure"+i);
+        HTMLSource=ReplaceAll(HTMLSource, S_FigureID, "Local_Figure"+String(i));
         
         i++;
     }
 
     HTMLSource=ReplaceAll(HTMLSource, "Local_Figure", "LocalFigure");
     
+    document.getElementById('ThumbList').outerHTML = HTMLSource;
+
     var j:number;
     for(j=1;j<=Figures.length;j++){
         (<HTMLInputElement>document.getElementById("Width_LocalFigure"+j)).value=Figures[j-1].Width;
-        (<HTMLInputElement>document.getElementById("Floar_LocalFigure"+j)).value=Figures[j-1].Float;
+        (<HTMLInputElement>document.getElementById("Float_LocalFigure"+j)).value=Figures[j-1].Float;
         (<HTMLInputElement>document.getElementById("Others_LocalFigure"+j)).value=Figures[j-1].Others;
     }
 
