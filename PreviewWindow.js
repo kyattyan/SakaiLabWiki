@@ -18,6 +18,17 @@ function UpdatePreview(){
     //改行文字を<br>に置換
     EditerContent= EditerContent.replace(/\n/g, '<br>');
     
+    //文字色変更タグ変換
+    EditerContent= EditerContent.replace(/<red>/g, '<font color=#FF0000>');
+    EditerContent= EditerContent.replace(/<green>/g, '<font color=#008800>');
+    EditerContent= EditerContent.replace(/<blue>/g, '<font color=#0000FF>');
+
+
+    EditerContent= EditerContent.replace(/<\/red>/g, '</font>');
+    EditerContent= EditerContent.replace(/<\/green>/g, '</font>');
+    EditerContent= EditerContent.replace(/<\/blue>/g, '</font>');
+
+
     //ローカルの図の読み込み
     var S_LocalFig = EditerContent.match(/<LocalFigure\d{1,}>/);
     while(S_LocalFig!==null){
