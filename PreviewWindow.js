@@ -19,14 +19,14 @@ function UpdatePreview(){
     EditerContent= EditerContent.replace(/\n/g, '<br>');
     
     //文字色変更タグ変換
-    EditerContent= EditerContent.replace(/<red>/g, '<font color=#FF0000>');
-    EditerContent= EditerContent.replace(/<green>/g, '<font color=#008800>');
-    EditerContent= EditerContent.replace(/<blue>/g, '<font color=#0000FF>');
+    //EditerContent= EditerContent.replace(/<red>/g, '<font color=#FF0000>');
+    //EditerContent= EditerContent.replace(/<green>/g, '<font color=#008800>');
+    //EditerContent= EditerContent.replace(/<blue>/g, '<font color=#0000FF>');
 
 
-    EditerContent= EditerContent.replace(/<\/red>/g, '</font>');
-    EditerContent= EditerContent.replace(/<\/green>/g, '</font>');
-    EditerContent= EditerContent.replace(/<\/blue>/g, '</font>');
+    //EditerContent= EditerContent.replace(/<\/red>/g, '</font>');
+    //EditerContent= EditerContent.replace(/<\/green>/g, '</font>');
+    //EditerContent= EditerContent.replace(/<\/blue>/g, '</font>');
 
 
     //ローカルの図の読み込み

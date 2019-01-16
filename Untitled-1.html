@@ -1,11 +1,12 @@
 <html>
     <head>
-        <title>test</title>
+        <title>ページ作成・編集画面</title>
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=320, minimum-scale=1.0, maximum-scale=2.0">
 
         <link rel = "stylesheet" type = "text/css" href = "PreviewWindow.css">
+        <link rel = "stylesheet" type = "text/css" href = "OriginalTags.css">
 
         <!--jQueryの読み込み（よくわかっていない）-->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.slim.min.js"></script>
@@ -35,7 +36,7 @@
             
             <div class="preview">
                 <p id = "Preview_Title" style="background-color:Black; color:white;">Preview</p>
-                <div id="livepreview"></div>
+                <div id="livepreview" class="Contents"></div>
             </div>
 
 
@@ -58,6 +59,12 @@
                         <button onclick="AddTag('red')"><font color="#FF0000">赤/red</font></button>
                         <button onclick="AddTag('green')"><font color="#008800">緑/green</font></button>
                         <button onclick="AddTag('blue')"><font color="#0000FF">青/blue</font></button>
+
+                        <button  onclick="AddTag('X-Large')">XL/特大</button>
+                        <button  onclick="AddTag('Large')">L/大</button>
+                        <button  onclick="AddTag('Small')">S/小</button>
+                        <button  onclick="AddTag('X-Small')">XS/極小</button>
+
 
                         <br>
                         <!----button onclick="AddText('<LocalFig1>')"> Add Figure 1</button-->

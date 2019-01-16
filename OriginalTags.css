@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+/*
+    作成されたHTMLに適用されるcssファイル
+    仕様は未定
+*/
+
+.Contents red{
+    color: red;
+}
+
+.Contents green{
+    color: green;
+}
+
+.Contents blue{
+    color: blue;
+}
+
+.Contents orange{
+    color: orange;
+}
+
+.Contents purple{
+    color: purple;
+}
+
+.Contents cyan{
+    color: cyan;
+}
+
+.Contents large{
+    font-size: 150%;
+}
+.Contents X-large{
+    font-size: 200%;
+}
+.Contents Small{
+    font-size: 75%;
+}
+.Contents X-Small{
+    font-size: 50%;
+}
