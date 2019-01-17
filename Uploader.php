@@ -28,7 +28,7 @@
         "   <script>CommonBody_Top();</script>\n".
         "   <div class=\"Contents\">".
             $_POST["HTML_Source"] .
-        "   </div".
+        "   </div>".
         "   <script>CommonBody_Bottom();</script>\n".
         "</body>";
         

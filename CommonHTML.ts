@@ -1,7 +1,7 @@
 function CommonBody_Top(){
-    document.write("test: top<br>");
+    document.write("<!--test: top-->");
 }
 
 function CommonBody_Bottom(){
-    document.write("test: bottom<br>");
+    document.write("<!--test: bottom-->");
 }
