@@ -41,3 +41,9 @@
 .Contents X-Small{
     font-size: 50%;
 }
+
+.Contents PageTitle{
+    font-size: 200%;
+    font-weight: bold;
+    background-image: url("tile.gif");
+}

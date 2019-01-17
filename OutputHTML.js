@@ -64,7 +64,7 @@ function OutputHTML(){
     var form_data = new FormData();
 
     form_data.append("HTML_Source", document.getElementById('livepreview').innerHTML);
-    form_data.append("FileName", document.js.title.value+".html");
+    form_data.append("FileName", document.getElementById('FileName').value+".html");
     //alert(document.getElementById('livepreview').innerHTML);
     // ------------------------------------------------------------
     // XMLHttpRequest オブジェクトを作成

@@ -18,17 +18,6 @@ function UpdatePreview(){
     //改行文字を<br>に置換
     EditerContent= EditerContent.replace(/\n/g, '<br>');
     
-    //文字色変更タグ変換
-    //EditerContent= EditerContent.replace(/<red>/g, '<font color=#FF0000>');
-    //EditerContent= EditerContent.replace(/<green>/g, '<font color=#008800>');
-    //EditerContent= EditerContent.replace(/<blue>/g, '<font color=#0000FF>');
-
-
-    //EditerContent= EditerContent.replace(/<\/red>/g, '</font>');
-    //EditerContent= EditerContent.replace(/<\/green>/g, '</font>');
-    //EditerContent= EditerContent.replace(/<\/blue>/g, '</font>');
-
-
     //ローカルの図の読み込み
     var S_LocalFig = EditerContent.match(/<LocalFigure\d{1,}>/);
     while(S_LocalFig!==null){
@@ -62,6 +51,13 @@ function UpdatePreview(){
     //PHPの禁止
     EditerContent= EditerContent.replace(/(<\?|<\%|<\?php)/g,
         '<br><b>Do not use PHP in this editer.</b><br>');
+    
+
+    //------------------------------追加文字列---------------------------------------
+    var S_PageTitle = document.getElementById("FileName").value;
+    EditerContent = "<PageTitle>"+S_PageTitle +"</PageTitle><br>\n"+ EditerContent;
+    console.log(EditerContent);
+
     
     $('#livepreview').html(EditerContent);
 

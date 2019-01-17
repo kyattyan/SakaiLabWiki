@@ -15,7 +15,25 @@
 	header("Content-type:text/plain");
 	
 	# 名前を指定してフォーム情報を取得する
-    $HTML_Source = "<head><meta charset = \"UTF-8\"></head>" . $_POST["HTML_Source"];
+    $HTML_Source = 
+        "<head>\n".
+        "    <meta charset = \"UTF-8\">\n".
+        "    <script type=\"text/javascript\" src=\"http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/CommonHTML.js\"></script>".
+        "    <link rel = \"stylesheet\" type = \"text/css\" href = \"http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/OriginalTags.css\">".
+        "<title>".
+        $_POST["FileName"].
+        "</title>".
+        "</head>\n".
+        "<body>\n".
+        "   <script>CommonBody_Top();</script>\n".
+        "   <div class=\"Contents\">".
+            $_POST["HTML_Source"] .
+        "   </div".
+        "   <script>CommonBody_Bottom();</script>\n".
+        "</body>";
+        
+
+    #$HTML_Source = "<head><meta charset = \"UTF-8\"></head>" . $_POST["HTML_Source"];
     $FileName = $_POST["FileName"];
 
 	# 拡張子を取得する
