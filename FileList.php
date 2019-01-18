@@ -35,8 +35,8 @@
                         echo ("<a href=\"");
                         echo ($Members);
                         echo ("\" target=\"_blank\">");
-                        echo htmlspecialchars($ExtractedFilename);
-                        echo "</a><br />\n";
+                        echo (htmlspecialchars($ExtractedFilename));
+                        echo ("</a><br />\n");
 
                     }else{
                         $Directories[$DirIndex] = $Members;
