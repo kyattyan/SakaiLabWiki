@@ -1,10 +1,11 @@
 function CommonBody_Top(){
-    document.write("<!--test: top-->\n<span id=\"PHP\"></span>");
+    document.write('<!--test: top-->\n <div class="ContentWrapper"><div class="MenuBar"><span id="PHP">');
     sendRequest();
+    document.write('</span></div><div class="Main">');
 }
 
 function CommonBody_Bottom(){
-    document.write("<!--test: bottom-->");
+    document.write("<!--test: bottom-->\n </div></div>");
 }
 
 function createXmlHttpRequest()
@@ -40,7 +41,7 @@ function sendRequest()
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../CommonPHP.php", false);
+        xmlhttp.open("POST", "http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/CommonPHP.php", false);
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         //var data="data="+moji;
         var RequestType :string = "RequestType=FileList";

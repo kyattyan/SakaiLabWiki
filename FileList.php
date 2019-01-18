@@ -32,7 +32,7 @@
                             echo("&emsp;");
                         }
 
-                        echo ("<a href=\"");
+                        echo ("<a href=\"http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/");
                         echo ($Members);
                         echo ("\" target=\"_blank\">");
                         echo (htmlspecialchars($ExtractedFilename));

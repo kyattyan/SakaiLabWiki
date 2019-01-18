@@ -20,6 +20,7 @@
         "    <meta charset = \"UTF-8\">\n".
         "    <script type=\"text/javascript\" src=\"http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/CommonHTML.js\"></script>".
         "    <link rel = \"stylesheet\" type = \"text/css\" href = \"http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/OriginalTags.css\">".
+        "    <link rel = \"stylesheet\" type = \"text/css\" href = \"http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Main.css\">".
         "<title>".
         $_POST["FileName"].
         "</title>".
