@@ -14,14 +14,21 @@
                 }
                 $Directories = [];
                 $DirIndex = 0;
-
-                for($i=0;$i<$Level;$i++){
-                    echo("&emsp;");
-                }
+  
                 $ExtractedDirname = substr(strrchr($DirName, '/'),1);
                 if(!$ExtractedDirname){
                     $ExtractedDirname=$DirName;
                 }
+
+                //フォルダ名が"_"から始まる場合は即座に抜ける。_から始まるフォルダはバックアップや古いファイル用
+                if(substr($ExtractedDirname, 0, 1)=='_'){
+                    return;
+                }
+
+                for($i=0;$i<$Level;$i++){
+                    echo("&emsp;");
+                }
+
                 echo($ExtractedDirname."\n<br />");
 
                 foreach(glob($DirName.'/*') as $Members){
