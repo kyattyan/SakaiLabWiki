@@ -47,3 +47,10 @@
     font-weight: bold;
     background-image: url("tile.gif");
 }
+
+.Contents h1{
+    background: no-repeat url("宮地鳥さん.png");
+    width: auto;
+    padding-left: 30px;
+    padding-bottom: 10px;
+}

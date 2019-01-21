@@ -43,8 +43,25 @@
             <div class="editor">
                 <p style="background-color:Black; color:white;">Editor</p>
                 <div id = "EditorMain">
-                    <p>ページタイトル/A name of this page</p>
-                    <input class="bottomspace" type="text" name="title" id = "FileName" value="TestFile"><br>
+                    <table ><tbody>
+                        <tr  >
+                            <td class="CategoryAndTitle" width = "50%">
+                                細目/Category<br>
+                                <select id="Category1">
+                                    <option value="test">テスト</option>
+                                    <option value="1">１</option>
+                                </select>
+                                <select id="Category2">
+                                    <option value="test">テスト</option>
+                                    <option value="2">2</option>
+                                </select>
+                            </td>
+                            <td class="CategoryAndTitle" width = "50%">
+                                    <p>ページタイトル/A name of this page</p>
+                                    <input class="bottomspace" type="text" name="title" id = "FileName" value="TestFile">                
+                            </td>
+                        </tr>
+                    </tbody></table>
 
                     <p><!--ページの内容(htmlタグが使えます)--></p>
                     <textarea id="liveeditor" name="htmlbody" rows="5" cols="75" textalign = "left"></textarea>

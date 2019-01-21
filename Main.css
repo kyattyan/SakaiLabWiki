@@ -36,8 +36,32 @@
     width: 20%;
     
     color: #000;
-    background: #EEEEFF;
+    background: #EEEEEE;
 }
 .ContentWrapper{
 	display: flex;
+}
+
+.MenuBar .Dir_0{
+    background: #FFEEEE;
+}
+
+.MenuBar .Dir_1{
+    background: #EEFFEE;
+}
+
+.MenuBar .Dir_2{
+    background: #EEEEFF;
+}
+
+.MenuBar .File_0{
+    background: #FFDDDD;
+}
+
+.MenuBar .File_1{
+    background: #DDFFDD;
+}
+
+.MenuBar .File_2{
+    background: #DDDDFF;
 }

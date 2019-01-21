@@ -15,7 +15,7 @@
                 $Directories = [];
                 $DirIndex = 0;
   
-                $ExtractedDirname = substr(strrchr($DirName, '/'),1);
+                $ExtractedDirname = substr(strrchr($DirName, '/'),2);
                 if(!$ExtractedDirname){
                     $ExtractedDirname=$DirName;
                 }
@@ -28,9 +28,11 @@
                 for($i=0;$i<$Level;$i++){
                     echo("&emsp;");
                 }
-
+                echo("<span class=Dir_".$Level.">");
                 echo($ExtractedDirname."\n<br />");
+                echo("</span>");
 
+                echo("<span class=File_".$Level.">");
                 foreach(glob($DirName.'/*') as $Members){
                     if(is_file($Members)){
                         $ExtractedFilename = substr(strrchr($Members, '/'),1);
@@ -50,7 +52,7 @@
                         $DirIndex++;
                     }
                 }
-
+                echo("</span>");
                 for($i=0;$i<$DirIndex;$i++){
                     SearchDirectory($Directories[$i], $Level+1);
                 }
