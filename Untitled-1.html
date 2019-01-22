@@ -11,14 +11,17 @@
         <!--jQueryの読み込み（よくわかっていない）-->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.slim.min.js"></script>
 
-        <!--クラス（仮）-->
-        <script type="text/javascript" src="Figure.js"></script>
+
+        
 
         <!--その他、実際に動く関数とかいろいろ-->
+        <script type="text/javascript" src="Figure.js"></script>
         <script type="text/javascript" src="PreviewWindow.js"></script>
         <script type="text/javascript" src="Uploader.js"></script>
         <script type="text/javascript" src="Reference.js"></script>
         <script type="text/javascript" src="OutputHTML.js"></script>
+        <script type="text/javascript" src="DynamicPulldownList.js"></script>
+
         
         <script typr="javascript">
             if (window.File) {
@@ -45,19 +48,15 @@
                 <div id = "EditorMain">
                     <table ><tbody>
                         <tr  >
-                            <td class="CategoryAndTitle" width = "50%">
+                            <td class="CategoryAndTitle" width = "65%">
                                 細目/Category<br>
                                 <select id="Category1">
-                                    <option value="test">テスト</option>
-                                    <option value="1">１</option>
                                 </select>
                                 <select id="Category2">
-                                    <option value="test">テスト</option>
-                                    <option value="2">2</option>
                                 </select>
                             </td>
-                            <td class="CategoryAndTitle" width = "50%">
-                                    <p>ページタイトル/A name of this page</p>
+                            <td class="CategoryAndTitle">
+                                    <p>ページタイトル/Page title</p>
                                     <input class="bottomspace" type="text" name="title" id = "FileName" value="TestFile">                
                             </td>
                         </tr>
