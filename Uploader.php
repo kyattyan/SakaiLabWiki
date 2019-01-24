@@ -53,6 +53,7 @@
 		move_uploaded_file ($HTML_Source["tmp_name"], $file_name_new);
     }*/
     
-    file_put_contents($FileName,$HTML_Source);
+    
+    file_put_contents($_POST["Directory"].$FileName,$HTML_Source);
     
 ?>

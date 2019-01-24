@@ -62,9 +62,20 @@ function OutputHTML(){
     //空フォーム作成→データ追加
 
     var form_data = new FormData();
+    var Directory ="";
+
+    if(document.getElementById("Category1").value!=" なし none"){
+        Directory+=document.getElementById("Category1").value+"/";
+    }
+    if(document.getElementById("Category2").value!=" なし none"){
+        Directory+=document.getElementById("Category2").value+"/";
+    }
 
     form_data.append("HTML_Source", document.getElementById('livepreview').innerHTML);
     form_data.append("FileName", document.getElementById('FileName').value+".html");
+    form_data.append("Directory", Directory);
+    console.log("Target directory is "+ Directory);
+
     //alert(document.getElementById('livepreview').innerHTML);
     // ------------------------------------------------------------
     // XMLHttpRequest オブジェクトを作成
