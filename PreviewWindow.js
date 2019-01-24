@@ -56,7 +56,7 @@ function UpdatePreview(){
     //------------------------------追加文字列---------------------------------------
     var S_PageTitle = document.getElementById("FileName").value;
     EditerContent = "<PageTitle>"+S_PageTitle +"</PageTitle><br>\n"+ EditerContent;
-    console.log(EditerContent);
+    //console.log(EditerContent);
 
     
     $('#livepreview').html(EditerContent);

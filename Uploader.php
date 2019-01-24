@@ -55,5 +55,7 @@
     
     
     file_put_contents($_POST["Directory"].$FileName,$HTML_Source);
+
+    echo("Your file is succesfully uploaded as ".$_POST["Directory"].$FileName);
     
 ?>

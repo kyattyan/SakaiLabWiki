@@ -88,7 +88,10 @@ function OutputHTML(){
     xhr.onload = function (e){
 
         // レスポンスボディを取得する
-        console.log(xhr.responseText );
+        var Res =xhr.responseText; 
+
+        console.log(Res);
+        alert(Res);
 
     };
 
@@ -101,5 +104,8 @@ function OutputHTML(){
     // 「送信データに FormData を指定」「XHR 通信を開始する」
     // ------------------------------------------------------------
     xhr.send(form_data);
-    alert('OK');
+
+    //var Res = xhr.responseText;
+
+    //alert('Res');
 }
