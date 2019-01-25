@@ -44,24 +44,41 @@
 
 .MenuBar .Dir_0{
     background: #FFEEEE;
+    position: relative;
+    left: 0px;
 }
 
 .MenuBar .Dir_1{
     background: #EEFFEE;
+    position: relative;
+    left: 10px;
+
 }
 
 .MenuBar .Dir_2{
     background: #EEEEFF;
+    position: relative;
+    left: 20px;
+
 }
 
 .MenuBar .File_0{
     background: #FFDDDD;
+    position: relative;
+    left: 5px;
+
 }
 
 .MenuBar .File_1{
     background: #DDFFDD;
+    position: relative;
+    left: 15px;
+
 }
 
 .MenuBar .File_2{
     background: #DDDDFF;
+    position: relative;
+    left: 25px;
+
 }

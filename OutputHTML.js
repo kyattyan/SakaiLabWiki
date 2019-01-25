@@ -77,6 +77,20 @@ function OutputHTML(){
     console.log("Target directory is "+ Directory);
 
     //alert(document.getElementById('livepreview').innerHTML);
+
+    // ------------------------------------------------------------
+    // ファイルがあるかサーバーに確認、あるなら上書きするかユーザーに確認
+    // ------------------------------------------------------------
+
+    var FileExistCheck = new XMLHttpRequest();
+
+    FileExistCheck.open("POST" , "http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Files/FileExistChecker.php");
+
+    
+
+    
+
+
     // ------------------------------------------------------------
     // XMLHttpRequest オブジェクトを作成
     // ------------------------------------------------------------
@@ -100,10 +114,37 @@ function OutputHTML(){
     // ------------------------------------------------------------
     xhr.open("POST" , "http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Files/Uploader.php");
 
+
+
+    // ------------------------------------------------------------
+    // ファイルチェック開始、FormDataを送信
+    // ------------------------------------------------------------
+
+    FileExistCheck.send(form_data);
+
+
     // ------------------------------------------------------------
     // 「送信データに FormData を指定」「XHR 通信を開始する」
     // ------------------------------------------------------------
-    xhr.send(form_data);
+    
+    // ------------------------------------------------------------
+    // ファイル名チェックの結果が返ってきたら実行
+    // ------------------------------------------------------------
+    FileExistCheck.onload = function (){
+        var Res_Check = FileExistCheck.responseText;
+
+        console.log(Res_Check);
+        if(Res_Check=="Exist"){
+            var Confirm=window.confirm("指定したファイルは既に存在します。上書きしますか？\nThe file you named already exists. Do you overwrite it?");
+            
+            //ファイルが既に存在し、なおかつキャンセルされたら何もせず返す
+            if(!Confirm){
+                return;
+            }
+        }
+        //それ以外(新規ファイル名、OKが押された場合)の時、送信開始
+        xhr.send(form_data);
+    }
 
     //var Res = xhr.responseText;
 
