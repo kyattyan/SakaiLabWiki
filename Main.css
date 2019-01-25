@@ -82,3 +82,13 @@
     left: 25px;
 
 }
+
+.EditButton{
+    float: right;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.EditButton img{
+    width:40px;
+}
