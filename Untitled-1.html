@@ -15,13 +15,15 @@
         
 
         <!--その他、実際に動く関数とかいろいろ-->
-        <script type="text/javascript" src="Reedit.js"></script>
-        <script type="text/javascript" src="Figure.js"></script>
-        <script type="text/javascript" src="PreviewWindow.js"></script>
-        <script type="text/javascript" src="Uploader.js"></script>
-        <script type="text/javascript" src="Reference.js"></script>
-        <script type="text/javascript" src="OutputHTML.js"></script>
-        <script type="text/javascript" src="DynamicPulldownList.js"></script>
+        <script type="text/javascript" src="Figure.js"></script><!--図関連、uploaderから一部移植-->
+        <script type="text/javascript" src="PreviewWindow.js"></script><!--上部分のpreviewの根幹部分-->
+        <script type="text/javascript" src="Uploader.js"></script><!--図のロード。名前詐欺になってるのでそのうち名前変える-->
+        <script type="text/javascript" src="Reference.js"></script><!--参考文献関連。今はスッカスカ-->
+        <script type="text/javascript" src="OutputHTML.js"></script><!--大学のサーバーにデータ送ってHTMLファイルにする-->
+        <script type="text/javascript" src="DynamicPulldownList.js"></script><!--プルダウンメニューの中身を動的に変更する-->
+
+        <!--一番最後に読み込み-->
+        <script type="text/javascript" src="Reedit.js"></script><!--編集ボタンから飛んできた時の挙動-->
 
         
         <script typr="javascript">
@@ -64,7 +66,7 @@
                     </tbody></table>
 
                     <p><!--ページの内容(htmlタグが使えます)--></p>
-                    <textarea id="liveeditor" name="htmlbody" rows="5" cols="75" textalign = "left"></textarea>
+                    <textarea id="liveeditor" name="htmlbody" rows="5" cols="75" textalign = "left" oninput="UpdatePreview()"></textarea>
                     <div class="ButtonsForEditer">
                         <!--文字装飾タグ用-->
                         <button  onclick="AddTag('B')"><B>B</B></button>

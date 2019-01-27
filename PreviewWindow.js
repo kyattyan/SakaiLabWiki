@@ -1,6 +1,8 @@
 //このJSの肝の部分。Editer部分のテキストを読み込んで一部文字列を置換後、Preview部分にのHTMLソースとして加える
+
 function UpdatePreview(){
-    var EditerContent = $('#liveeditor').val();
+    console.log('Update');
+    var EditerContent = String($('#liveeditor').val());
         
 
     //----------------------直接HTML編集防止用----------------------------------------------------------------
@@ -25,7 +27,7 @@ function UpdatePreview(){
         var S_LocalFigNumber = String(S_LocalFig).slice(12,-1);
         var I_LocalFigNumber = parseInt(S_LocalFigNumber, 10); 
         //alert(S_LocalFig);
-        EditerContent = EditerContent.replace(S_LocalFig, GetLocalFig(I_LocalFigNumber));
+        EditerContent = EditerContent.replace(S_LocalFig[0], GetLocalFig(I_LocalFigNumber));
 
         S_LocalFig = EditerContent.match(/<LocalFigure\d{1,}>/);
     }
@@ -36,7 +38,7 @@ function UpdatePreview(){
         
         var I_RefNumber = parseInt(String(S_Reference).slice(2,-1),10);
         //alert(S_LocalFig);
-        EditerContent = EditerContent.replace(S_Reference,'<sup>['+I_RefNumber+']</sup>');
+        EditerContent = EditerContent.replace(S_Reference[0],'<sup>['+I_RefNumber+']</sup>');
 
         S_Reference = EditerContent.match(/\[R\d{1,}\]/);
     }
@@ -54,7 +56,7 @@ function UpdatePreview(){
     
 
     //------------------------------追加文字列---------------------------------------
-    var S_PageTitle = document.getElementById("FileName").value;
+    var S_PageTitle = (document.getElementById("FileName")).value;
     EditerContent = '<PageTitle><span id =PageTitle>'+S_PageTitle +'</span></PageTitle><br>\n'+ 
     '<span id = "MainContent">'+ EditerContent +'</span>';
 
@@ -69,7 +71,21 @@ $(function() {
     $('body').keyup(function() {
         UpdatePreview();
     });
+    document.getElementById("liveeditor").addEventListener('input', UpdatePreview);
+    window.addEventListener('load', UpdatePreview);
+
+
 });
+
+/*$(function(){
+    $('#liveeditor').input(function(){
+        UpdatePreview();
+        console.log("Chnage of textarea");
+    });
+});*/
+
+
+
 
 /*
 function downloadfile(){

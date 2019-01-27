@@ -14,7 +14,7 @@
                     return;
                 }
                 //表示しない例外ファイル
-                $ExceptionalFiles = ["Uploader.php", "FileExistChecker.php"];
+                $ExceptionalFiles = ["Uploader.php", "FileExistChecker.php", "GetFileContent.php"];
 
                 $Directories = [];
                 $DirIndex = 0;
