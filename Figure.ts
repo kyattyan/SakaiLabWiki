@@ -71,12 +71,12 @@ function UpdateLocalFigNum(){
 
     var i:number =1;
     
-    while(HTMLSource.match(/id="LocalFigure\d{1,}"/)){
+    while(HTMLSource.match(/id="Figure\d{1,}"/)){
         
-        S_FigureID=HTMLSource.match(/id="LocalFigure\d{1,}"/)[0]
+        S_FigureID=HTMLSource.match(/id="Figure\d{1,}"/)[0]
         console.log(S_FigureID);
         
-        S_FigureID = S_FigureID.slice(4,-1); //(LocalFigure00)
+        S_FigureID = S_FigureID.slice(4,-1); //(Figure00)
 
         var S_FigNum: string
         var FigWidth: string;
@@ -91,20 +91,20 @@ function UpdateLocalFigNum(){
 
         Figures[i-1]=(new figure(S_FigNum,FigWidth,FigFloat,FigOthers));
 
-        HTMLSource=ReplaceAll(HTMLSource, S_FigureID, "Local_Figure"+String(i));
+        HTMLSource=ReplaceAll(HTMLSource, S_FigureID, "tmp_Figure"+String(i));
         
         i++;
     }
 
-    HTMLSource=ReplaceAll(HTMLSource, "Local_Figure", "LocalFigure");
+    HTMLSource=ReplaceAll(HTMLSource, "tmp_Figure", "Figure");
     
     document.getElementById('ThumbList').outerHTML = HTMLSource;
 
     var j:number;
     for(j=1;j<=Figures.length;j++){
-        (<HTMLInputElement>document.getElementById("Width_LocalFigure"+j)).value=Figures[j-1].Width;
-        (<HTMLInputElement>document.getElementById("Float_LocalFigure"+j)).value=Figures[j-1].Float;
-        (<HTMLInputElement>document.getElementById("Others_LocalFigure"+j)).value=Figures[j-1].Others;
+        (<HTMLInputElement>document.getElementById("Width_Figure"+j)).value=Figures[j-1].Width;
+        (<HTMLInputElement>document.getElementById("Float_Figure"+j)).value=Figures[j-1].Float;
+        (<HTMLInputElement>document.getElementById("Others_Figure"+j)).value=Figures[j-1].Others;
     }
 
     return;
@@ -121,29 +121,29 @@ function UpdateLocalFigNum(){
     var S_Width=[];
     
     //疑似do-while。比較ではなく代入演算子
-    while(S_FigID=S_HTMLSource.match(/id="LocalFigure\d{1,}"/)){
+    while(S_FigID=S_HTMLSource.match(/id="Figure\d{1,}"/)){
         var S_FigNum = String(S_FigID).slice(4,-1);
         alert(S_FigNum);
         S_Width.push(document.getElementById("Width_"+S_FigNum).value);
         
         
-        /*while (S_HTMLSource != S_HTMLSource.replace(S_FigNum, 'Local_Figure'+String(i))){
-            S_HTMLSource = S_HTMLSource.replace(S_FigNum, 'Local_Figure'+String(i))
+        /*while (S_HTMLSource != S_HTMLSource.replace(S_FigNum, 'tmp_Figure'+String(i))){
+            S_HTMLSource = S_HTMLSource.replace(S_FigNum, 'tmp_Figure'+String(i))
         };*
-        S_HTMLSource = ReplaceAll(S_HTMLSource,S_FigNum,'Local_Figure'+String(i));
-        //alert(S_FigNum + '--Local_Figure'+String(i));
+        S_HTMLSource = ReplaceAll(S_HTMLSource,S_FigNum,'tmp_Figure'+String(i));
+        //alert(S_FigNum + '--tmp_Figure'+String(i));
         i++;
     }
     
-    //S_HTMLSource = S_HTMLSource.replace('Local_Figure', 'LocalFigure');
-    S_HTMLSource = ReplaceAll(S_HTMLSource,'Local_Figure', 'LocalFigure');
+    //S_HTMLSource = S_HTMLSource.replace('tmp_Figure', 'Figure');
+    S_HTMLSource = ReplaceAll(S_HTMLSource,'tmp_Figure', 'Figure');
     document.getElementById('ThumbList').outerHTML = S_HTMLSource;
 
     //避難した値を戻す
     var j;
     for(j=1;j<i;j++){
         alert(j);
-        document.getElementById("Width_LocalFigure"+j).value=S_Width[j-1];
+        document.getElementById("Width_Figure"+j).value=S_Width[j-1];
         alert(S_Width[j-1]);
     }
 

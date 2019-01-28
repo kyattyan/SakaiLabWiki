@@ -126,27 +126,27 @@ function handleFileSelect(evt) {
             //'Figure'+ escape(String(Int+1)) + 
             span.innerHTML = [
                             //<div>タグ追加
-                            '<div class = "LocalFigure" id="LocalFigure0',escape(String(Int+1)),'">\n'+
-                            'LocalFigure0'+ escape(String(Int+1)) + '<br>',
+                            '<div class = "Figure" id="Figure0',escape(String(Int+1)),'">\n'+
+                            'Figure0'+ escape(String(Int+1)) + '<br>',
                                 //イメージ本体
                                 '<img class="thumb" align = "left" src="', e.target.result,
                                 '" title="', escape(theFile.name),
-                                '" id="img_LocalFigure0'+escape(String(Int+1))+'">',
+                                '" id="img_Figure0'+escape(String(Int+1))+'">',
                                 //表示位置用コンボボックス
                                 '表示位置/Float: <select name="Float" size = "1" ',
-                                'id = "Float_LocalFigure0' + escape(String(Int+1)) + '">',
+                                'id = "Float_Figure0' + escape(String(Int+1)) + '">',
                                 '<option>左/Left</option>',
                                 '<option>右/Right</option>',
                                 '<option>行内/In line</option>',
-                                '</select><br>',
+                                '</select>',
                                 //大きさ変更
-                                '幅/Width: <input type="number" id="Width_LocalFigure0' + escape(String(Int+1))
+                                '幅/Width: <input type="number" id="Width_Figure0' + escape(String(Int+1))
                                 +'" min = "10" value = "100">'+'<br>',
                                 //その他用のテキストボックス
                                 'その他のオプション/Other options: <input type = "text" '+
-                                'id="Others_LocalFigure0'+escape(String(Int+1))+ '"> <br>',
+                                'id="Others_Figure0'+escape(String(Int+1))+ '"> <br>',
                                 //画像追加用ボタン
-                                '<button onclick="AddText(\'<LocalFigure0'+ escape(String(Int+1))+
+                                '<button onclick="AddText(\'<Figure0'+ escape(String(Int+1))+
                                 '>\')"> Add this figure</button>',
                                 
                             //最後にdiv閉じタグと改行
@@ -192,7 +192,7 @@ function SetNextNum(){
 
     var S_LowHTML = document.getElementById('ThumbList').outerHTML;
 
-    //一番最初のLocalFigureを検索
+    //一番最初のFigureを検索
     var S_LocalFigs = S_LowHTML.match(/id="LocalFig\d{1,}"/g);
     
     var I_NextNum = 0;
@@ -243,7 +243,7 @@ function SetNextNum(){
 
 
 /*
-//LocalFiguresの番号再設定
+//Figuresの番号再設定
 function UpdateLocalFigNum(){
     var S_HTMLSource = document.getElementById('ThumbList').outerHTML;
     
@@ -254,29 +254,29 @@ function UpdateLocalFigNum(){
     var S_Width=[];
     
     //疑似do-while。比較ではなく代入演算子
-    while(S_FigID=S_HTMLSource.match(/id="LocalFigure\d{1,}"/)){
+    while(S_FigID=S_HTMLSource.match(/id="Figure\d{1,}"/)){
         var S_FigNum = String(S_FigID).slice(4,-1);
         //alert(S_FigNum);
         S_Width.push(document.getElementById("Width_"+S_FigNum).value);
         
         
-        /*while (S_HTMLSource != S_HTMLSource.replace(S_FigNum, 'Local_Figure'+String(i))){
-            S_HTMLSource = S_HTMLSource.replace(S_FigNum, 'Local_Figure'+String(i))
+        /*while (S_HTMLSource != S_HTMLSource.replace(S_FigNum, 'tmp_Figure'+String(i))){
+            S_HTMLSource = S_HTMLSource.replace(S_FigNum, 'tmp_Figure'+String(i))
         };* /
-        S_HTMLSource = ReplaceAll_(S_HTMLSource,S_FigNum,'Local_Figure'+String(i));
-        //alert(S_FigNum + '--Local_Figure'+String(i));
+        S_HTMLSource = ReplaceAll_(S_HTMLSource,S_FigNum,'tmp_Figure'+String(i));
+        //alert(S_FigNum + '--tmp_Figure'+String(i));
         i++;
     }
     
-    //S_HTMLSource = S_HTMLSource.replace('Local_Figure', 'LocalFigure');
-    S_HTMLSource = ReplaceAll_(S_HTMLSource,'Local_Figure', 'LocalFigure');
+    //S_HTMLSource = S_HTMLSource.replace('tmp_Figure', 'Figure');
+    S_HTMLSource = ReplaceAll_(S_HTMLSource,'tmp_Figure', 'Figure');
     document.getElementById('ThumbList').outerHTML = S_HTMLSource;
 
     //避難した値を戻す
     var j;
     for(j=1;j<i;j++){
         //alert(j);
-        document.getElementById("Width_LocalFigure"+j).value=S_Width[j-1];
+        document.getElementById("Width_Figure"+j).value=S_Width[j-1];
         //alert(S_Width[j-1]);
     }
 

@@ -21,15 +21,15 @@ function UpdatePreview(){
     EditerContent= EditerContent.replace(/\n/g, '<br>');
     
     //ローカルの図の読み込み
-    var S_LocalFig = EditerContent.match(/<LocalFigure\d{1,}>/);
+    var S_LocalFig = EditerContent.match(/<Figure\d{1,}>/);
     while(S_LocalFig!==null){
         
-        var S_LocalFigNumber = String(S_LocalFig).slice(12,-1);
+        var S_LocalFigNumber = String(S_LocalFig).slice('<Figure'.length,-1);
         var I_LocalFigNumber = parseInt(S_LocalFigNumber, 10); 
         //alert(S_LocalFig);
         EditerContent = EditerContent.replace(S_LocalFig[0], GetLocalFig(I_LocalFigNumber));
 
-        S_LocalFig = EditerContent.match(/<LocalFigure\d{1,}>/);
+        S_LocalFig = EditerContent.match(/<Figure\d{1,}>/);
     }
 
     //参考文献用制御文字変換
@@ -173,7 +173,7 @@ function AddTag(AddedTag){
 
 //WidgetNameはFloatやWidthなどの具体的役割のこと。ID名の一部と対応
 function FindOutWidgetValue(I_LocalFigNum, S_WidgetName){
-    var E_TargettedTag = document.getElementById(S_WidgetName + '_LocalFigure' + I_LocalFigNum);
+    var E_TargettedTag = document.getElementById(S_WidgetName + '_Figure' + I_LocalFigNum);
     var S_TargettedTag = String(E_TargettedTag.value);
     return S_TargettedTag;
 }
@@ -212,13 +212,13 @@ function ConvertWidgetToStyle(I_LocalFigNum){
 
 function GetLocalFig(LocalFigNum){
     //alert('LocalFileReader()');
-
+    console.log(LocalFigNum);
     var S_AddedTag;
-    var S_TargettedParentTag = 'img_LocalFigure'+LocalFigNum;
+    var S_TargettedParentTag = 'img_Figure'+LocalFigNum;
     var E_TargetedTag = document.getElementById(S_TargettedParentTag);
     var S_LocalFigSrc = E_TargetedTag.src;
 
-    //var E_TargettedFloat = document.getElementById('Float_LocalFigure'+LocalFigNum);
+    //var E_TargettedFloat = document.getElementById('Float_Figure'+LocalFigNum);
     //var S_TargettedFloat = E_TargettedFloat.value;
 
     S_AddedTag = '<img src = "' + S_LocalFigSrc + '"'+ ConvertWidgetToStyle(LocalFigNum) +'>' ;

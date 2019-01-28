@@ -10,6 +10,15 @@ function InputValuesForReedit() {
     ExactPath = decodeURI(ExactPath);
     console.log(ExactPath);
     console.log("Reedit");
+    var Directories = ExactPath.split('/');
+    for (var i = 0; i < Directories.length - 1; i++) {
+        document.getElementById('Category' + (i + 1)).value = Directories[i];
+        //changeイベント発火させて子カテゴリ更新
+        var Evt = document.createEvent("HTMLEvents");
+        Evt.initEvent('change', true, true);
+        document.getElementById('Category' + (i + 1)).dispatchEvent(Evt);
+        console.log(Directories[i]);
+    }
     var Path = new FormData();
     Path.append("Path", ExactPath);
     var Request = new XMLHttpRequest();
@@ -81,27 +90,27 @@ function ResetFigure(FigureDataURL, FigureNumber, Width, Float, Others) {
     var span = document.createElement('span');
     span.innerHTML = [
         //<div>タグ追加
-        '<div class = "LocalFigure" id="LocalFigure', FigureNumber, '">\n' +
-            'LocalFigure' + FigureNumber + '<br>',
+        '<div class = "Figure" id="Figure', FigureNumber, '">\n' +
+            'Figure' + FigureNumber + '<br>',
         //イメージ本体
         '<img class="thumb" align = "left" src="', FigureDataURL,
         '" title="SucceededFigure',
-        '" id="img_LocalFigure' + FigureNumber + '">',
+        '" id="img_Figure' + FigureNumber + '">',
         //表示位置用コンボボックス
         '表示位置/Float: <select name="Float" size = "1" ',
-        'id = "Float_LocalFigure' + FigureNumber + '">',
+        'id = "Float_Figure' + FigureNumber + '">',
         '<option>左/Left</option>',
         '<option>右/Right</option>',
         '<option>行内/In line</option>',
-        '</select><br>',
+        '</select>',
         //大きさ変更
-        '幅/Width: <input type="number" id="Width_LocalFigure' + FigureNumber
+        '幅/Width: <input type="number" id="Width_Figure' + FigureNumber
             + '" min = "10" value = "100">' + '<br>',
         //その他用のテキストボックス
         'その他のオプション/Other options: <input type = "text" ' +
-            'id="Others_LocalFigure' + FigureNumber + '"> <br>',
+            'id="Others_Figure' + FigureNumber + '"> <br>',
         //画像追加用ボタン
-        '<button onclick="AddText(\'<LocalFigure' + FigureNumber +
+        '<button onclick="AddText(\'<Figure' + FigureNumber +
             '>\')"> Add this figure</button>',
         //最後にdiv閉じタグと改行
         '</div><br>'
@@ -120,8 +129,8 @@ function ResetFigure(FigureDataURL, FigureNumber, Width, Float, Others) {
             break;
     }
     //入力ウィジェットの値代入
-    document.getElementById('Width_LocalFigure' + FigureNumber).value = Width;
-    document.getElementById('Float_LocalFigure' + FigureNumber).value = Float;
-    document.getElementById('Others_LocalFigure' + FigureNumber).value = Others;
-    //(<HTMLInputElement>document.getElementById('Width_LocalFigure'+ FigureNumber)).value;
+    document.getElementById('Width_Figure' + FigureNumber).value = Width;
+    document.getElementById('Float_Figure' + FigureNumber).value = Float;
+    document.getElementById('Others_Figure' + FigureNumber).value = Others;
+    //(<HTMLInputElement>document.getElementById('Width_Figure'+ FigureNumber)).value;
 }
