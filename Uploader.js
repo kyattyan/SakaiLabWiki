@@ -97,6 +97,7 @@ function ReplaceAll_(ReplacedStr, ReplacedFrom, ReplacedTo){
 
 
 //-----------------------------ここより、ローカルファイル用---------------------------------------------------------
+//Reedit.tsにも、前提・抽出元が異なるが動作は同じ関数あるので、そちらも参照すること。言語が同じだったらまとめてた……。
 function handleFileSelect(evt) {
     
     

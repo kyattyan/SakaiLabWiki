@@ -205,7 +205,7 @@ function ConvertWidgetToStyle(I_LocalFigNum){
 
     S_Style += Converter_Width(I_LocalFigNum);
 
-    S_Style += FindOutWidgetValue(I_LocalFigNum, "Others")
+    S_Style += FindOutWidgetValue(I_LocalFigNum, "Others");
 
     return S_Style;
 }
