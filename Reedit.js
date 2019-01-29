@@ -111,9 +111,12 @@ function ResetFigure(FigureDataURL, FigureNumber, Width, Float, Others) {
             'id="Others_Figure' + FigureNumber + '"> <br>',
         //画像追加用ボタン
         '<button onclick="AddText(\'<Figure' + FigureNumber +
-            '>\')"> Add this figure</button>',
+            '>\')"> Add this figure</button> ',
+        //画像削除用ボタン
+        '<button onclick="DeleteFigure(\'Figure' + FigureNumber +
+            '\')"> Delete this figure</button>',
         //最後にdiv閉じタグと改行
-        '</div><br>'
+        '<br></div>'
     ].join('');
     document.getElementById('ThumbList').insertBefore(span, null);
     //ゴミゴミの実のゴミコード

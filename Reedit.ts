@@ -153,8 +153,10 @@ function ResetFigure(FigureDataURL: string, FigureNumber: number, Width: string,
             'id="Others_Figure'+FigureNumber+ '"> <br>',
             //画像追加用ボタン
             '<button onclick="AddText(\'<Figure'+ FigureNumber+
-            '>\')"> Add this figure</button>',
-            
+            '>\')"> Add this figure</button> ',
+            //画像削除用ボタン
+            '<button onclick="DeleteFigure(\'Figure'+ FigureNumber+
+            '\')"> Delete this figure</button>',
             //最後にdiv閉じタグと改行
             '<br></div>'
         ].join('');
