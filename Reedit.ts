@@ -156,7 +156,7 @@ function ResetFigure(FigureDataURL: string, FigureNumber: number, Width: string,
             '>\')"> Add this figure</button>',
             
             //最後にdiv閉じタグと改行
-            '</div><br>'
+            '<br></div>'
         ].join('');
     document.getElementById('ThumbList').insertBefore(span, null);
 

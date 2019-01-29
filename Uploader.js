@@ -147,8 +147,11 @@ function handleFileSelect(evt) {
                                 'id="Others_Figure0'+escape(String(Int+1))+ '"> <br>',
                                 //画像追加用ボタン
                                 '<button onclick="AddText(\'<Figure0'+ escape(String(Int+1))+
-                                '>\')"> Add this figure</button>',
-                                
+                                '>\')"> Add this figure</button> ',
+                                //画像削除用ボタン
+                                '<button onclick="DeleteFigure(\'Figure0'+ escape(String(Int+1))+
+                                '\')"> Delete this figure</button>',
+
                             //最後にdiv閉じタグと改行
                             '</div><br>'
                             ].join('');
