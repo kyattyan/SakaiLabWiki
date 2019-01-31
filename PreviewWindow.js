@@ -21,8 +21,9 @@ function UpdatePreview(){
     EditerContent= EditerContent.replace(/\n/g, '<br>');
     
     //ローカルの図の読み込み
-    var S_LocalFig = EditerContent.match(/<Figure\d{1,}>/);
-    while(S_LocalFig!==null){
+    try{
+        var S_LocalFig = EditerContent.match(/<Figure\d{1,}>/);
+        while(S_LocalFig!==null){
         
         var S_LocalFigNumber = String(S_LocalFig).slice('<Figure'.length,-1);
         var I_LocalFigNumber = parseInt(S_LocalFigNumber, 10); 
@@ -30,7 +31,11 @@ function UpdatePreview(){
         EditerContent = EditerContent.replace(S_LocalFig[0], GetLocalFig(I_LocalFigNumber));
 
         S_LocalFig = EditerContent.match(/<Figure\d{1,}>/);
+        }
+    }catch(e){
+        console.log(e);
     }
+    
 
     //参考文献用制御文字変換
     var S_Reference = EditerContent.match(/\[R\d{1,}\]/);
@@ -74,7 +79,7 @@ $(function() {
     $('body').mouseup(function(){
         UpdatePreview();
     });
-    
+
     document.getElementById("liveeditor").addEventListener('input', UpdatePreview);
     window.addEventListener('load', UpdatePreview);
 
