@@ -71,6 +71,10 @@ $(function() {
     $('body').keyup(function() {
         UpdatePreview();
     });
+    $('body').mouseup(function(){
+        UpdatePreview();
+    });
+    
     document.getElementById("liveeditor").addEventListener('input', UpdatePreview);
     window.addEventListener('load', UpdatePreview);
 
@@ -111,10 +115,10 @@ function downloadfile(){
 }
 */
 
-function openmanual(){
+/*function openmanual(){
     window.open('manual.html','_blank','top=50,left=50,width=500,height=500,scrollbars=1,location=0,menubar=0,toolbar=0,status=1,directories=0,resizable=1');
     return false;
-}
+}*/
 
 function AddText(Text){
     var textarea = document.querySelector('textarea');
