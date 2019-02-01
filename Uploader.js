@@ -153,7 +153,7 @@ function handleFileSelect(evt) {
                                 '\')"> Delete this figure</button>',
 
                             //最後にdiv閉じタグと改行
-                            '<br></div>'
+                            '<br><br></div>'
                             ].join('');
             document.getElementById('ThumbList').insertBefore(span, null);
             UpdateLocalFigNum();

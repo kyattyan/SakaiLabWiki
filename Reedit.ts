@@ -158,7 +158,7 @@ function ResetFigure(FigureDataURL: string, FigureNumber: number, Width: string,
             '<button onclick="DeleteFigure(\'Figure'+ FigureNumber+
             '\')"> Delete this figure</button>',
             //最後にdiv閉じタグと改行
-            '<br></div>'
+            '<br><br></div>'
         ].join('');
     document.getElementById('ThumbList').insertBefore(span, null);
 

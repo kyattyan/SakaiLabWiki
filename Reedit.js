@@ -116,7 +116,7 @@ function ResetFigure(FigureDataURL, FigureNumber, Width, Float, Others) {
         '<button onclick="DeleteFigure(\'Figure' + FigureNumber +
             '\')"> Delete this figure</button>',
         //最後にdiv閉じタグと改行
-        '<br></div>'
+        '<br><br></div>'
     ].join('');
     document.getElementById('ThumbList').insertBefore(span, null);
     //ゴミゴミの実のゴミコード
