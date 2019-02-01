@@ -63,6 +63,7 @@ function OutputHTML(){
 
     var form_data = new FormData();
     var Directory ="";
+    var ProcessedContent = "";
 
     if(document.getElementById("Category1").value!=" なし none"){
         Directory+=document.getElementById("Category1").value+"/";
@@ -71,7 +72,7 @@ function OutputHTML(){
         Directory+=document.getElementById("Category2").value+"/";
     }
 
-    form_data.append("HTML_Source", document.getElementById('livepreview').innerHTML);
+    
     form_data.append("FileName", document.getElementById('FileName').value+".html");
     form_data.append("Directory", Directory);
     console.log("Target directory is "+ Directory);
@@ -85,11 +86,6 @@ function OutputHTML(){
     var FileExistCheck = new XMLHttpRequest();
 
     FileExistCheck.open("POST" , "http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Files/FileExistChecker.php");
-
-    
-
-    
-
 
     // ------------------------------------------------------------
     // XMLHttpRequest オブジェクトを作成
@@ -143,10 +139,46 @@ function OutputHTML(){
             }
         }
         //それ以外(新規ファイル名、OKが押された場合)の時、送信開始
+        ProcessedContent = document.getElementById('livepreview').innerHTML;
+        ProcessedContent = ReplaceSymbolsAndSpace(ProcessedContent);
+        form_data.append("HTML_Source", document.getElementById('livepreview').innerHTML);
         xhr.send(form_data);
     }
 
-    //var Res = xhr.responseText;
 
     //alert('Res');
+}
+
+function ReplaceSymbolsAndSpace(Str){
+
+    
+
+    var SymbolList = {
+        ' ':    '_Sp_',
+        '/':    '_Sl_',
+        '<':    '_LBr_',
+        '>':    '_RBr_',
+        '\"':   '_DQu',
+        '=':    '_Eq_'
+    }
+
+    var Keys = Object.keys(SymbolList);
+
+    for(var i=0;i<Keys.length;i++){
+        var j =0;
+        console.log(Keys[i]+'-'+SymbolList[Keys[i]]);
+        while(Str.search(Keys[i])!=-1){
+            Str = Str.replace(Keys[i], SymbolList[Keys[i]]);
+            j++
+            if(j>100){
+                console.log('j>100');
+                break;
+            }
+        }
+    }
+
+    console.log(Str);
+
+    return Str;
+
 }
