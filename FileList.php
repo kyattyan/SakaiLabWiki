@@ -29,20 +29,23 @@
                     return;
                 }
 
-                //いやCSSでいいやろ……何のためにclass指定しとるねん
-                /*for($i=0;$i<$Level;$i++){
-                    echo("&emsp;");
-                }*/
-                echo("<span class=Dir_".$Level.">");
-                echo($ExtractedDirname."\n<br />");
-                echo("</span>");
+                if($ExtractedDirname!="Files"){
+                    //いやCSSでいいやろ……何のためにclass指定しとるねん
+                    /*for($i=0;$i<$Level;$i++){
+                        echo("&emsp;");
+                    }*/
+                    echo("<span class=Dir_".$Level.">");
+                    echo($ExtractedDirname."\n<br />");
+                    echo("</span>");
+                }
+
 
                 echo("<span class=File_".$Level.">");
                 foreach(glob($DirName.'/*') as $Members){
                     $isExceptional = false;
                     
                     if(is_file($Members)){
-                        $ExtractedFilename = substr(strrchr($Members, '/'),1);
+                        $ExtractedFilename = basename($Members, '.html'); # 上階層のディレクトリと拡張子削除
                         
                         //例外ファイル処理
                         for($i=0;$i<count($ExceptionalFiles);$i++){

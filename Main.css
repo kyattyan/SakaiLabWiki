@@ -34,53 +34,65 @@
     top: 0px;
     height :100%;
     width: 20%;
+    padding-right: 10px;
     
     color: #000;
     background: #EEEEEE;
 }
+
+.MenuBar a:visited{
+    color: purple;
+}
+
+.MenuBar a:hover{
+    color: white;
+    background: #3333AA;
+}
+
 .ContentWrapper{
 	display: flex;
 }
 
-.MenuBar .Dir_0{
+.MenuBar .Dir_1{
     background: #FFEEEE;
     position: relative;
     left: 0px;
-}
-
-.MenuBar .Dir_1{
-    background: #EEFFEE;
-    position: relative;
-    left: 10px;
-
+    //padding-left: 0px;
 }
 
 .MenuBar .Dir_2{
+    background: #EEFFEE;
+    position: relative;
+    left: 10px;
+    //padding-left: 10px;
+}
+
+.MenuBar .Dir_3{
     background: #EEEEFF;
     position: relative;
     left: 20px;
-
-}
-
-.MenuBar .File_0{
-    background: #FFDDDD;
-    position: relative;
-    left: 5px;
-
+    //padding-left: 20px;
 }
 
 .MenuBar .File_1{
-    background: #DDFFDD;
+    background: #FFDDDD;
     position: relative;
-    left: 15px;
-
+    left: 5px;
+    //padding-left: 5px;
 }
 
 .MenuBar .File_2{
+    background: #DDFFDD;
+    position: relative;
+    left: 15px;
+    //padding-left: 15px;
+}
+
+.MenuBar .File_3{
     background: #DDDDFF;
     position: relative;
     left: 25px;
-
+    //padding-left: 25px;
 }
 
 .EditButton{
