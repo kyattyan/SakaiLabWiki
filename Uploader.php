@@ -11,8 +11,27 @@
 
     //file_put_contents($_GET['title'],$_GET['html']);
 
+    # 文字列変換用連想配列
+    $Symbols = array(
+        '_Sp_'  =>  ' ',
+        '_Sl_'  =>  '/',
+        '_LBr_' =>  '<',
+        '_RBr_' =>  '>',
+        '_DQu_' =>  '"',
+        '_Eq_'  =>  '='  
+    );
+
+    $Keys = array_keys($Symbols);
+
     # Content-type を出力
-	header("Content-type:text/plain");
+    header("Content-type:text/plain");
+    
+    # 変換した文字列を復号
+    $DecordedText=$_POST["HTML_Source"];
+    for($i=0;$i<count($Keys);$i++){
+        $DecordedText=str_replace($Keys[$i],$Symbols[$Keys[$i]],$DecordedText);
+    }
+
 	
 	# 名前を指定してフォーム情報を取得する
     $HTML_Source = 
@@ -28,7 +47,7 @@
         "<body>\n".
         "   <script>CommonBody_Top();</script>\n".
         "   <div class=\"Contents\">".
-            $_POST["HTML_Source"] .
+            $DecordedText .
         "   </div>".
         "   <script>CommonBody_Bottom();</script>\n".
         "</body>";

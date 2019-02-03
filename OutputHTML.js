@@ -141,7 +141,7 @@ function OutputHTML(){
         //それ以外(新規ファイル名、OKが押された場合)の時、送信開始
         ProcessedContent = document.getElementById('livepreview').innerHTML;
         ProcessedContent = ReplaceSymbolsAndSpace(ProcessedContent);
-        form_data.append("HTML_Source", document.getElementById('livepreview').innerHTML);
+        form_data.append("HTML_Source", ProcessedContent);
         xhr.send(form_data);
     }
 
@@ -158,7 +158,7 @@ function ReplaceSymbolsAndSpace(Str){
         '/':    '_Sl_',
         '<':    '_LBr_',
         '>':    '_RBr_',
-        '\"':   '_DQu',
+        '\"':   '_DQu_',
         '=':    '_Eq_'
     }
 
@@ -170,8 +170,8 @@ function ReplaceSymbolsAndSpace(Str){
         while(Str.search(Keys[i])!=-1){
             Str = Str.replace(Keys[i], SymbolList[Keys[i]]);
             j++
-            if(j>100){
-                console.log('j>100');
+            if(j>100000){
+                console.log('j>100000');
                 break;
             }
         }
