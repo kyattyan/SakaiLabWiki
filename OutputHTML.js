@@ -64,7 +64,9 @@ function OutputHTML(){
     var form_data = new FormData();
     var Directory ="";
     var ProcessedContent = "";
+    var RevisedFileName=document.getElementById('FileName').value;
 
+    //ディレクトリ指定
     if(document.getElementById("Category1").value!=" なし none"){
         Directory+=document.getElementById("Category1").value+"/";
     }
@@ -72,10 +74,13 @@ function OutputHTML(){
         Directory+=document.getElementById("Category2").value+"/";
     }
 
+    //ファイル名に使えない文字をアンダースコアに変換
+    RevisedFileName = RevisedFileName.replace(/(\\|\/|:|,|;|<|>|\*|\?|"|\|)/g,'_');
     
     form_data.append("FileName", document.getElementById('FileName').value+".html");
     form_data.append("Directory", Directory);
     console.log("Target directory is "+ Directory);
+    console.log("File name is "+RevisedFileName);
 
     //alert(document.getElementById('livepreview').innerHTML);
 

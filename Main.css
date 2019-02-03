@@ -57,42 +57,36 @@
     background: #FFEEEE;
     position: relative;
     left: 0px;
-    //padding-left: 0px;
 }
 
 .MenuBar .Dir_2{
     background: #EEFFEE;
     position: relative;
     left: 10px;
-    //padding-left: 10px;
 }
 
 .MenuBar .Dir_3{
     background: #EEEEFF;
     position: relative;
     left: 20px;
-    //padding-left: 20px;
 }
 
 .MenuBar .File_1{
     background: #FFDDDD;
     position: relative;
     left: 5px;
-    //padding-left: 5px;
 }
 
 .MenuBar .File_2{
     background: #DDFFDD;
     position: relative;
     left: 15px;
-    //padding-left: 15px;
 }
 
 .MenuBar .File_3{
     background: #DDDDFF;
     position: relative;
     left: 25px;
-    //padding-left: 25px;
 }
 
 .EditButton{
