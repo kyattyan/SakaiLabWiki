@@ -56,18 +56,20 @@
     display:inline;
 }
 
-.Comtents h2{
+.Contents h2{
     display:inline;
+    padding-bottom: 5px;
 }
 
-.Comtents h3{
+.Contents h3{
     display:inline;
+    padding-bottom: 5px;
 }
 
 .Contents Box_red{
     display: block;
     margin-left: 10px;
-    margin-right: 10px;
+    margin-right: 20px;
     position: relative;
     left: 5px;
 
@@ -77,7 +79,7 @@
 .Contents Box_green{
     display: block;
     margin-left: 10px;
-    margin-right: 10px;
+    margin-right: 20px;
     position: relative;
     left: 5px;
 
@@ -87,7 +89,7 @@
 .Contents Box{
     display: block;
     margin-left: 10px;
-    margin-right: 10px;
+    margin-right: 20px;
     position: relative;
     left: 5px;
 
@@ -97,7 +99,7 @@
 .Contents Box_blue{
     display: block;
     margin-left: 10px;
-    margin-right: 10px;
+    margin-right: 20px;
     position: relative;
     left: 5px;
 
