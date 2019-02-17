@@ -156,7 +156,7 @@ function AddTag(AddedTag){
     var S_Selected = S_sentence.substr(I_pos_Start, I_pos_End);
     var S_Tag_Open = '<' + AddedTag + '>';
     var S_Tag_Close = '</' + AddedTag + '>';
-    var S_after    = S_sentence.substr(I_pos_Start, I_len);
+    var S_after    = S_sentence.substr(I_pos_End, I_len);
 
     S_sentence = S_before + S_Tag_Open + S_Selected + S_Tag_Close + S_after;
 
@@ -171,8 +171,17 @@ function AddTag(AddedTag){
     //このフォーカスでスクロールがテキストの一番最後までずれる
     O_textarea.focus();
     
-    //カーソル移動、このとき火狐以外はスクロールがカーソルを追従しないため、スクロールが一番下のまま
-    O_textarea.setSelectionRange(I_pos + AddedTag.length+2, I_pos_End + AddedTag.length+2);
+    //場合分け。文字列が選択されているときとそうでないときでカーソル位置の変更先を変える
+    if(I_pos_Start===I_pos_End){
+        //文字選択していないとき、カーソルはタグの中へ
+        O_textarea.setSelectionRange(I_pos_End + AddedTag.length+2, I_pos_End + AddedTag.length+2);
+    }else{
+        //文字選択されている時、カーソルはタグの直後へ
+        O_textarea.setSelectionRange(I_pos_End + (AddedTag.length+2)*2+1, I_pos_End + (AddedTag.length+2)*2+1);
+    }
+
+    //カーソル移動後、火狐以外はスクロールがカーソルを追従しないため、スクロールが一番下のまま
+    
     //$(textArea).trigger("blur").trigger("focus");
 
     //保存したスクロール位置まで移動して、スクロール位置を疑似的にキープする
