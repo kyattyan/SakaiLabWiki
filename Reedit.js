@@ -45,7 +45,9 @@ function SetFileContents(FileContent) {
     var Idx_ContentEnd = FileContent.search('<script>CommonBody_Bottom()');
     console.log('Begin: ' + Idx_ContentBegin + '\nEnd: ' + Idx_ContentEnd);
     var MainContent = FileContent.slice(Idx_ContentBegin, Idx_ContentEnd);
+    //改行タグ→改行文字
     MainContent = MainContent.replace(/<br>/g, '\n');
+    MainContent = MainContent.replace(/<!--Esc-->/g, '<Esc>\n');
     //タイトル抜き出し
     var PageTitle = MainContent.slice(PageTitleTag.length, MainContent.search(PageTitleTag_Close));
     //タイトル部分+改行一個除去

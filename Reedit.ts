@@ -67,7 +67,9 @@ function SetFileContents(FileContent: string) :void{
 
     var MainContent :string = FileContent.slice(Idx_ContentBegin, Idx_ContentEnd);
 
+    //改行タグ→改行文字
     MainContent=MainContent.replace(/<br>/g, '\n');
+    MainContent=MainContent.replace(/<!--Esc-->/g, '<Esc>\n');
 
     //タイトル抜き出し
     var PageTitle :string = MainContent.slice(PageTitleTag.length, MainContent.search(PageTitleTag_Close));

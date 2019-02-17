@@ -17,6 +17,9 @@ function UpdatePreview(){
     EditerContent= EditerContent.replace(/{_/g, '<');
     EditerContent= EditerContent.replace(/_}/g, '>');
 
+    //エスケープ直後の改行を専用のコメントに変換
+    EditerContent = EditerContent.replace(/<Esc>\n/g, '<!--Esc-->');
+
     //改行文字を<br>に置換
     EditerContent= EditerContent.replace(/\n/g, '<br>');
     
@@ -125,6 +128,7 @@ function downloadfile(){
     return false;
 }*/
 
+
 function AddText(Text){
     var textarea = document.querySelector('textarea');
 
@@ -142,7 +146,7 @@ function AddText(Text){
     UpdatePreview();
 }
 
-function AddTag(AddedTag){
+function AddTag(AddedTag, BeClosed=true){
     //テキストの追加
 
     var O_textarea = document.querySelector('textarea');
@@ -153,12 +157,16 @@ function AddTag(AddedTag){
     var I_pos_End = O_textarea.selectionEnd;
 
     var S_before   = S_sentence.substr(0, I_pos_Start);
-    var S_Selected = S_sentence.substr(I_pos_Start, I_pos_End);
+    var S_Selected = S_sentence.substr(I_pos_Start, I_pos_End-I_pos_Start);
     var S_Tag_Open = '<' + AddedTag + '>';
     var S_Tag_Close = '</' + AddedTag + '>';
     var S_after    = S_sentence.substr(I_pos_End, I_len);
-
-    S_sentence = S_before + S_Tag_Open + S_Selected + S_Tag_Close + S_after;
+    if(BeClosed){
+        S_sentence = S_before + S_Tag_Open + S_Selected + S_Tag_Close + S_after;
+    }else{
+        S_sentence = S_before  + S_Selected + S_Tag_Open  + S_after;
+    }
+    
 
     //テキスト更新
     O_textarea.value = S_sentence;
@@ -177,7 +185,11 @@ function AddTag(AddedTag){
         O_textarea.setSelectionRange(I_pos_End + AddedTag.length+2, I_pos_End + AddedTag.length+2);
     }else{
         //文字選択されている時、カーソルはタグの直後へ
-        O_textarea.setSelectionRange(I_pos_End + (AddedTag.length+2)*2+1, I_pos_End + (AddedTag.length+2)*2+1);
+        if(BeClosed){
+            O_textarea.setSelectionRange(I_pos_End + (AddedTag.length+2)*2+1, I_pos_End + (AddedTag.length+2)*2+1);
+        }else{
+            O_textarea.setSelectionRange(I_pos_End + AddedTag.length+2, I_pos_End + AddedTag.length+2);
+        }
     }
 
     //カーソル移動後、火狐以外はスクロールがカーソルを追従しないため、スクロールが一番下のまま
