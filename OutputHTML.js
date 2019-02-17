@@ -59,6 +59,15 @@ function OutputHTML(){
     a.click();
     */
 
+    var RawFileName=document.getElementById('FileName').value;
+
+    //ファイル名チェック
+    if(RawFileName===''||RawFileName==='Nanashi_et_al.'){
+        alert('ファイル名を入力して下さい。\nInput file name.');
+        return;
+    }
+
+
     //空フォーム作成→データ追加
 
     var form_data = new FormData();
