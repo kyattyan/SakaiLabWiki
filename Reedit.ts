@@ -116,7 +116,7 @@ function SetFileContents(FileContent: string) :void{
 
 
     (<HTMLInputElement>document.getElementById("FileName")).value = PageTitle;
-    document.getElementById("liveeditor").innerHTML=MainContent;
+    document.getElementById("liveeditor").textContent=MainContent;
 
     
 

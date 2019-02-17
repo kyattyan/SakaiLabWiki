@@ -80,7 +80,7 @@ function SetFileContents(FileContent) {
         ResetFigure(Figure_src, i, Figure_width, Figure_Float, Figure_Other);
     }
     document.getElementById("FileName").value = PageTitle;
-    document.getElementById("liveeditor").innerHTML = MainContent;
+    document.getElementById("liveeditor").textContent = MainContent;
     return;
 }
 //やるべきことはUploader.js内のhandleFileSelect()と同じなのだが、抽出元が違うため、異なる関数を用意

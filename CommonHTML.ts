@@ -1,8 +1,15 @@
 function CommonBody_Top(){
+    //Menuバー
+    
     //FileList出力
     document.write('<!--test: top-->\n <div class="ContentWrapper"><div class="MenuBar"><span id="PHP">');
     sendRequest();
-    document.write('</span></div>\n');
+    document.write('</span>\n');
+
+    //新規作成ボタン
+    document.write("<a id = 'NewFile' href = 'http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Untitled-1.html'>");
+    document.write("<img src='http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/NewFile.png'><br>新規ページ作成/Make a new file");
+    document.write("</a></div>");
 
     document.write('<div class="Main">');
 

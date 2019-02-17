@@ -1,8 +1,13 @@
 function CommonBody_Top() {
+    //Menuバー
     //FileList出力
     document.write('<!--test: top-->\n <div class="ContentWrapper"><div class="MenuBar"><span id="PHP">');
     sendRequest();
-    document.write('</span></div>\n');
+    document.write('</span>\n');
+    //新規作成ボタン
+    document.write("<a id = 'NewFile' href = 'http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Untitled-1.html'>");
+    document.write("<img src='http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/NewFile.png'><br>新規ページ作成/Make a new file");
+    document.write("</a></div>");
     document.write('<div class="Main">');
     var AbsolutePath = location.href;
     var SplittedPath = AbsolutePath.split('/');
@@ -61,33 +66,3 @@ function sendRequest() {
         document.getElementById("PHP").innerHTML = res;
     }
 }
-/*function Reedit() :void{
-
-    var Title :string = (<HTMLInputElement>document.getElementById( "PageTitle" )).innerHTML;
-
-    var MainContent :string = (<HTMLInputElement>document.getElementById( "MainContent" )).innerHTML;
-
-    var VirtualForm : HTMLFormElement = document.createElement("form");
-
-    var Category1: string;
-    var Category2: string;
-
-    VirtualForm.method="POST";
-    VirtualForm.action="http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Untitled-1.html";
-
-    var VirtualInput_Title :HTMLInputElement = document.createElement("input");
-    VirtualInput_Title.name="Title";
-    VirtualInput_Title.value=Title;
-    VirtualForm.appendChild(VirtualInput_Title);
-
-    var VirtualInput_MainContent :HTMLInputElement = document.createElement("input");
-    VirtualInput_MainContent.name="MainContent";
-    VirtualInput_MainContent.value=MainContent;
-    VirtualForm.appendChild(VirtualInput_MainContent);
-
-    document.body.appendChild(VirtualForm);
-
-    VirtualForm.submit();
-
-
-}*/ 

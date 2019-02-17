@@ -17,7 +17,7 @@
 	//flex: 1 0 auto;*/
     align-items: center;
     box-sizing: border-box;
-    background: #DDFFDD;
+    background: #DDDDDD;
     margin-left: 2.5%;
     width :75%;
 
@@ -27,8 +27,8 @@
     /*display: flex;*/
     align-items: center;
     justify-content: center;
-    position: -webkit-sticky;
-    position: sticky;
+    /*position: -webkit-sticky;
+    position: sticky;*/
     /*top: -1200px;
     height: 1800px;*/
     top: 0px;
@@ -40,6 +40,10 @@
     background: #EEEEEE;
 }
 
+.Menubar a{
+    transition: 0.3s;
+}
+
 .MenuBar a:visited{
     color: purple;
 }
@@ -47,6 +51,7 @@
 .MenuBar a:hover{
     color: white;
     background: #3333AA;
+    transition: 0.3s;
 }
 
 .ContentWrapper{
@@ -97,4 +102,8 @@
 
 .EditButton img{
     width:40px;
+}
+
+#NewFile{
+    float: left;
 }

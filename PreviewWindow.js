@@ -52,7 +52,7 @@ function UpdatePreview(){
     //------特定のタグをはじく。いかなる手段もはじくために、ブラケット置換後に行うこと--------
 
     //JavaScriptの禁止。
-    EditerContent= EditerContent.replace(/script/g,
+    EditerContent= EditerContent.replace(/<script/g,
         '<br><b>Do not use JavaScript or PHP in this editer.</b><br>');
 
     //PHPの禁止
@@ -62,8 +62,8 @@ function UpdatePreview(){
 
     //------------------------------追加文字列---------------------------------------
     var S_PageTitle = (document.getElementById("FileName")).value;
-    EditerContent = '<PageTitle><span id =PageTitle>'+S_PageTitle +'</span></PageTitle><br>\n'+ 
-    '<span id = "MainContent">'+ EditerContent +'</span>';
+    EditerContent = '<PageTitle><span id=PageTitle>'+S_PageTitle +'</span></PageTitle><br>\n'+ 
+    '<span id="MainContent">'+ EditerContent +'</span>';
 
     //console.log(EditerContent);
 
@@ -149,14 +149,16 @@ function AddTag(AddedTag){
 
     var S_sentence = O_textarea.value;
     var I_len      = S_sentence.length;
-    var I_pos      = O_textarea.selectionStart;
+    var I_pos_Start      = O_textarea.selectionStart;
+    var I_pos_End = O_textarea.selectionEnd;
 
-    var S_before   = S_sentence.substr(0, I_pos);
+    var S_before   = S_sentence.substr(0, I_pos_Start);
+    var S_Selected = S_sentence.substr(I_pos_Start, I_pos_End);
     var S_Tag_Open = '<' + AddedTag + '>';
     var S_Tag_Close = '</' + AddedTag + '>';
-    var S_after    = S_sentence.substr(I_pos, I_len);
+    var S_after    = S_sentence.substr(I_pos_Start, I_len);
 
-    S_sentence = S_before + S_Tag_Open + S_Tag_Close + S_after;
+    S_sentence = S_before + S_Tag_Open + S_Selected + S_Tag_Close + S_after;
 
     //テキスト更新
     O_textarea.value = S_sentence;
@@ -170,7 +172,7 @@ function AddTag(AddedTag){
     O_textarea.focus();
     
     //カーソル移動、このとき火狐以外はスクロールがカーソルを追従しないため、スクロールが一番下のまま
-    O_textarea.setSelectionRange(I_pos + AddedTag.length+2, I_pos + AddedTag.length+2);
+    O_textarea.setSelectionRange(I_pos + AddedTag.length+2, I_pos_End + AddedTag.length+2);
     //$(textArea).trigger("blur").trigger("focus");
 
     //保存したスクロール位置まで移動して、スクロール位置を疑似的にキープする

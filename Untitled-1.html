@@ -60,7 +60,7 @@
                             </td>
                             <td class="CategoryAndTitle">
                                     <p>ページタイトル/Page title</p>
-                                    <input class="bottomspace" type="text" name="title" id = "FileName" value="TestFile">                
+                                    <input class="bottomspace" type="text" name="title" id = "FileName" value="Nanashi_et_al.">                
                             </td>
                         </tr>
                     </tbody></table>
@@ -75,23 +75,29 @@
                         <button  onclick="AddTag('sup')">X<sup>n</sup></button>
                         <button  onclick="AddTag('sub')">X<sub>n</sub></button>
 
-                        <button onclick="AddTag('red')"><font color="#FF0000">赤/red</font></button>
-                        <button onclick="AddTag('green')"><font color="#008800">緑/green</font></button>
-                        <button onclick="AddTag('blue')"><font color="#0000FF">青/blue</font></button>
+                        <button onclick="AddTag('red')"><font color="#FF0000">Red</font></button>
+                        <button onclick="AddTag('green')"><font color="#008800">Green</font></button>
+                        <button onclick="AddTag('blue')"><font color="#0000FF">Blue</font></button>
 
-                        <button  onclick="AddTag('X-Large')">XL/特大</button>
+                        <!--button  onclick="AddTag('X-Large')">XL/特大</button-->
                         <button  onclick="AddTag('Large')">L/大</button>
                         <button  onclick="AddTag('Small')">S/小</button>
-                        <button  onclick="AddTag('X-Small')">XS/極小</button>
+                        <!--button  onclick="AddTag('X-Small')">XS/極小</button-->
 
-
-                        <br>
-                        <!----button onclick="AddText('<LocalFig1>')"> Add Figure 1</button-->
-                        <button  onclick="AddTag('h1')">見出し1/Header 1</button>
-                        <button  onclick="AddTag('h2')">見出し2/Header 2</button>
-                        <button  onclick="AddTag('h3')">見出し3/Header 3</button>
+                        <button  onclick="AddTag('h1')">見出し1/Head 1</button>
+                        <button  onclick="AddTag('h2')">見出し2/Head 2</button>
+                        <button  onclick="AddTag('h3')">見出し3/Head 3</button>
 
                         <br>
+                        <button onclick="AddTag('Box_green')">Box (green)</button>
+                        <button onclick="AddTag('Box_red')">Box (red)</button>
+
+
+                        <button onclick="AddTag('Center')">Center</button>
+                        <button onclick="AddTag('Right')">Right</button>
+
+                        &nbsp;&nbsp;
+                        <a href = "http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Files/0%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB%20Read%20us/%E3%82%BF%E3%82%B0%E3%81%AE%E8%A7%A3%E8%AA%AC%20Means%20of%20tags.html">タグの解説/What is "tag"?</a>
 
 
 
@@ -153,11 +159,11 @@
                 <p style="background-color:Black; color:white;">Procedure</p>
                 <!--button class="button" onclick="openmanual()">How to Use</button-->
                 <button id="output" class="button" onclick="OutputHTML()">HTMLファイルを出力/Output as a HTML</button>
-                <a href = "Files/How to use.html" target="_blank">
+                <a href = "Files/0はじめに%20Read%20us/How to use.html" target="_blank">
                     <button class="button">使い方/How to use</button>
                 </a>
-                <a href = "FileList.php" target="_blank">
-                    <button class="button">出力ファイル一覧/A list of output files</button>
+                <a href = "Files/0はじめに%20Read%20us/Home.html">
+                    <button class="button">Homeへ戻る/Back to home</button>
                 </a>
             </div>
         </div>

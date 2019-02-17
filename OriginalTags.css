@@ -63,3 +63,59 @@
 .Comtents h3{
     display:inline;
 }
+
+.Contents Box_red{
+    display: block;
+    margin-left: 10px;
+    margin-right: 10px;
+    position: relative;
+    left: 5px;
+
+    background: #FFCCCC;
+}
+
+.Contents Box_green{
+    display: block;
+    margin-left: 10px;
+    margin-right: 10px;
+    position: relative;
+    left: 5px;
+
+    background: #CCFFCC;
+}
+
+.Contents Box{
+    display: block;
+    margin-left: 10px;
+    margin-right: 10px;
+    position: relative;
+    left: 5px;
+
+}
+
+
+.Contents Box_blue{
+    display: block;
+    margin-left: 10px;
+    margin-right: 10px;
+    position: relative;
+    left: 5px;
+
+    background: #CCCCFF;
+}
+
+.Contents Right{
+    display: block;
+    margin-left: 10px;
+    margin-right: 10px;
+    
+    float: right;
+}
+
+.Comtents Center{
+    display: block;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    text-align: center;
+}
