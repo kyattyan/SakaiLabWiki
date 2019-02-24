@@ -1,4 +1,23 @@
 
+<!-----------------------概要-------------------------
+Filesディレクトリ以下のファイル、ディレクトリを列挙し、
+さらにサブディレクトリ内部のファイル、ディレクトリも回帰的に列挙する。
+さらに、ファイルに対しては対応するリンクを付けた<a>を付ける。
+また、それぞれに対応するCSSクラスを付与している。
+順番はファイル（アルファベット順）→ディレクトリ（アルファベット順）。
+
+拡張子によって細かい挙動を変える
+・HTMLはそのままリンク
+・PDFは別タグで開くリンク、PDFのアイコンを付ける
+・その他は拡張子を付けて普通のリンク
+
+10階層までしか探索しない安全装置を付けている。外す必要は今のところない。
+
+表示しない例外は
+・個別に指定した($ExceptionalFiles)PHPファイルなど
+・最初の2文字がアンダーバーから始まるディレクトリとその内部
+----------------------------------------------------->
+
 <html>
 
     <head>
@@ -9,6 +28,9 @@
     <body>
         <?php
             function SearchDirectory($DirName, $Level){
+
+                //システムのフォルダへのパス
+                $AbsolutePathToSystem = "http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/";
                 //安全装置
                 if($Level>10){
                     return;
@@ -45,11 +67,13 @@
                     $isExceptional = false;
                     
                     if(is_file($Members)){
-                        $ExtractedFilename = basename($Members, '.html'); # 上階層のディレクトリと拡張子削除
+                        $FileName = basename($Members); #上階層のディレクトリを除いた、拡張子ありのファイル名
+                        $ExtractedFilename = substr($FileName, 0, strrpos($FileName, '.') ); # 拡張子削除
+                        $Extension = substr($FileName, strrpos($FileName, '.') +1); #拡張子
                         
                         //例外ファイル処理
                         for($i=0;$i<count($ExceptionalFiles);$i++){
-                            if($ExtractedFilename==$ExceptionalFiles[$i]){
+                            if($ExtractedFilename.'.'.$Extension==$ExceptionalFiles[$i]){
                                 $isExceptional=true;
                             }
                         }
@@ -63,11 +87,24 @@
                             echo("&emsp;");
                         }*/
 
-                        echo ("<a href=\"http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/");
+                        //拡張子に依存してaタグ内の挙動、表示を変更
+                        echo ("<a href=\"".$AbsolutePathToSystem);
                         echo ($Members);
-                        //echo ("\" target=\"_blank\">");
-                        echo ("\">");
-                        echo (htmlspecialchars($ExtractedFilename));
+                        switch($Extension){
+                            case "html":
+                                echo ("\">");
+                                echo (htmlspecialchars($ExtractedFilename));
+                                break;
+                            case "pdf":
+                                echo ("\" target=\"_blank\">");
+                                echo (htmlspecialchars($ExtractedFilename));
+                                echo ('<img width="16" src="'.$AbsolutePathToSystem.'PDF.png">');
+                                break;
+                            default:
+                                //拡張子ありで表示
+                                echo ("\">");
+                                echo (htmlspecialchars($Filename));
+                        }
                         echo ("</a><br />\n");
 
                     }else{

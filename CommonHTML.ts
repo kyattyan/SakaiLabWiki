@@ -1,9 +1,19 @@
+/*-----------------------概要-------------------------
+すべてのHTMLに対応する、汎用部分の記述を担う。具体的には
+・左に表示するメニューバー（FileList.PHPからその大部分を取得）
+・右上に表示する編集ボタン
+
+現在のところ、Commonbody_Bottom()に大した役割はない。
+----------------------------------------------------*/
+
 function CommonBody_Top(){
     //Menuバー
     
     //FileList出力
     document.write('<!--test: top-->\n <div class="ContentWrapper"><div class="MenuBar"><span id="PHP">');
-    sendRequest();
+    var FileList: string =sendRequest();
+
+    (<HTMLInputElement>document.getElementById( "PHP" )).innerHTML = FileList;
     document.write('</span>\n');
 
     //新規作成ボタン
@@ -17,10 +27,9 @@ function CommonBody_Top(){
 
     var SplittedPath :string[] = AbsolutePath.split('/');
 
-    //File以降
+    //編集ボタン
+    //File以降のディレクトリ取得
     var RelativePath :string ="";
-
-    //console.log(SplittedPath);
 
     for(var i:number =6;i<SplittedPath.length;i++){
         RelativePath += SplittedPath[i];
@@ -30,9 +39,7 @@ function CommonBody_Top(){
         RelativePath += "/";
     }
 
-    console.log(RelativePath);
-
-    //編集ボタン
+    //ボタン本体
     document.write('<span class="EditButton">'+
         '<a href=http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Untitled-1.html?'+
         RelativePath+'>'+
@@ -75,19 +82,18 @@ function createXmlHttpRequest()
 
 function sendRequest()
 {
-    //var moji="あいうえお";
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null)
     {
         xmlhttp.open("POST", "http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/CommonPHP.php", false);
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        //var data="data="+moji;
         var RequestType :string = "RequestType=FileList";
         xmlhttp.send(RequestType);
         var res=xmlhttp.responseText;
         console.log(res);
         //document.write(res);
-        (<HTMLInputElement>document.getElementById( "PHP" )).innerHTML = res;
+        return res;
+        
     }
 }
 
