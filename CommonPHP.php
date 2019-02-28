@@ -7,7 +7,7 @@
     print $_POST["data"].strval(rand());*/
     //echo('test1<br>');
 
-    switch($_POST["RequestType"]){
+    /*switch($_POST["RequestType"]){
         case "FileList":
             include 'FileList.php';
             break;
@@ -16,9 +16,13 @@
             echo "Ileagl request.<br>\n";
             echo "Given value is " . $_POST["RequestType"] ;
 
-    }
+    }*/
 
     
     //SearchDirectory('Files',0);
     //echo('test2');
+
+    function MoveToBackUp($Path){
+        
+    }
 ?>

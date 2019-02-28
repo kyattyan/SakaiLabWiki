@@ -36,7 +36,13 @@ Filesディレクトリ以下のファイル、ディレクトリを列挙し、
                     return;
                 }
                 //表示しない例外ファイル
-                $ExceptionalFiles = ["Uploader.php", "FileExistChecker.php", "GetFileContent.php", "GeneralUploader.php"];
+                $ExceptionalFiles = [
+                    "Uploader.php",
+                    "FileExistChecker.php",
+                    "GetFileContent.php",
+                    "GeneralUploader.php",
+                    "MoveToBackUp.php"
+                ];
 
                 $Directories = [];
                 $DirIndex = 0;

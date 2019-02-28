@@ -108,7 +108,7 @@ function GetFileList()
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/CommonPHP.php", false);
+        xmlhttp.open("POST", "http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/FileList.php", false);
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xmlhttp.send("RequestType=FileList");
         var res=xmlhttp.responseText;

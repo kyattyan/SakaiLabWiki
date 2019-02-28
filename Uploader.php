@@ -71,6 +71,10 @@
 		# ファイルの移動を行う
 		move_uploaded_file ($HTML_Source["tmp_name"], $file_name_new);
     }*/
+    if(file_exists($_POST["Directory"].$FileName)){
+        $EscapePath="./__BackUp/". date("ymd_His"). $FileName;
+        rename($_POST["Directory"].$FileName, $EscapePath);
+    }
     
     
     file_put_contents($_POST["Directory"].$FileName,$HTML_Source);

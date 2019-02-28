@@ -11,7 +11,7 @@ POST送信でファイルのアドレス（Filesディレクトリから見た�
         return;
     }
     $FileName = basename($OldPath);
-    $NewPath="./__BackUp/". date(DATE_ATOM). $FileName;
+    $NewPath="./__BackUp/". date("ymd_His"). $FileName;
 
     if(rename($OldPath, $NewPath)){
         echo('Success');
