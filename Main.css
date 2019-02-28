@@ -104,6 +104,16 @@
     width:40px;
 }
 
+.DeleteButton{
+    float: right;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.DeleteButton img{
+    width:20px;
+}
+
 #NewFile{
     float: left;
 }

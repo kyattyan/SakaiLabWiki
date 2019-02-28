@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>General file uploader</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=320, minimum-scale=1.0, maximum-scale=2.0">
+
+
+        <!--その他、実際に動く関数とかいろいろ-->
+        <script type="text/javascript" src="DynamicPulldownList.js"></script><!--プルダウンメニューの中身を動的に変更する-->
+        
+        <script typr="javascript">
+            if (window.File) {
+                // File APIに関する処理を記述
+                //window.alert("File APIが実装されてます。");
+                } else {
+                window.alert("本ブラウザではFile APIが使えません。最新のGoogle ChromeなどをDLしてご利用ください\n",
+                    "Your browser cannot use File API. Please use any other browser, such as newest Google chrome.");
+            }
+        </script>
+        
+    </head>
+
+    <body>
+        現在pdfファイルのアップロードにのみ対応しています。<br>
+        <form method="post" enctype="multipart/form-data" action="http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Files/GeneralUploader.php">
+            細目/Category<br>
+            <select id="Category1" name="Category1">
+            </select>
+            <select id="Category2" name="Category2">
+            </select>
+            <br>
+            <input type="file" name="File" size="50"><br>
+            <br>
+            <input type="submit">
+        </form>
+    </body>
