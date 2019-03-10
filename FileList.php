@@ -62,13 +62,26 @@ Filesディレクトリ以下のファイル、ディレクトリを列挙し、
                     /*for($i=0;$i<$Level;$i++){
                         echo("&emsp;");
                     }*/
-                    echo("<span class=Dir_".$Level.">");
+                    
+                    //簡易的なJSで要素の状態を変更し、疑似的な折りたたみメニュー
+                    echo("<div onclick = \"obj = document.getElementById('Open_".$DirName."').style;
+                        obj.display=(obj.display=='none')?'inherit':'none';
+                        obj2 = document.getElementById('Allow_".$DirName."');
+                        obj2.innerHTML = (obj.display=='none')?'▶':'▽';
+                        console.log(obj2.innerHTML);
+                        \" class=Dir_".$Level.">");
+                    echo("<span id = 'Allow_".$DirName."'>▶</span>");
                     echo($ExtractedDirname."\n<br />");
-                    echo("</span>");
+                    echo("</div>");
                 }
 
-
-                echo("<span class=File_".$Level.">");
+                
+                if($Level==0){
+                    echo("<div>");
+                }else{
+                    echo("<div style='display:none' id='Open_".$DirName."'>");
+                }
+                echo("<span class='File_".$Level."'>");
                 foreach(glob($DirName.'/*') as $Members){
                     $isExceptional = false;
                     
@@ -119,12 +132,13 @@ Filesディレクトリ以下のファイル、ディレクトリを列挙し、
                         $DirIndex++;
                     }
                 }
-                echo("</span>");
+                echo("</span>");//<span calss="File_Level〇〇">に対応
 
                 //保管したディレクトリにさらにもぐる
                 for($i=0;$i<$DirIndex;$i++){
                     SearchDirectory($Directories[$i], $Level+1);
                 }
+                echo("</div>");//<div id='Open_".$DirName.">"に対応
 
                 return;
             }
