@@ -19,11 +19,13 @@ function CommonBody_Top() {
     document.write("<a id = 'NewFile' href = 'http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Untitled-1.html'>");
     document.write("<img src='http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/NewFile.png'><br>新規ページ作成/Make a new file");
     document.write("</a>");
+    document.write("<br>");
+    document.write("<br>");
+    document.write("<br>");
     //PDFアップロード用ボタン
     document.write("<a id = 'GeneralFileUploader' href = 'http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/GeneralFileUploader.html'>");
     document.write("<img width = '32' src='http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/PDF.png'><br>PDFをアップロードする/Upload a pdf file");
     document.write("</a>");
-    document.write("<br>");
     document.write("<br>");
     document.write("</div>");
     document.write('<div class="Main">');
@@ -39,7 +41,7 @@ function CommonBody_Top() {
         }
         RelativePath += "/";
     }
-    //ボタン本体
+    //編集ボタン本体
     document.write('<span class="EditButton">' +
         '<a href=http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Untitled-1.html?' +
         RelativePath + '>' +

@@ -169,7 +169,7 @@ function ReplaceSymbolsAndSpace(Str){
 
     var SymbolList = {
         ' ':    '_Sp_',
-        '/':    '_Sl_',
+        //'/':    '_Sl_',
         '<':    '_LBr_',
         '>':    '_RBr_',
         '\"':   '_DQu_',

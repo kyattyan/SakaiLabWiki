@@ -1,4 +1,9 @@
-
+/*-----------------------------概要-------------------------------------
+クエリを通して再編集するファイルへのパスを決める。
+そのパスをサーバーへ送信してファイル内容を取得する（GetFileContent.php)。
+その内容のうち、編集すべき内容を抜き出す。
+さらに、画像部分を抜き出し、ThumbListに表示する。
+-----------------------------------------------------------------------*/
 window.addEventListener('load', InputValuesForReedit);
 
 function InputValuesForReedit() : void{
@@ -83,10 +88,36 @@ function SetFileContents(FileContent: string) :void{
     //console.log("a\n");
 
     //図抜き出し
-    for(var i:number =1;MainContent.match(/<img src=".+".+>/)&&i<10;i++){
+    for(var i:number =1;MainContent.match(/<img src=".+".+>/g)&&i<100;i++){
         console.log(i+'\n');
         //console.log(MainContent.match(/<img src="/));
-        var Figure :string =MainContent.match(/<img src=".+".+>/)[0];
+
+        var tmp :string = MainContent.substr(MainContent.search(/<img src="/));
+        var Figure :string = tmp.substr(0,tmp.search(">")+1);
+
+        //検索した値に右ブラケットが一個しかない組み合わせのみを一個取得する
+        //（右ブラケットが複数個の時は、複数個の図をまたがって取得している）
+        /*
+        for(var j :number=0;j<100&&j<MatchedArray.length;j++){
+            console.log("Length of Matchedarray: "+MatchedArray.length);
+            if(j===99){
+                console.log("Unlimitated loop: SetFileContents() in Reedit.ts.");
+            }
+            if(MatchedArray[j].match(/<.+>/g).length === 1){
+                Figure = MatchedArray[j];
+                console.log(MatchedArray[j].match(/<.+>/g).length);
+                break;
+            }
+        }*/
+        //エラー用
+        if(Figure==null){
+            console.log("Error: failed to read figures in the file.");
+            alert("図の読み込み中にエラーが発生しました。読み込みを中止します。\n\
+                An error has been happend during reading figures. This program has stopped.");
+            return;
+        }
+
+        //抜き出せた図の部分を置換する
         MainContent=MainContent.replace(Figure,'<Figure'+i+'>');
 
         //値を拾ったら消す。残りはOthersに入れる
