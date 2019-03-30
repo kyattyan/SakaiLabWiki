@@ -147,10 +147,14 @@ function AddText(Text){
     UpdatePreview();
 }
 
-function AddTag(AddedTag, BeClosed=true){
+function AddTag(AddedTag, BeClosed=true, Options=""){
     //テキストの追加
-
     var O_textarea = document.querySelector('textarea');
+
+    //Optionが無し以外の場合、Optionの前に空白を追加する
+    if(Options!==""){
+        Options = " "+Options;
+    }
 
     var S_sentence = O_textarea.value;
     var I_len      = S_sentence.length;
@@ -159,7 +163,8 @@ function AddTag(AddedTag, BeClosed=true){
 
     var S_before   = S_sentence.substr(0, I_pos_Start);
     var S_Selected = S_sentence.substr(I_pos_Start, I_pos_End-I_pos_Start);
-    var S_Tag_Open = '<' + AddedTag + '>';
+    var S_Tag_Open = '<' + AddedTag +  Options+'>';
+    
     var S_Tag_Close = '</' + AddedTag + '>';
     var S_after    = S_sentence.substr(I_pos_End, I_len);
     if(BeClosed){
@@ -181,17 +186,19 @@ function AddTag(AddedTag, BeClosed=true){
     O_textarea.focus();
     
     //場合分け。文字列が選択されているときとそうでないときでカーソル位置の変更先を変える
+    var I_MovedPos;
     if(I_pos_Start===I_pos_End){
         //文字選択していないとき、カーソルはタグの中へ
-        O_textarea.setSelectionRange(I_pos_End + AddedTag.length+2, I_pos_End + AddedTag.length+2);
+        I_MovedPos=I_pos_End + AddedTag.length + Options.length + 2;
     }else{
         //文字選択されている時、カーソルはタグの直後へ
         if(BeClosed){
-            O_textarea.setSelectionRange(I_pos_End + (AddedTag.length+2)*2+1, I_pos_End + (AddedTag.length+2)*2+1);
+            I_MovedPos = I_pos_End + (AddedTag.length+2)*2 + Options.length +1;
         }else{
-            O_textarea.setSelectionRange(I_pos_End + AddedTag.length+2, I_pos_End + AddedTag.length+2);
+            I_MovedPos =I_pos_End + AddedTag.length + Options.length +2;
         }
     }
+    O_textarea.setSelectionRange(I_MovedPos, I_MovedPos);
 
     //カーソル移動後、火狐以外はスクロールがカーソルを追従しないため、スクロールが一番下のまま
     

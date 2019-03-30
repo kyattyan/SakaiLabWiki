@@ -66,7 +66,7 @@
                     </tbody></table>
 
                     <p><!--ページの内容(htmlタグが使えます)--></p>
-                    <textarea id="liveeditor" name="htmlbody" rows="5" cols="75" textalign = "left" <!--oninput="UpdatePreview()"-->></textarea>
+                    <textarea id="liveeditor" name="htmlbody" rows="5" cols="75" textalign = "left" <!--oninput="UpdatePreview()"--></textarea>
                     <div class="ButtonsForEditer">
                         <!--文字装飾タグ用-->
                         <button  onclick="AddTag('B')"><B>B</B></button>
@@ -90,7 +90,11 @@
                         <button  onclick="AddTag('h3')">見出し3/Head 3</button>
 
                         <br>
-                        <button  onclick="AddTag('Esc',false)">Escape</button>
+                        <button onclick="AddTag('a',true,'href = &quot;&quot;')">リンク/Linkage</button>
+                        <button onclick="AddTag('a',true,'href = &quot;&quot;, target=&quot;_blank&quot;')">別タブリンク/Linkage in another tab</button>
+
+                        <br>
+                        <button onclick="AddTag('Esc',false)">Escape</button>
 
                         <button onclick="AddTag('Box_green')">Box (green)</button>
                         <button onclick="AddTag('Box_red')">Box (red)</button>

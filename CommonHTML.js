@@ -8,6 +8,7 @@
 
 現在のところ、Commonbody_Bottom()に大した役割はない。
 ----------------------------------------------------*/
+var RootDir = 'http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/';
 function CommonBody_Top() {
     //Menuバー
     //FileList出力
@@ -16,15 +17,15 @@ function CommonBody_Top() {
     document.getElementById("PHP").innerHTML = FileList;
     document.write('</span>\n');
     //新規作成ボタン
-    document.write("<a id = 'NewFile' href = 'http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Untitled-1.html'>");
-    document.write("<img src='http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/NewFile.png'><br>新規ページ作成/Make a new file");
+    document.write("<a id = 'NewFile' href = '" + RootDir + "CreateNewFile.html'>");
+    document.write("<img src='" + RootDir + "NewFile.png'><br>新規ページ作成/Make a new file");
     document.write("</a>");
     document.write("<br>");
     document.write("<br>");
     document.write("<br>");
     //PDFアップロード用ボタン
-    document.write("<a id = 'GeneralFileUploader' href = 'http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/GeneralUploader_Remover.html'>");
-    document.write("<img width = '32' src='http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/PDF.png'><br>PDFをアップロードする・消す/Upload or delete a pdf file");
+    document.write("<a id = 'GeneralFileUploader' href = '" + RootDir + "GeneralUploader_Remover.html'>");
+    document.write("<img width = '32' src='" + RootDir + "PDF.png'><br>PDFをアップロードする・消す/Upload or delete a pdf file");
     document.write("</a>");
     document.write("<br>");
     document.write("</div>");
@@ -43,13 +44,11 @@ function CommonBody_Top() {
     }
     //編集ボタン本体
     document.write('<span class="EditButton">' +
-        '<a href=http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Untitled-1.html?' +
-        RelativePath + '>' +
-        '<img src="http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Edit.png">\n' +
-        '編集/Edit</a></span>');
+        '<a href="' + RootDir + 'CreateNewFile.html?' + RelativePath + '">' +
+        '<img src="' + RootDir + 'Edit.png">\n' + '編集/Edit</a></span>');
     //削除ボタン
     document.write("<span class='DeleteButton'><a href = JavaScript:DeletePage(\'" + RelativePath + "\')>");
-    document.write("<img src='http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Delete.jpg'>削除/Delete");
+    document.write("<img src='" + RootDir + "Delete.jpg'>削除/Delete");
     document.write("</a></span>");
 }
 function CommonBody_Bottom() {
@@ -78,7 +77,7 @@ function createXmlHttpRequest() {
 function GetFileList() {
     var xmlhttp = createXmlHttpRequest();
     if (xmlhttp != null) {
-        xmlhttp.open("POST", "http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/FileList.php", false);
+        xmlhttp.open("POST", "" + RootDir + "FileList.php", false);
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xmlhttp.send("RequestType=FileList");
         var res = xmlhttp.responseText;
@@ -91,7 +90,7 @@ function GetFileList() {
 function DeleteRequest(RelativePath) {
     var xmlhttp = createXmlHttpRequest();
     if (xmlhttp != null) {
-        xmlhttp.open("POST", "http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Files/MoveToBackUp.php", false);
+        xmlhttp.open("POST", RootDir + "Files/MoveToBackUp.php", false);
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xmlhttp.send("Path=" + RelativePath);
         var res = xmlhttp.responseText;
@@ -112,11 +111,10 @@ function DeletePage(RelativePath) {
     var Responce = DeleteRequest(RelativePath);
     if (Responce.search("Success") != -1) {
         //alert("削除しました\nThis file has been deleted.");
-        var Confirm3 = window.confirm("削除しました。Homeに戻りますか？\n\
-            This file has been deleted. Do you return to home?");
+        var Confirm3 = window.confirm("削除しました。Homeに戻りますか？\nThis file has been deleted. Do you return to home?");
         if (Confirm3) {
             location.href =
-                'http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Files/0%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB%20Read%20us/Home.html';
+                RootDir + 'Files/0%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB%20Read%20us/Home.html';
         }
     }
     else {
