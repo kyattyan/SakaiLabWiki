@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <title>General file uploader/remover</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=320, minimum-scale=1.0, maximum-scale=2.0">
+
+
+        <!--その他、実際に動く関数とかいろいろ-->
+        <script type="text/javascript" src="DynamicPulldownList.js"></script><!--プルダウンメニューの中身を動的に変更する-->
+        <script type="text/javascript" src="CommonHTML.js"></script>
+
+        <script typr="javascript">
+            if (window.File) {
+                // File APIに関する処理を記述
+                //window.alert("File APIが実装されてます。");
+                } else {
+                window.alert("本ブラウザではFile APIが使えません。最新のGoogle ChromeなどをDLしてご利用ください\n",
+                    "Your browser cannot use File API. Please use any other browser, such as newest Google chrome.");
+            }
+        </script>
+        <style type="text/css">
+            
+            .Remover .Dir_1{
+                background: #FFEEEE;
+                position: relative;
+                left: 0px;
+            }
+
+            .Remover .Dir_2{
+                background: #EEFFEE;
+                position: relative;
+                left: 10px;
+            }
+
+            .Remover .Dir_3{
+                background: #EEEEFF;
+                position: relative;
+                left: 20px;
+            }
+
+            .Remover .File_1{
+                background: #FFDDDD;
+                position: relative;
+                left: 5px;
+            }
+
+            .Remover .File_2{
+                background: #DDFFDD;
+                position: relative;
+                left: 15px;
+            }
+
+            .Remover .File_3{
+                background: #DDDDFF;
+                position: relative;
+                left: 25px;
+            }
+            
+        </style>
+    </head>
+
+    <body>
+        <h1>General file uploader</h1>
+        現在pdfファイルのアップロードにのみ対応しています。<br>
+        <form method="post" enctype="multipart/form-data" action="http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Files/GeneralUploader.php">
+            細目/Category<br>
+            <select id="Category1" name="Category1">
+            </select>
+            <select id="Category2" name="Category2">
+            </select>
+            <br>
+            <input type="file" name="File" size="50"><br>
+            <br>
+            <input type="submit">
+        </form>
+        
+        <hr>
+
+        <h1>General file remover</h1>
+        HTMLファイルは閲覧画面の右上からも削除できます。<br>
+        You can remove HTML files from a buton at top of each page.<br>
+        <span class = "Remover" id="PHP">
+            <script>
+                document.write(GetFileList());
+                document.getElementById("PHP").innerHTML=document.getElementById("PHP").innerHTML.replace(/<a href=\"http:\/\/www.scc.kyushu-u.ac.jp\/Sakutai\/TestForYatsuduka\/Files\//g , "<a href=\"JavaScript:DeletePage('");
+                document.getElementById("PHP").innerHTML=document.getElementById("PHP").innerHTML.replace(/.html">/g , ".html')\">");
+                document.getElementById("PHP").innerHTML=document.getElementById("PHP").innerHTML.replace(/.pdf" target=\"_blank\">/g , ".pdf')\">");
+
+            </script>
+            
+        </span>
+        
+
+    </body>
+</html>

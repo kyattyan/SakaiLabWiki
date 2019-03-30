@@ -82,8 +82,9 @@ $(function() {
     $('body').mouseup(function(){
         UpdatePreview();
     });
+    
 
-    document.getElementById("liveeditor").addEventListener('input', UpdatePreview);
+    //document.getElementById("liveeditor").addEventListener('input', UpdatePreview);
     window.addEventListener('load', UpdatePreview);
 
 

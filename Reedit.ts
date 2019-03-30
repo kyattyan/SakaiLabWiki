@@ -47,8 +47,8 @@ function InputValuesForReedit() : void{
 
         //無理やりPreviewを発火させる
         var Evt :Event =document.createEvent("HTMLEvents");
-        Evt.initEvent('input', true, true);
-        document.getElementById("liveeditor").dispatchEvent(Evt);
+        Evt.initEvent('keyup', true, true);
+        document.getElementsByTagName("body")[0].dispatchEvent(Evt);
         console.log('Reset');
     };
 

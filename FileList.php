@@ -29,6 +29,8 @@ Filesディレクトリ以下のファイル、ディレクトリを列挙し、
         <?php
             function SearchDirectory($DirName, $Level){
 
+                $ReturnValue="";
+
                 //システムのフォルダへのパス
                 $AbsolutePathToSystem = "http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/";
                 //安全装置
@@ -60,28 +62,28 @@ Filesディレクトリ以下のファイル、ディレクトリを列挙し、
                 if($ExtractedDirname!="Files"){
                     //いやCSSでいいやろ……何のためにclass指定しとるねん
                     /*for($i=0;$i<$Level;$i++){
-                        echo("&emsp;");
+                        $ReturnValue.=("&emsp;");
                     }*/
                     
                     //簡易的なJSで要素の状態を変更し、疑似的な折りたたみメニュー
-                    echo("<div onclick = \"obj = document.getElementById('Open_".$DirName."').style;
+                    $ReturnValue.="<div onclick = \"obj = document.getElementById('Open_".$DirName."').style;
                         obj.display=(obj.display=='none')?'inherit':'none';
                         obj2 = document.getElementById('Allow_".$DirName."');
                         obj2.innerHTML = (obj.display=='none')?'▶':'▽';
                         console.log(obj2.innerHTML);
-                        \" class=Dir_".$Level.">");
-                    echo("<span id = 'Allow_".$DirName."'>▶</span>");
-                    echo($ExtractedDirname."\n<br />");
-                    echo("</div>");
+                        \" class=Dir_".$Level.">";
+                    $ReturnValue.="<span id = 'Allow_".$DirName."'>▶</span>";
+                    $ReturnValue.=$ExtractedDirname."\n<br />";
+                    $ReturnValue.="</div>";
                 }
 
                 
                 if($Level==0){
-                    echo("<div>");
+                    $ReturnValue.="<div>";
                 }else{
-                    echo("<div style='display:none' id='Open_".$DirName."'>");
+                    $ReturnValue.="<div style='display:none' id='Open_".$DirName."'>";
                 }
-                echo("<span class='File_".$Level."'>");
+                $ReturnValue.="<span class='File_".$Level."'>";
                 foreach(glob($DirName.'/*') as $Members){
                     $isExceptional = false;
                     
@@ -103,28 +105,28 @@ Filesディレクトリ以下のファイル、ディレクトリを列挙し、
 
                         
                         /*for($i=0;$i<=$Level;$i++){
-                            echo("&emsp;");
+                            $ReturnValue.=("&emsp;");
                         }*/
 
                         //拡張子に依存してaタグ内の挙動、表示を変更
-                        echo ("<a href=\"".$AbsolutePathToSystem);
-                        echo ($Members);
+                        $ReturnValue.= "<a href=\"".$AbsolutePathToSystem;
+                        $ReturnValue.= $Members;
                         switch($Extension){
                             case "html":
-                                echo ("\">");
-                                echo (htmlspecialchars($ExtractedFilename));
+                                $ReturnValue.= "\">";
+                                $ReturnValue.= htmlspecialchars($ExtractedFilename);
                                 break;
                             case "pdf":
-                                echo ("\" target=\"_blank\">");
-                                echo (htmlspecialchars($ExtractedFilename));
-                                echo ('<img width="16" src="'.$AbsolutePathToSystem.'PDF.png">');
+                                $ReturnValue.= "\" target=\"_blank\">";
+                                $ReturnValue.= htmlspecialchars($ExtractedFilename);
+                                $ReturnValue.= '<img width="16" src="'.$AbsolutePathToSystem.'PDF.png">';
                                 break;
                             default:
                                 //拡張子ありで表示
-                                echo ("\">");
-                                echo (htmlspecialchars($Filename));
+                                $ReturnValue.= "\">";
+                                $ReturnValue.= htmlspecialchars($Filename);
                         }
-                        echo ("</a><br />\n");
+                        $ReturnValue.= "</a><br />\n";
 
                     }else{
                         //ファイル内メンバがディレクトリならそれを別で保管
@@ -132,19 +134,19 @@ Filesディレクトリ以下のファイル、ディレクトリを列挙し、
                         $DirIndex++;
                     }
                 }
-                echo("</span>");//<span calss="File_Level〇〇">に対応
+                $ReturnValue.="</span>";//<span calss="File_Level〇〇">に対応
 
                 //保管したディレクトリにさらにもぐる
                 for($i=0;$i<$DirIndex;$i++){
-                    SearchDirectory($Directories[$i], $Level+1);
+                    $ReturnValue.= SearchDirectory($Directories[$i], $Level+1);
                 }
-                echo("</div>");//<div id='Open_".$DirName.">"に対応
+                $ReturnValue.="</div>";//<div id='Open_".$DirName.">"に対応
 
-                return;
+                return $ReturnValue;
             }
 
             //Fileディレクトリから上記関数開始
-            SearchDirectory('Files',0);
+            echo(SearchDirectory('Files',0));
         ?>
     </body>
 </html>

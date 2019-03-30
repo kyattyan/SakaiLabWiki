@@ -23,8 +23,8 @@ function CommonBody_Top() {
     document.write("<br>");
     document.write("<br>");
     //PDFアップロード用ボタン
-    document.write("<a id = 'GeneralFileUploader' href = 'http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/GeneralFileUploader.html'>");
-    document.write("<img width = '32' src='http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/PDF.png'><br>PDFをアップロードする/Upload a pdf file");
+    document.write("<a id = 'GeneralFileUploader' href = 'http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/GeneralUploader_Remover.html'>");
+    document.write("<img width = '32' src='http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/PDF.png'><br>PDFをアップロードする・消す/Upload or delete a pdf file");
     document.write("</a>");
     document.write("<br>");
     document.write("</div>");
@@ -101,7 +101,7 @@ function DeleteRequest(RelativePath) {
     }
 }
 function DeletePage(RelativePath) {
-    var Confirm1 = window.confirm("今開いているWebページを削除しますか？\nDo you want to delete this page?");
+    var Confirm1 = window.confirm("このWebページを削除しますか？\nDo you want to delete this page?");
     if (!Confirm1) {
         return;
     }
@@ -111,10 +111,15 @@ function DeletePage(RelativePath) {
     }
     var Responce = DeleteRequest(RelativePath);
     if (Responce.search("Success") != -1) {
-        alert("削除しました\nThis file has been deleted.");
+        //alert("削除しました\nThis file has been deleted.");
+        var Confirm3 = window.confirm("削除しました。Homeに戻りますか？\n\
+            This file has been deleted. Do you return to home?");
+        if (Confirm3) {
+            location.href =
+                'http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Files/0%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB%20Read%20us/Home.html';
+        }
     }
     else {
         alert("削除失敗しました。");
     }
-    location.href = 'http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Files/0%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB%20Read%20us/Home.html';
 }
