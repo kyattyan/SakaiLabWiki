@@ -66,15 +66,10 @@ Filesディレクトリ以下のファイル、ディレクトリを列挙し、
                     }*/
                     
                     //簡易的なJSで要素の状態を変更し、疑似的な折りたたみメニュー
-                    $ReturnValue.="<div onclick = \"obj = document.getElementById('Open_".$DirName."').style;
-                        obj.display=(obj.display=='none')?'inherit':'none';
-                        obj2 = document.getElementById('Allow_".$DirName."');
-                        obj2.innerHTML = (obj.display=='none')?'▶':'▽';
-                        console.log(obj2.innerHTML);
-                        \" class=Dir_".$Level.">";
+                    $ReturnValue.="<div onclick = \"Open_CloseMenu('".$DirName."')\" class=Dir_".$Level."><span class=\"Directory\">";
                     $ReturnValue.="<span id = 'Allow_".$DirName."'>▶</span>";
                     $ReturnValue.=$ExtractedDirname."\n<br />";
-                    $ReturnValue.="</div>";
+                    $ReturnValue.="</span></div>";
                 }
 
                 

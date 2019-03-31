@@ -1,14 +1,21 @@
 /*-----------------------概要-------------------------
-すべてのHTMLに対応する、汎用部分の記述を担う。具体的には
+すべてのHTMLに対応する、汎用部分の記述・動作を担う。具体的には
 ・左に表示するメニューバー（ファイルリスト、新規作成ボタン、ファイルアップロードボタン、削除ボタン）
 ・右上に表示する編集ボタン
 また、それらに使う
 ・ファイル削除関数
 ・PHPへのデータのHTTP送信
+・メニューを開くプログラム
 
 現在のところ、Commonbody_Bottom()に大した役割はない。
 ----------------------------------------------------*/
 const RootDir = 'http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/';
+
+/*
+・メニューバーの作成（途中でPHPへのhttpリクエストを送る）
+・削除ボタンの作成
+・編集ボタンの作成
+*/
 function CommonBody_Top(){
     //Menuバー
     
@@ -69,10 +76,12 @@ function CommonBody_Top(){
     document.write("</a></span>");
 }
 
+//CommonBody_Top()で開いたタグを閉じる。
 function CommonBody_Bottom(){
     document.write("<!--test: bottom-->\n </div></div></div>");
 }
 
+//httpsリクエスト送信用
 function createXmlHttpRequest()
 {
     var xmlhttp=null;
@@ -134,6 +143,7 @@ function DeleteRequest(RelativePath: string){
 
 }
 
+//削除ボタンが押されたときの挙動。二回聞いて二回ともはいならば削除リクエストを送る
 function DeletePage(RelativePath: string){
     var Confirm1 = window.confirm("このWebページを削除しますか？\nDo you want to delete this page?");
     if(!Confirm1){
@@ -159,4 +169,14 @@ function DeletePage(RelativePath: string){
     }
 
     
+}
+
+/*メニューのディレクトリを開いたり閉じたりする用*/
+function Open_CloseMenu(DirName: string){
+    var obj, Allow: HTMLElement;
+    obj = document.getElementById('Open_'+DirName).style;
+    obj.display=(obj.display=='none')?'inherit':'none';
+    Allow = document.getElementById('Allow_'+DirName);
+    Allow.innerHTML = (obj.display=='none')?'▶':'▽';
+    console.log(Allow.innerHTML)
 }

@@ -58,6 +58,13 @@
 	display: flex;
 }
 
+.Menubar .Directory:hover{
+    cursor: poiner;
+    color: #FFFFFF;
+    background: #8000A0;
+    transition: 0.3s;
+}
+
 .MenuBar .Dir_1{
     background: #FFEEEE;
     position: relative;
