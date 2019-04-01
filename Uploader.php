@@ -32,7 +32,16 @@
         $DecordedText=str_replace($Keys[$i],$Symbols[$Keys[$i]],$DecordedText);
     }
 
-	
+    #初版作成・最終更新の日時
+    $CreatedDate="";
+    $tmp = new DateTime();
+    if(empty($_POST["CreatedDate"])||$_POST["CreatedDate"]=="undefined"||$_POST["CreatedDate"]==""){
+        $CreatedDate= $tmp->format('Y年n月j日');
+    }else{
+        $CreatedDate=$_POST["CreatedDate"];
+    }
+    $EditedDate=$tmp->format('Y年n月j日');
+    
 	# 名前を指定してフォーム情報を取得する
     $HTML_Source = 
         "<head>\n".
@@ -49,7 +58,15 @@
         "   <div class=\"Contents\">".
             $DecordedText .
         "   </div>".
+        "   <footer id = \"EditorAndEdittedDate\">".
+        "       初版作成/first ver. ：<span id = \"CreatedDate\">". $CreatedDate.
+                "</span><span id = \"CreaterName\">". $_POST["CreaterName"]. "</span><br>".
+        "       最終更新/latest ver.：<span id = \"EdittedDate\">". $EditedDate.
+                "</span><span id = \"EditorName\">". $_POST["EditorName"]. "</span><br>".
+        "   </footer>".
+
         "   <script>CommonBody_Bottom();</script>\n".
+            
         "</body>";
         
 

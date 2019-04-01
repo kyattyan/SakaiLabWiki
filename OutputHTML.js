@@ -61,12 +61,17 @@ function OutputHTML(){
 
     var RawFileName=document.getElementById('FileName').value;
 
-    //ファイル名チェック
+    //ファイル名が変更されていない場合、弾く
     if(RawFileName===''||RawFileName==='Nanashi_et_al.'){
         alert('ファイル名を入力して下さい。\nInput file name.');
         return;
     }
 
+    //編集者名が入力されていない場合、弾く
+    /*if(document.getElementById("EditorName").value==''){
+        alert('編集者名を入れてください。\nInput your name.');
+        return;
+    }*/
 
     //空フォーム作成→データ追加
 
@@ -153,9 +158,27 @@ function OutputHTML(){
             }
         }
         //それ以外(新規ファイル名、OKが押された場合)の時、送信開始
+
+        //編集者名
+        var CreaterName;
+        var EditorName;
+
+        if(document.getElementById("CreaterName").value==""){
+            CreaterName = document.getElementById("EditorName").value;
+        }else{
+            CreaterName = document.getElementById("CreaterName").value;
+        }
+        EditorName = document.getElementById("EditorName").value;
+        var CreatedDate=document.getElementById("CreatedDate").value;
+
+        //ファイル内容
         ProcessedContent = document.getElementById('livepreview').innerHTML;
         ProcessedContent = ReplaceSymbolsAndSpace(ProcessedContent);
+
         form_data.append("HTML_Source", ProcessedContent);
+        //form_data.append("CreaterName", CreaterName);
+        //form_data.append("EditorName", EditorName);
+        //form_data.append("CreatedDate", CreatedDate);
         xhr.send(form_data);
     }
 

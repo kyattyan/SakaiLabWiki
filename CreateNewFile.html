@@ -90,8 +90,8 @@
                         <button  onclick="AddTag('h3')">見出し3/Head 3</button>
 
                         <br>
-                        <button onclick="AddTag('a',true,'href = &quot;&quot;')">リンク/Linkage</button>
-                        <button onclick="AddTag('a',true,'href = &quot;&quot;, target=&quot;_blank&quot;')">別タブリンク/Linkage in another tab</button>
+                        <button onclick="AddTag('a',true,'href = &quot;input URL here&quot;')">リンク/Linkage</button>
+                        <button onclick="AddTag('a',true,'href = &quot;input URL here&quot;, target=&quot;_blank&quot;')">別タブリンク/Linkage in another tab</button>
 
                         <br>
                         <button onclick="AddTag('Esc',false)">Escape</button>
@@ -113,6 +113,15 @@
                    
                 </div>
                 <div id = "EditorSub">
+                    <br>
+                    <div class = "Editor_EdittedDate">
+                        作成・更新者名/Your name
+                        <input type = "text" name="EditorName" id= "EditorName" width = 100><br>
+                        <input type = "hidden" name = "CreaterName" id= "CreaterName" value = "">
+                        <input type = "hidden" name = "CreatedDate" id= "CreatedDate" value = "">
+                        <br>
+                    </div>
+
                     <div class = "Figure">
                         <!--ファイルアップロード-->
                         <!--テスト用-->
