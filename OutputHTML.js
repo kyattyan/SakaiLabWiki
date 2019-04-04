@@ -68,10 +68,10 @@ function OutputHTML(){
     }
 
     //編集者名が入力されていない場合、弾く
-    /*if(document.getElementById("EditorName").value==''){
+    if(document.getElementById("EditorName").value==''){
         alert('編集者名を入れてください。\nInput your name.');
         return;
-    }*/
+    }
 
     //空フォーム作成→データ追加
 
@@ -176,9 +176,9 @@ function OutputHTML(){
         ProcessedContent = ReplaceSymbolsAndSpace(ProcessedContent);
 
         form_data.append("HTML_Source", ProcessedContent);
-        //form_data.append("CreaterName", CreaterName);
-        //form_data.append("EditorName", EditorName);
-        //form_data.append("CreatedDate", CreatedDate);
+        form_data.append("初版作成者名", CreaterName);
+        form_data.append("最終版作成者名", EditorName);
+        form_data.append("初版作成日時", CreatedDate);
         xhr.send(form_data);
     }
 
