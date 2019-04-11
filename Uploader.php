@@ -33,14 +33,14 @@
     }
 
     #初版作成・最終更新の日時
-    $CreatedDate="";
+    /*$CreatedDate="";
     $tmp = new DateTime();
     if(empty($_POST["初版作成日時"])||$_POST["初版作成日時"]=="undefined"||$_POST["初版作成日時"]==""){
         $CreatedDate= $tmp->format('Y年n月j日');
     }else{
         $CreatedDate=$_POST["初版作成日時"];
     }
-    $EditedDate=$tmp->format('Y年n月j日');
+    $EditedDate=$tmp->format('Y年n月j日');*/
     
 	# 名前を指定してフォーム情報を取得する
     $HTML_Source = 
@@ -55,15 +55,15 @@
         "</head>\n".
         "<body>\n".
         "   <script>CommonBody_Top();</script>\n".
-        "   <div class=\"Contents\">".
+        #"   <div class=\"Contents\">".
             $DecordedText .
-        "   </div>".
-        "   <footer id = \"EditorAndEdittedDate\">".
-        "       初版作成/first ver. ：<span id = \"CreatedDate\">". $CreatedDate.
-                "</span><span id = \"CreaterName\">". $_POST["初版作成者名"]. "</span><br>".
-        "       最終更新/latest ver.：<span id = \"EdittedDate\">". $EditedDate.
-                "</span><span id = \"EditorName\">". $_POST["最終版作成者名"]. "</span><br>".
-        "   </footer>".
+        #"   </div>".
+        #"   <footer id = \"EditorAndEdittedDate\">".
+        #"       初版作成/first ver. ：<span id = \"CreatedDate\">". $CreatedDate.
+        #        "</span><span id = \"CreaterName\">". $_POST["初版作成者名"]. "</span><br>".
+        #"       最終更新/latest ver.：<span id = \"EdittedDate\">". $EditedDate.
+        #        "</span><span id = \"EditorName\">". $_POST["最終版作成者名"]. "</span><br>".
+        #"   </footer>".
 
         "   <script>CommonBody_Bottom();</script>\n".
             

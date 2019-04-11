@@ -69,17 +69,20 @@ function SetFileContents(FileContent: string) :void{
     var Idx_CreationBegin: number = FileContent.search(CreatedDateTag);
     var Idx_EditionBegin: number = FileContent.search(EdittedDateTag);
 
-    var CreationContent: string = FileContent.slice(Idx_CreationBegin+CreatedDateTag.length, Idx_EditionBegin);
-    //今、「YYYY年M月D日</span><span id = "CreaterName">Name</span><br>       最終更新/latest ver.：」が隔離されている
-
-    var CreatedDate :string = CreationContent.slice(0, CreationContent.search(CreatorNameTag));
-    CreationContent = CreationContent.slice(CreationContent.search(CreatorNameTag)+CreatorNameTag.length);
-    //今、「Name</span><br>       最終更新/latest ver.：」が隔離されている
-
-    var CreaterName :string = CreationContent.slice(0, CreationContent.search('</span><br>'));
-
-    (<HTMLInputElement>document.getElementById("CreatedDate")).value = CreatedDate;
-    (<HTMLInputElement>document.getElementById("CreaterName")).value = CreaterName;
+    if(Idx_CreationBegin!=-1 && Idx_EditionBegin!=-1){
+        var CreationContent: string = FileContent.slice(Idx_CreationBegin+CreatedDateTag.length, Idx_EditionBegin);
+        //今、「YYYY年M月D日</span><span id = "CreaterName">Name</span><br>       最終更新/latest ver.：」が隔離されている
+    
+        var CreatedDate :string = CreationContent.slice(0, CreationContent.search(CreatorNameTag));
+        CreationContent = CreationContent.slice(CreationContent.search(CreatorNameTag)+CreatorNameTag.length);
+        //今、「Name</span><br>       最終更新/latest ver.：」が隔離されている
+    
+        var CreaterName :string = CreationContent.slice(0, CreationContent.search('</span><br>'));
+    
+        (<HTMLInputElement>document.getElementById("CreatedDate")).value = CreatedDate;
+        (<HTMLInputElement>document.getElementById("CreaterName")).value = CreaterName;
+    }
+    
     //初版作成者・日時保存終了
 
     //livepreviewの内容が始まるのがここから。一番上のタイトル込み

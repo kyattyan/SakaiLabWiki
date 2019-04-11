@@ -169,21 +169,47 @@ function OutputHTML(){
             CreaterName = document.getElementById("CreaterName").value;
         }
         EditorName = document.getElementById("EditorName").value;
-        var CreatedDate=document.getElementById("CreatedDate").value;
+        
+        //日付
+        var CreatedDate, EditedDate;
+        var Today = new Date();
+        var Today_Formatted = 
+            String(Today.getFullYear()) + "年" + 
+            (Today.getMonth()+1) + "月" +
+            Today.getDate() + "日";
+        console.log(Today_Formatted);
+        if(document.getElementById("CreatedDate").value!=null && document.getElementById("CreatedDate").value!=""){
+            CreatedDate=document.getElementById("CreatedDate").value;
+        }else{
+            CreatedDate=Today_Formatted;
+        }
+        EditedDate = Today_Formatted;
 
-        //ファイル内容
+        //ファイル内容取得
         ProcessedContent = document.getElementById('livepreview').innerHTML;
+
+        //<div>タグを付ける
+        ProcessedContent = "<div class=\"Contents\">" + ProcessedContent + "</div>";
+
+        ProcessedContent = 
+            ProcessedContent + 
+            "   <footer id = \"EditorAndEdittedDate\">" +
+            "       初版作成/first ver.: <span id = \"CreatedDate\">" + CreatedDate +
+                "</span><span id = \"CreaterName\">"+ CreaterName + "</span><br>" +
+            "       最終更新/latest ver.: <span id = \"EdittedDate\">"+ EditedDate +
+                "</span><span id = \"EditorName\">" + EditorName + "</span><br>"+
+            "   </footer>";
+
         ProcessedContent = ReplaceSymbolsAndSpace(ProcessedContent);
 
         form_data.append("HTML_Source", ProcessedContent);
-        form_data.append("初版作成者名", CreaterName);
+        /*form_data.append("初版作成者名", CreaterName);
         form_data.append("最終版作成者名", EditorName);
-        form_data.append("初版作成日時", CreatedDate);
+        form_data.append("初版作成日時", CreatedDate);*/
+
         xhr.send(form_data);
     }
 
-
-    //alert('Res');
 }
 
 function ReplaceSymbolsAndSpace(Str){
