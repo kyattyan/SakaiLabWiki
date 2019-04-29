@@ -17,10 +17,13 @@ const RootDir = 'http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/';
 ・編集ボタンの作成
 */
 function CommonBody_Top(){
+    
+    
+    
     //Menuバー
     
     //FileList出力
-    document.write('<!--test: top-->\n <div class="ContentWrapper"><div class="MenuBar"><span id="PHP">');
+    document.write('<div class="ContentWrapper"><div class="MenuBar"><span id="PHP">');
     var FileList: string = GetFileList();
 
     (<HTMLInputElement>document.getElementById( "PHP" )).innerHTML = FileList;
@@ -48,6 +51,11 @@ function CommonBody_Top(){
     document.write("</div>");
 
     document.write('<div class="Main">');
+
+    //タイトル
+    document.write('<div class="Title"><Center><a href="'+RootDir+'Files/0はじめに%20Read%20us/Home.html">');
+    document.write('<img src="'+RootDir+'title.png" width="70%">');
+    document.write('</a></Center></div>');
 
     var AbsolutePath :string = location.href;
 

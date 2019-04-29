@@ -18,7 +18,7 @@ var RootDir = 'http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/';
 function CommonBody_Top() {
     //Menuバー
     //FileList出力
-    document.write('<!--test: top-->\n <div class="ContentWrapper"><div class="MenuBar"><span id="PHP">');
+    document.write('<div class="ContentWrapper"><div class="MenuBar"><span id="PHP">');
     var FileList = GetFileList();
     document.getElementById("PHP").innerHTML = FileList;
     document.write('</span>\n');
@@ -36,6 +36,10 @@ function CommonBody_Top() {
     document.write("<br>");
     document.write("</div>");
     document.write('<div class="Main">');
+    //タイトル
+    document.write('<div class="Title"><Center><a href="' + RootDir + 'Files/0はじめに%20Read%20us/Home.html">');
+    document.write('<img src="' + RootDir + 'title.png" width="70%">');
+    document.write('</a></Center></div>');
     var AbsolutePath = location.href;
     var SplittedPath = AbsolutePath.split('/');
     //編集ボタン
