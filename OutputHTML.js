@@ -189,7 +189,7 @@ function OutputHTML(){
         ProcessedContent = document.getElementById('livepreview').innerHTML;
 
         //<div>タグを付ける
-        ProcessedContent = "<div class=\"Contents\">" + ProcessedContent + "</div>";
+        ProcessedContent = "<div class=\"Contents\">" + ProcessedContent + "   </div>";
 
         ProcessedContent = 
             ProcessedContent + 
