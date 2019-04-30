@@ -1,4 +1,3 @@
-
 <!-----------------------概要-------------------------
 Filesディレクトリ以下のファイル、ディレクトリを列挙し、
 さらにサブディレクトリ内部のファイル、ディレクトリも回帰的に列挙する。
@@ -109,17 +108,17 @@ Filesディレクトリ以下のファイル、ディレクトリを列挙し、
                         switch($Extension){
                             case "html":
                                 $ReturnValue.= "\">";
-                                $ReturnValue.= htmlspecialchars($ExtractedFilename);
+                                $ReturnValue.= '•'. htmlspecialchars($ExtractedFilename);
                                 break;
                             case "pdf":
                                 $ReturnValue.= "\" target=\"_blank\">";
-                                $ReturnValue.= htmlspecialchars($ExtractedFilename);
+                                $ReturnValue.= '•'. htmlspecialchars($ExtractedFilename);
                                 $ReturnValue.= '<img width="16" src="'.$AbsolutePathToSystem.'PDF.png">';
                                 break;
                             default:
                                 //拡張子ありで表示
                                 $ReturnValue.= "\">";
-                                $ReturnValue.= htmlspecialchars($Filename);
+                                $ReturnValue.= '•'. htmlspecialchars($Filename);
                         }
                         $ReturnValue.= "</a><br />\n";
 
