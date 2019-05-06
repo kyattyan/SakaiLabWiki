@@ -21,7 +21,7 @@ function UpdatePullDownList() :void{
         ListOfDir_level2=[" なし none", "1テクニック Technic", "2精製 Purification", "3再結晶 Recrystalization"];
         break;
     case 2://測定
-        ListOfDir_level2=[" なし none", "1分光 Spectroscopy", "2電気化学 EC", "3NMR", "4光反応 Photoreaction", "9その他 Others"];
+        ListOfDir_level2=[" なし none", "1分光 Spectroscopy", "2電気化学 EC", "3NMR", "4光反応 Photoreaction", "5自主ゼミ Self-seminor", "9その他 Others"];
         break;
     case 3://DFT
         ListOfDir_level2=[" なし none"];
@@ -29,7 +29,10 @@ function UpdatePullDownList() :void{
     case 4://デスクワーク
         ListOfDir_level2=[" なし none", "1雑務全般 General", "2ソフトウェア Software"];
         break;
-    case 5://その他
+    case 5://自主ゼミ
+        ListOfDir_level2=["02018年", "12019年"];
+        break;
+    case 6://その他
         ListOfDir_level2=[" なし none"];
         break;
     default:
@@ -63,7 +66,7 @@ function(){
     var Category1 :HTMLSelectElement =<HTMLSelectElement> document.getElementById("Category1");
     var ListOfDirectories: string[] =
     ["0はじめに Read us", "1合成 Synthesis", "2測定 Measurement", "3DFT", "4デスクワーク Desk work",
-        "9その他 Others"];
+        "5自主ゼミ Self-seminor", "9その他 Others"];
 
     for(var i :number =0;i<ListOfDirectories.length;i++){
         var ListOfCategory1: Element =document.createElement("option");

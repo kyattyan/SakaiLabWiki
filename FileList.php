@@ -4,6 +4,7 @@ Filesディレクトリ以下のファイル、ディレクトリを列挙し、
 さらに、ファイルに対しては対応するリンクを付けた<a>を付ける。
 また、それぞれに対応するCSSクラスを付与している。
 順番はファイル（アルファベット順）→ディレクトリ（アルファベット順）。
+また、更新日時が一週間以内の場合、new!をつける。
 
 拡張子によって細かい挙動を変える
 ・HTMLはそのままリンク
@@ -25,7 +26,8 @@ Filesディレクトリ以下のファイル、ディレクトリを列挙し、
 
     </head>
     <body>
-        <?php
+        <?php  
+            //echo time();
             function SearchDirectory($DirName, $Level){
 
                 $ReturnValue="";
@@ -103,24 +105,31 @@ Filesディレクトリ以下のファイル、ディレクトリを列挙し、
                         }*/
 
                         //拡張子に依存してaタグ内の挙動、表示を変更
-                        $ReturnValue.= "<a href=\"".$AbsolutePathToSystem;
+                        $ReturnValue.= '•'."<a href=\"".$AbsolutePathToSystem;
                         $ReturnValue.= $Members;
                         switch($Extension){
                             case "html":
                                 $ReturnValue.= "\">";
-                                $ReturnValue.= '•'. htmlspecialchars($ExtractedFilename);
+                                $ReturnValue.= htmlspecialchars($ExtractedFilename);
                                 break;
                             case "pdf":
                                 $ReturnValue.= "\" target=\"_blank\">";
-                                $ReturnValue.= '•'. htmlspecialchars($ExtractedFilename);
+                                $ReturnValue.= htmlspecialchars($ExtractedFilename);
                                 $ReturnValue.= '<img width="16" src="'.$AbsolutePathToSystem.'PDF.png">';
                                 break;
                             default:
                                 //拡張子ありで表示
                                 $ReturnValue.= "\">";
-                                $ReturnValue.= '•'. htmlspecialchars($Filename);
+                                $ReturnValue.=  htmlspecialchars($Filename);
                         }
-                        $ReturnValue.= "</a><br />\n";
+                        $ReturnValue.= "</a>";
+
+                        //ファイルのタイムスタンプを取得し、現在時刻と一週間以内ならばnew!を表示
+                        if(time()-filemtime($Members) < 7*24*60*60){
+                            $ReturnValue.='<span class="NewFiles">new!</span>';
+                        }
+
+                        $ReturnValue.="<br />\n";
 
                     }else{
                         //ファイル内メンバがディレクトリならそれを別で保管

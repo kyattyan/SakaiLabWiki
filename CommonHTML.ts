@@ -23,7 +23,7 @@ function CommonBody_Top(){
     //Menuバー
     
     //FileList出力
-    document.write('<div class="ContentWrapper"><div class="MenuBar"><span id="PHP">');
+    document.write('<div class="ContentWrapper"><div class="MenuBar" id = "MenuBar"><span id="PHP">');
     var FileList: string = GetFileList();
 
     (<HTMLInputElement>document.getElementById( "PHP" )).innerHTML = FileList;
@@ -44,13 +44,19 @@ function CommonBody_Top(){
     document.write("</a>");
     document.write("<br>");
 
-
-    
-
-
     document.write("</div>");
 
-    document.write('<div class="Main">');
+    //Menuバーここまで
+
+
+    //メニュー隠すボタン
+    document.write('<div id="HideMenuButton" onclick="HideMenu()">');
+    document.write('<span id="HideArrow">◀</span>');
+    document.write('</div>');
+
+    //ここからメイン画面
+
+    document.write('<div id="Main">');
 
     //タイトル
     document.write('<div class="Title"><Center><a href="'+RootDir+'Files/0はじめに%20Read%20us/Home.html">');
@@ -187,4 +193,37 @@ function Open_CloseMenu(DirName: string){
     Allow = document.getElementById('Allow_'+DirName);
     Allow.innerHTML = (obj.display=='none')?'▶':'▽';
     console.log(Allow.innerHTML)
+}
+
+function HideMenu(){
+    console.log("Hide");
+    var MenuBar: HTMLElement ,HideButton: HTMLElement, Main: HTMLElement;
+    var Style_MenuBar: CSSStyleDeclaration, Style_HideButton: CSSStyleDeclaration, Style_Main: CSSStyleDeclaration;
+        
+    HideButton = document.getElementById('HideMenuButton');
+    MenuBar = document.getElementById("MenuBar");
+    Main = document.getElementById("Main");
+
+    Style_MenuBar = MenuBar.style;
+    Style_HideButton = HideButton.style;
+    Style_Main = Main.style;
+
+    if(Style_MenuBar.width=='0%'){
+        Style_MenuBar.width='20%';
+        Style_MenuBar.display='';
+        HideButton.innerHTML = '<span id="HideArrow">◀</span>';
+        Style_HideButton.left = '21%';
+        Style_Main.width='75%';
+        //Style_Main.left='-15%';
+        console.log('Hide menu');
+    }else{
+        Style_MenuBar.width='0%';
+        Style_MenuBar.display='none';
+        HideButton.innerHTML = '<span id="HideArrow">▶</span>';
+        Style_HideButton.left = '0%';
+        Style_Main.width='95%';
+
+        console.log('Appear menu');
+    }
+    
 }

@@ -8,7 +8,7 @@
 
 }*/
 
-.Main{
+#Main{
 	/*position: absolute;
 	//display: flex;
 	//left: 200px;
@@ -19,11 +19,11 @@
     box-sizing: border-box;
     background: #DDDDDD;
     margin-left: 2.5%;
+    position: relative;
     width :75%;
-
 }
 .MenuBar {
-    float: left;
+    /*float: left;*/
     /*display: flex;*/
     align-items: center;
     justify-content: center;
@@ -33,11 +33,15 @@
     height: 1800px;*/
     top: 0px;
     height :auto;
+    padding-right: 1%;
     width: 20%;
-    padding-right: 10px;
-    
     color: #000;
     background: #EEEEEE;
+}
+
+#MenuBar{
+    position: relative;
+    left: 0%;
 }
 
 .Menubar a{
@@ -52,6 +56,23 @@
     color: white;
     background: #3333AA;
     transition: 0.3s;
+}
+
+#HideMenuButton{
+    position: fixed;
+    top: 0px;
+    left: 21%;
+    width: 0.5%;
+    height: 100%;
+    padding-right: 10px;
+    background: #AAAAAA;
+    vertical-align:middle;
+    cursor: hand;
+}
+
+#HideArrow{
+    position: absolute;
+    top: 50%;
 }
 
 .ContentWrapper{
@@ -134,4 +155,9 @@
 
 #NewFile{
     float: left;
+}
+
+.NewFiles{
+    color: #EE0000;
+    font-size: 75%;
 }
