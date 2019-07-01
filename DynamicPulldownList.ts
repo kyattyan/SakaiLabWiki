@@ -32,7 +32,10 @@ function UpdatePullDownList() :void{
     case 5://自主ゼミ
         ListOfDir_level2=["02018年", "12019年"];
         break;
-    case 6://その他
+    case 6://お勧め論文
+        ListOfDir_level2=["1水素発生_H2 evolution", "2酸素発生_O2 evolution", "3二酸化炭素還元_CO2 reduction", "4増感剤_発光体 sensitizers emitters", "5その他触媒反応 Other catalysis", "6錯体化学 Coord. chem.", "9その他お役立ち論文 Others"];
+        break;
+    case 7://その他
         ListOfDir_level2=[" なし none"];
         break;
     default:
@@ -66,7 +69,7 @@ function(){
     var Category1 :HTMLSelectElement =<HTMLSelectElement> document.getElementById("Category1");
     var ListOfDirectories: string[] =
     ["0はじめに Read us", "1合成 Synthesis", "2測定 Measurement", "3DFT", "4デスクワーク Desk work",
-        "5自主ゼミ Self-seminor", "9その他 Others"];
+        "5自主ゼミ Self-seminor", "6お勧め論文 Recomended papers", "9その他 Others"];
 
     for(var i :number =0;i<ListOfDirectories.length;i++){
         var ListOfCategory1: Element =document.createElement("option");
