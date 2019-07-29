@@ -28,12 +28,30 @@ Filesディレクトリ以下のファイル、ディレクトリを列挙し、
     <body>
         <?php  
             //echo time();
-            function SearchDirectory($DirName, $Level){
+            class File{
+                public $FilePath;
+                public $FileName;
+                public $TimeStamp;
+                public $Extension;
 
+                public function GetPath(){
+                    return $this->FilePath.'/'.$this->FileName.'.'.$this->Extension;
+                }
+                
+            }
+            $FileList=[];
+            //システムのフォルダへのパス
+            $AbsolutePathToSystem = "http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/";
+
+
+            function SearchDirectory($DirName, $Level){
+                global $FileList;
                 $ReturnValue="";
+                $CurrentFile;
 
                 //システムのフォルダへのパス
-                $AbsolutePathToSystem = "http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/";
+                global $AbsolutePathToSystem;
+
                 //安全装置
                 if($Level>10){
                     return;
@@ -128,6 +146,15 @@ Filesディレクトリ以下のファイル、ディレクトリを列挙し、
                         if(time()-filemtime($Members) < 7*24*60*60){
                             $ReturnValue.='<span class="NewFiles">new!</span>';
                         }
+                        
+                        //ファイル情報一時保存
+                        $CurrentFile  = new File();
+                        $CurrentFile->FilePath = $DirName;
+                        $CurrentFile->FileName = $ExtractedFilename;
+                        $CurrentFile->Extension = $Extension;
+                        $CurrentFile->TimeStamp = filemtime($Members);
+
+                        $FileList[]= $CurrentFile;
 
                         $ReturnValue.="<br />\n";
 
@@ -150,6 +177,39 @@ Filesディレクトリ以下のファイル、ディレクトリを列挙し、
 
             //Fileディレクトリから上記関数開始
             echo(SearchDirectory('Files',0));
+
+            //FileListから直近の更新履歴を作成
+            echo("<!--UpdateLog-->");
+
+            //配列をタイムスタンプでソート(新しいファイルが小さい添え字)
+            $f = true;
+            while($f){
+                $f = false;
+                for($i = 0; isset($FileList[$i+1]); $i++){
+                    if($FileList[$i]->TimeStamp < $FileList[$i+1]->TimeStamp){
+                        $tmp = new File();
+                        $tmp = $FileList[$i];
+                        $FileList[$i] = $FileList[$i+1];
+                        $FileList[$i+1] = $tmp;
+                        $f = true;
+                    }
+                }
+            }
+
+            //新しい順から10個表示
+            for($i = 0; $i<10; $i++){
+
+                echo ('<div class="CurrentUpdates">');
+
+                $tmp = getdate($FileList[$i]->TimeStamp);
+                echo ($tmp['year'].'/'.$tmp['mon'].'/'.$tmp['mday']. '  '. $tmp['hours'].':'.sprintf("%02d", $tmp['minutes']). '<br>');
+
+                echo ('<a href="'.$AbsolutePathToSystem.$FileList[$i]->GetPath().'">');
+                echo ($FileList[$i]->FileName);
+                echo ("</a><br>");
+                
+                echo ('</div>');
+            }
         ?>
     </body>
 </html>

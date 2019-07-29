@@ -19,9 +19,13 @@ function CommonBody_Top() {
     //Menuバー
     //FileList出力
     document.write('<div class="ContentWrapper"><div class="MenuBar" id = "MenuBar"><span id="PHP">');
-    var FileList = GetFileList();
+    var res = GetFileList();
+    var Index_CurrentUpdates = res.search("<!--UpdateLog-->");
+    var FileList = res.slice(0, Index_CurrentUpdates - 1);
+    var CurrenstUpdates = res.slice(Index_CurrentUpdates);
     document.getElementById("PHP").innerHTML = FileList;
     document.write('</span>\n');
+    document.write("<br>");
     //新規作成ボタン
     document.write("<a id = 'NewFile' href = '" + RootDir + "CreateNewFile.html'>");
     document.write("<img src='" + RootDir + "NewFile.png'><br>新規ページ作成/Make a new file");
@@ -34,6 +38,11 @@ function CommonBody_Top() {
     document.write("<img width = '32' src='" + RootDir + "PDF.png'><br>PDFをアップロードする・消す/Upload or delete a pdf file");
     document.write("</a>");
     document.write("<br>");
+    document.write("<br>");
+    document.write("<br>");
+    //Current Updates
+    document.write('<div id = "CurrentUpdates_Title">最近の更新/Currently updated</div><br>');
+    document.write(CurrenstUpdates);
     document.write("</div>");
     //Menuバーここまで
     //メニュー隠すボタン

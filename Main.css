@@ -161,3 +161,18 @@
     color: #EE0000;
     font-size: 75%;
 }
+
+.CurrentUpdates{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#CurrentUpdates_Title{
+    background: #9999FF;
+    border-color: #3333AA;
+    border-width: 2px;
+    border-style: solid;
+    font-style: bold;
+    padding: 10px;
+    font-size: 120%;
+}

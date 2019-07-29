@@ -24,10 +24,17 @@ function CommonBody_Top(){
     
     //FileList出力
     document.write('<div class="ContentWrapper"><div class="MenuBar" id = "MenuBar"><span id="PHP">');
-    var FileList: string = GetFileList();
+    var res: string = GetFileList();
+
+    var Index_CurrentUpdates: number = res.search("<!--UpdateLog-->");
+
+    var FileList: string = res.slice(0, Index_CurrentUpdates-1);
+    var CurrenstUpdates: string = res.slice(Index_CurrentUpdates);
 
     (<HTMLInputElement>document.getElementById( "PHP" )).innerHTML = FileList;
     document.write('</span>\n');
+
+    document.write("<br>");
 
     //新規作成ボタン
     document.write("<a id = 'NewFile' href = '"+RootDir+"CreateNewFile.html'>");
@@ -44,8 +51,15 @@ function CommonBody_Top(){
     document.write("</a>");
     document.write("<br>");
 
-    document.write("</div>");
+    document.write("<br>");
+    document.write("<br>");
 
+    //Current Updates
+    document.write('<div id = "CurrentUpdates_Title">最近の更新/Currently updated</div><br>');
+
+    document.write(CurrenstUpdates);
+
+    document.write("</div>");
     //Menuバーここまで
 
 
