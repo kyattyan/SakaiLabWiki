@@ -82,13 +82,13 @@
     width: 100%;
     height: 45%;
     background-color: #EEEEEE;
-    
+    overflow-y: scroll;
     
 }
 #livepreview{
-    overflow-y: scroll;
+    
     width:100%;
-    height: 35%;
+
 }
 
 .procedure{
