@@ -17,35 +17,45 @@
 
 
 .editor{
-    float: bottom;
+    height: 50%;
+    position: relative;
+    display: -webkit-flex;
+    bottom: 15px;
+    background: #FF8888;
     width: 100%;
-    height: 45%;
+    max-width: 100%;
     text-align: center;
     
+
 }
-#EditorMain{
     
+#EditorMain{
+    background: #AAFFAA;
+    bottom: 15px;
     width: 85%;
+    
     float: left;
+    
+    margin-bottom: 15px;
     overflow-y: scroll;
 }
 
 #EditorSub{
     background: #DDDDEE;
-    position: fixed;
-    left: 85%;
+    position: relative;
     height: 100%;
-    width: 50%;
+    top: 0%;
+    left: 0%;
+    width: 15%;
     float: right;
     overflow-y: scroll;
-    overflow-x: scroll;
     transition: 0.5s;
 
 }
 
 #EditorSub:hover{
-    position: fixed;
-    left: 50%;
+    position: relative;
+    width: 50%;
     transition: 0.5s;
 }
 
@@ -70,7 +80,7 @@
 .preview{
     float: top;
     width: 100%;
-    height: %;
+    height: 45%;
     background-color: #EEEEEE;
     
     
@@ -83,10 +93,10 @@
 
 .procedure{
     position: fixed;
-    top: 93%;
+    bottom: -100px;
     width: 100%;
     background-color: white;
-    min-height: 25%;
+    min-height: 100px;
     clear: both;
     text-align: center;
     transition: 0.5s;
@@ -94,7 +104,7 @@
 
 .procedure:hover{
     position: fixed;
-    top: 80%;
+    bottom: 0px;
     transition: 0.5s;
 }
 
@@ -137,13 +147,14 @@
 
 #drop_zone {
     
-    width: 75%;
-    margin-left: 5%;
+    width: 85%;
+    margin-left: 2%;
+    margin-right: 2%;
     border: 2px dashed #bbb;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    padding: 25px;
+    padding: 7px;
     text-align: center;
     font: 20pt bold 'Vollkorn';
     color: rgb(100, 100, 100);
