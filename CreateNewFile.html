@@ -133,22 +133,23 @@
                         <!--テスト用-->
                         <!--<button onclick = "UpdateLocalFigNum_Rev()">test</button>-->
                             <div id="drop_zone">
-                                    ここに画像をドロップしてください。<br>
-                                    Drop files here.
-                                </div>
-                                <!--input type="file" id="files" name="files[]" multiple /-->
-                                <br>
-                                <output id="ThumbList">
-                                </output>
-                                <br>
-                                <br>
-                                <form id="my_form" action="file/upload.php" method="post" enctype="multipart/form-data" >
-                                    <!--<input type="file" name="input_file" > <br-->
-                                    <!--input type="submit" value="送信" -->
-                                </form>
-                                <!--button onclick = "test()">TEST</button>
-                                <button onclick = "SetNextNum()">TSET</button-->
+                                ここに画像をドロップしてください。<br>
+                                Drop files here.<br>
+                                <textarea width = 90% placeholder="ここへ画像を貼り付けしてください。/Paste images here." id ="paste_zone"></textarea>
                             </div>
+                            <!--input type="file" id="files" name="files[]" multiple /-->
+                            <br>
+                            <output id="ThumbList">
+                            </output>
+                            <br>
+                            <br>
+                            <form id="my_form" action="file/upload.php" method="post" enctype="multipart/form-data" >
+                                <!--<input type="file" name="input_file" > <br-->
+                                <!--input type="submit" value="送信" -->
+                            </form>
+                            <!--button onclick = "test()">TEST</button>
+                            <button onclick = "SetNextNum()">TSET</button-->
+                        </div>
 
                 </div>
                     <!--引用文献-->

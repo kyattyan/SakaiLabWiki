@@ -82,6 +82,77 @@ $(function() {
 			//xhr.send(form_data);
             alert('OK');
         });*/
+
+
+        //コピペ用
+
+        // chrome向け
+        var element = document.getElementById("paste_zone");
+        element.addEventListener("paste", function(e){
+            // 画像以外がペーストされたときのために、元に戻しておく
+            //document.getElementById("paste_zone").innerHTML ='ああ';
+
+
+            e.stopPropagation();
+            e.preventDefault();
+            
+            // 画像の場合
+            // e.clipboardData.types.length == 0
+            // かつ
+            // e.clipboardData.types[0] == "Files"
+            // となっているので、それ以外を弾く
+            if (!e.clipboardData 
+                    || !e.clipboardData.types
+                    || (e.clipboardData.types.length != 1)
+                    || (e.clipboardData.types[0] != "Files")) {
+                    return true;
+            }
+  
+            var reader = new FileReader();
+            // ファイルとして得る
+            // (なぜかgetAsStringでは上手くいかなかった)
+            var imageFile = e.clipboardData.items[0].getAsFile();
+
+            // Closure to capture the file information.
+            reader.onload = ImagesMounter(imageFile, 1);
+    
+            // Read in the image file as a data URL.
+            reader.readAsDataURL(imageFile);
+              
+     
+            // FileReaderで読み込む
+            //var fr = new FileReader();
+            /*fr.onload = function(e) {
+                // onload内ではe.target.resultにbase64が入っているのであとは煮るなり焼くなり
+                var base64 = e.target.result;
+                document.querySelector("#outputImage").src = base64;
+                document.querySelector("#outputText").textContent = base64;
+            };*/
+
+            //fr.readAsDataURL(imageFile);
+            
+        });
+
+        // Firefox,IE向け
+        /*element.addEventListener("input", function(e){
+            // 仮のエレメントを作り、張り付けた内容にimgタグがあるか探す
+            var temp = document.createElement("div");
+            temp.innerHTML = this.innerHTML;
+            var pastedImage = temp.querySelector("img");
+            
+            // イメージタグがあればsrc属性からbase64が得られるので
+            // あとは煮るなり焼くなり
+            if (pastedImage) {
+                var base64 = pastedImage.src;
+                
+                document.querySelector("#outputImage").src = base64;
+                document.querySelector("#outputText").textContent = base64;
+            }
+            
+            // contenteditableの内容は戻しておく
+            this.innerHTML = "paste image here";
+        })*/
+
         UpdatePreview();
     });
 });
@@ -118,48 +189,7 @@ function handleFileSelect(evt) {
       var reader = new FileReader();
 
       // Closure to capture the file information.
-      reader.onload = (function(theFile, Int) {
-        return function(e) {
-          // Render thumbnail.
-            var span = document.createElement('span');
-            
-            //'Figure'+ escape(String(Int+1)) + 
-            span.innerHTML = [
-                            //<div>タグ追加
-                            '<div class = "Figure" id="Figure0',escape(String(Int+1)),'">\n'+
-                            'Figure0'+ escape(String(Int+1)) + '<br>',
-                                //イメージ本体
-                                '<img class="thumb" align = "left" src="', e.target.result,
-                                '" title="', escape(theFile.name),
-                                '" id="img_Figure0'+escape(String(Int+1))+'">',
-                                //表示位置用コンボボックス
-                                '表示位置/Float: <select name="Float" size = "1" ',
-                                'id = "Float_Figure0' + escape(String(Int+1)) + '">',
-                                '<option>左/Left</option>',
-                                '<option>右/Right</option>',
-                                '<option>行内/In line</option>',
-                                '</select>',
-                                //大きさ変更
-                                '幅/Width: <input type="number" id="Width_Figure0' + escape(String(Int+1))
-                                +'" min = "10" value = "100">'+'<br>',
-                                //その他用のテキストボックス
-                                'その他のオプション/Other options: <input type = "text" '+
-                                'id="Others_Figure0'+escape(String(Int+1))+ '"> <br>',
-                                //画像追加用ボタン
-                                '<button onclick="AddText(\'<Figure0'+ escape(String(Int+1))+
-                                '>\')"> Add this figure</button> ',
-                                //画像削除用ボタン
-                                '<button onclick="DeleteFigure(\'Figure0'+ escape(String(Int+1))+
-                                '\')"> Delete this figure</button>',
-
-                            //最後にdiv閉じタグと改行
-                            '<br><br></div>'
-                            ].join('');
-            document.getElementById('ThumbList').insertBefore(span, null);
-            UpdateLocalFigNum();
-        };
-        
-      })(f, i);
+      reader.onload = ImagesMounter(f, i);
 
       // Read in the image file as a data URL.
       reader.readAsDataURL(f);
@@ -174,6 +204,48 @@ function handleDragOver(evt) {
     evt.stopPropagation();
     evt.preventDefault();
     evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+}
+
+function ImagesMounter(theFile, Int){
+    return function(e) {
+        // Render thumbnail.
+          var span = document.createElement('span');
+          
+          //'Figure'+ escape(String(Int+1)) + 
+          span.innerHTML = [
+                          //<div>タグ追加
+                          '<div class = "Figure" id="Figure0',escape(String(Int+1)),'">\n'+
+                          'Figure0'+ escape(String(Int+1)) + '<br>',
+                              //イメージ本体
+                              '<img class="thumb" align = "left" src="', e.target.result,
+                              '" title="', escape(theFile.name),
+                              '" id="img_Figure0'+escape(String(Int+1))+'">',
+                              //表示位置用コンボボックス
+                              '表示位置/Float: <select name="Float" size = "1" ',
+                              'id = "Float_Figure0' + escape(String(Int+1)) + '">',
+                              '<option>左/Left</option>',
+                              '<option>右/Right</option>',
+                              '<option>行内/In line</option>',
+                              '</select>',
+                              //大きさ変更
+                              '幅/Width: <input type="number" id="Width_Figure0' + escape(String(Int+1))
+                              +'" min = "10" value = "100">'+'<br>',
+                              //その他用のテキストボックス
+                              'その他のオプション/Other options: <input type = "text" '+
+                              'id="Others_Figure0'+escape(String(Int+1))+ '"> <br>',
+                              //画像追加用ボタン
+                              '<button onclick="AddText(\'<Figure0'+ escape(String(Int+1))+
+                              '>\')"> Add this figure</button> ',
+                              //画像削除用ボタン
+                              '<button onclick="DeleteFigure(\'Figure0'+ escape(String(Int+1))+
+                              '\')"> Delete this figure</button>',
+
+                          //最後にdiv閉じタグと改行
+                          '<br><br></div>'
+                          ].join('');
+          document.getElementById('ThumbList').insertBefore(span, null);
+          UpdateLocalFigNum();
+      };
 }
 
 //墓場。時が来たら削除
@@ -286,3 +358,6 @@ function UpdateLocalFigNum(){
     //alert(S_HTMLSource);
     return;
 }*/
+
+
+
