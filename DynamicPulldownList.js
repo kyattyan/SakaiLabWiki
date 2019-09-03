@@ -15,7 +15,7 @@ function UpdatePullDownList() {
             ListOfDir_level2 = [" なし none", "1テクニック Technic", "2精製 Purification", "3再結晶 Recrystalization"];
             break;
         case 2: //測定
-            ListOfDir_level2 = [" なし none", "1分光 Spectroscopy", "2電気化学 EC", "3NMR", "4光反応 Photoreaction", "5自主ゼミ Self-seminor", "9その他 Others"];
+            ListOfDir_level2 = [" なし none", "1分光 Spectroscopy", "2電気化学 EC", "3NMR", "4光反応 Photoreaction", "5赤外吸収 IR", "9その他 Others"];
             break;
         case 3: //DFT
             ListOfDir_level2 = [" なし none"];
