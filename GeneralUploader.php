@@ -8,7 +8,7 @@
     $FileName = $_FILES['File']['name'];
     $Category1 = $_POST['Category1'];
     $Category2 = $_POST['Category2'];
-    $AllowedExtension = ['PDF', 'pdf'];
+    $AllowedExtension = ['PDF', 'pdf', 'zip', 'ZIP', 'xlsx'];
     $AbsolutePathToSystem = "http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/";
 
     if (is_uploaded_file($tempfile)) {
