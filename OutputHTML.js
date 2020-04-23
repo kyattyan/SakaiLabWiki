@@ -222,7 +222,8 @@ function ReplaceSymbolsAndSpace(Str){
         '<':    '_LBr_',
         '>':    '_RBr_',
         '\"':   '_DQu_',
-        '=':    '_Eq_'
+        '=':    '_Eq_',
+        '!': 	'_Ex_'
     }
 
     var Keys = Object.keys(SymbolList);

@@ -138,7 +138,7 @@ Filesディレクトリ以下のファイル、ディレクトリを列挙し、
                             default:
                                 //拡張子ありで表示
                                 $ReturnValue.= "\">";
-                                $ReturnValue.=  htmlspecialchars($Filename);
+                                $ReturnValue.=  htmlspecialchars($FileName);
                         }
                         $ReturnValue.= "</a>";
 
