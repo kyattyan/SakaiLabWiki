@@ -56,13 +56,15 @@
                 position: relative;
                 left: 25px;
             }
-            
+            .Remover .CurrentUpdates{
+                visibility: hidden;
+            }
         </style>
     </head>
 
     <body>
         <h1>General file uploader</h1>
-        現在pdfファイルのアップロードにのみ対応しています。<br>
+        現在pdf, zip, xlsxファイルのアップロードにのみ対応しています。<br>
         <form method="post" enctype="multipart/form-data" action="http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Files/GeneralUploader.php">
             細目/Category<br>
             <select id="Category1" name="Category1">
@@ -82,11 +84,12 @@
         You can remove HTML files from a buton at top of each page.<br>
         <span class = "Remover" id="PHP">
             <script>
+                //FileListを取得し、タグを置換する。Current updateはタグのvisibiityで消す。
                 document.write(GetFileList());
                 document.getElementById("PHP").innerHTML=document.getElementById("PHP").innerHTML.replace(/<a href=\"http:\/\/www.scc.kyushu-u.ac.jp\/Sakutai\/TestForYatsuduka\/Files\//g , "<a href=\"JavaScript:DeletePage('");
                 document.getElementById("PHP").innerHTML=document.getElementById("PHP").innerHTML.replace(/.html">/g , ".html')\">");
                 document.getElementById("PHP").innerHTML=document.getElementById("PHP").innerHTML.replace(/.pdf" target=\"_blank\">/g , ".pdf')\">");
-
+                document.getElementById("PHP").innerHTML=document.getElementById("PHP").innerHTML.replace("<div id = \"CurrentUpdates_Title\">最近の更新/Currently updated</div>", "");
             </script>
             
         </span>
