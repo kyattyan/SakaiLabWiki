@@ -84,15 +84,19 @@ function UpdateLocalFigNum(){
         var FigOthers: string;
 
         S_FigNum = S_FigureID.slice('Figure'.length,-1); //(00)
-        //console.log(S_FigureID);
+        console.log(S_FigureID);
         FigWidth = (<HTMLInputElement>document.getElementById("Width_"+S_FigureID)).value
         FigFloat = (<HTMLInputElement>document.getElementById("Float_"+S_FigureID)).value
         FigOthers = (<HTMLInputElement>document.getElementById("Others_"+S_FigureID)).value
 
         Figures[i-1]=(new figure(S_FigNum,FigWidth,FigFloat,FigOthers));
 
-        HTMLSource=ReplaceAll(HTMLSource, S_FigureID, "Figure_tmp"+String(i));
-        
+        //ここで直後一文字も含めて指定しないと、FIgure1の置換でFigure10も置換される
+        HTMLSource=ReplaceAll(HTMLSource, S_FigureID+"\"", "Figure_tmp"+String(i)+"\""); //大体置換
+        HTMLSource=ReplaceAll(HTMLSource, S_FigureID+"<br>", "Figure_tmp"+String(i)+"<br>"); //表示部分
+        HTMLSource=ReplaceAll(HTMLSource, S_FigureID+">", "Figure_tmp"+String(i)+">"); //Add this figure
+        HTMLSource=ReplaceAll(HTMLSource, S_FigureID+"\'", "Figure_tmp"+String(i)+"\'"); //delete this figure
+
         i++;
     }
 
