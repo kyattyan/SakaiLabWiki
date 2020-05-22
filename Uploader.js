@@ -14,11 +14,6 @@ $(function() {
             alert('The File APIs are not fully supported in this browser.');
         }
 
-		// ------------------------------------------------------------
-		// フォーム要素を取得する
-		// ------------------------------------------------------------
-		// "my_form" という ID 属性のエレメントを取得する
-        //var form = document.getElementById("my_form");
         
         //-------------------------------------------------------------
         //ローカルファイル用セットアップ
@@ -30,61 +25,6 @@ $(function() {
         //dropZone.addEventListener('drop', UpdateLocalFigNum, false);
         //document.getElementById('files').addEventListener('change', handleFileSelect, false);
         //alert('OK');
-
-		// ------------------------------------------------------------
-		// サブミット直前に実行されるイベント
-        // ------------------------------------------------------------
-        //var O_Submit = document.getElementById("output");
-        
-		/*O_Submit.addEventListener("onclick" , function(e){
-            alert('test');
-			// ------------------------------------------------------------
-			// デフォルトの動作をキャンセル（フォームの送信を中止）
-			// ------------------------------------------------------------
-			e.preventDefault();
-
-			// ------------------------------------------------------------
-			// FormData オブジェクトを作成する
-			// ------------------------------------------------------------
-            var form_data = new FormData();
-            
-            //------------------------------
-            //非コピペ部分；Formオブジェクトにデータを突っ込む
-            //------------------------------
-            
-            form_data.append("HTML_Source", getElementById('livepreview').innerHTML);
-            form_data.append("FileName", document.js.title.value);
-            alert(document.js.title.value);
-
-			// ------------------------------------------------------------
-			// XMLHttpRequest オブジェクトを作成
-			// ------------------------------------------------------------
-			var xhr = new XMLHttpRequest();
-
-			// ------------------------------------------------------------
-			// XHR 通信に成功すると実行されるイベント
-			// ------------------------------------------------------------
-			xhr.onload = function (e){
-
-				// レスポンスボディを取得する
-				console.log(xhr.responseText );
-
-			};
-
-			// ------------------------------------------------------------
-			// 「POST メソッド」「接続先 URL」を指定
-			// ------------------------------------------------------------
-			//xhr.open("POST" , "http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Files/uploader.php");
-
-			// ------------------------------------------------------------
-			// 「送信データに FormData を指定」「XHR 通信を開始する」
-			// ------------------------------------------------------------
-			//xhr.send(form_data);
-            alert('OK');
-        });*/
-
-
-        //コピペ用
 
         // chrome向け
         var element = document.getElementById("paste_zone");
@@ -220,25 +160,25 @@ function ImagesMounter(theFile, Int){
                               '<img class="thumb" align = "left" src="', e.target.result,
                               '" title="', escape(theFile.name),
                               '" id="img_Figure0'+escape(String(Int+1))+'">',
-                              //表示位置用コンボボックス
-                              '表示位置/Float: <select name="Float" size = "1" ',
-                              'id = "Float_Figure0' + escape(String(Int+1)) + '">',
-                              '<option>左/Left</option>',
-                              '<option>右/Right</option>',
-                              '<option>行内/In line</option>',
-                              '</select>',
+                              //表示位置用コンボボックス 使われないので削除
+                              //'表示位置/Float: <select name="Float" size = "1" ',
+                              //'id = "Float_Figure0' + escape(String(Int+1)) + '">',
+                              //'<option>左/Left</option>',
+                              //'<option>右/Right</option>',
+                              //'<option>行内/In line</option>',
+                              //'</select>',
                               //大きさ変更
                               '幅/Width: <input type="number" id="Width_Figure0' + escape(String(Int+1))
-                              +'" min = "10" value = "100">'+'<br>',
-                              //その他用のテキストボックス
-                              'その他のオプション/Other options: <input type = "text" '+
-                              'id="Others_Figure0'+escape(String(Int+1))+ '"> <br>',
+                              +'" min = "10" value = "100">',
+                              //その他用のテキストボックス。隠れアイテムになっている
+                              '<!--その他のオプション/Other options: --><input type = "text" class="HiddenItems"'+
+                              'id="Others_Figure0'+escape(String(Int+1))+ '"><br>',
                               //画像追加用ボタン
-                              '<button onclick="AddText(\'<Figure0'+ escape(String(Int+1))+
-                              '>\')"> Add this figure</button> ',
+                              '<button class="AddFigureButton" onclick="AddText(\'<Figure0'+ escape(String(Int+1))+
+                              '>\')"> Add </button> ',
                               //画像削除用ボタン
-                              '<button onclick="DeleteFigure(\'Figure0'+ escape(String(Int+1))+
-                              '\')"> Delete this figure</button>',
+                              '<button class="DeleteFigureButton" onclick="DeleteFigure(\'Figure0'+ escape(String(Int+1))+
+                              '\')"> Delete </button><br>',
 
                           //最後にdiv閉じタグと改行
                           '<br><br></div>'

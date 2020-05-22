@@ -73,7 +73,7 @@ function UpdateLocalFigNum() {
         S_FigNum = S_FigureID.slice('Figure'.length, -1); //(00)
         console.log(S_FigureID);
         FigWidth = document.getElementById("Width_" + S_FigureID).value;
-        FigFloat = document.getElementById("Float_" + S_FigureID).value;
+        //FigFloat = (<HTMLInputElement>document.getElementById("Float_"+S_FigureID)).value
         FigOthers = document.getElementById("Others_" + S_FigureID).value;
         Figures[i - 1] = (new figure(S_FigNum, FigWidth, FigFloat, FigOthers));
         //ここで直後一文字も含めて指定しないと、FIgure1の置換でFigure10も置換される
@@ -88,7 +88,7 @@ function UpdateLocalFigNum() {
     var j;
     for (j = 1; j <= Figures.length; j++) {
         document.getElementById("Width_Figure" + j).value = Figures[j - 1].Width;
-        document.getElementById("Float_Figure" + j).value = Figures[j - 1].Float;
+        //(<HTMLInputElement>document.getElementById("Float_Figure"+j)).value=Figures[j-1].Float;
         document.getElementById("Others_Figure" + j).value = Figures[j - 1].Others;
     }
     return;

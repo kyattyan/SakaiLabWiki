@@ -86,7 +86,7 @@ function UpdateLocalFigNum(){
         S_FigNum = S_FigureID.slice('Figure'.length,-1); //(00)
         console.log(S_FigureID);
         FigWidth = (<HTMLInputElement>document.getElementById("Width_"+S_FigureID)).value
-        FigFloat = (<HTMLInputElement>document.getElementById("Float_"+S_FigureID)).value
+        //FigFloat = (<HTMLInputElement>document.getElementById("Float_"+S_FigureID)).value
         FigOthers = (<HTMLInputElement>document.getElementById("Others_"+S_FigureID)).value
 
         Figures[i-1]=(new figure(S_FigNum,FigWidth,FigFloat,FigOthers));
@@ -107,7 +107,7 @@ function UpdateLocalFigNum(){
     var j:number;
     for(j=1;j<=Figures.length;j++){
         (<HTMLInputElement>document.getElementById("Width_Figure"+j)).value=Figures[j-1].Width;
-        (<HTMLInputElement>document.getElementById("Float_Figure"+j)).value=Figures[j-1].Float;
+        //(<HTMLInputElement>document.getElementById("Float_Figure"+j)).value=Figures[j-1].Float;
         (<HTMLInputElement>document.getElementById("Others_Figure"+j)).value=Figures[j-1].Others;
     }
 

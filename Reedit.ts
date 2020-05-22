@@ -167,9 +167,9 @@ function SetFileContents(FileContent: string) :void{
         while(Figure[0]==" "){
             Figure = Figure.replace(' ','');
         }
-        Figure_Other = Figure;
+        Figure_Other = Figure_Float+Figure; //Float部分をothersへ移行
         
-        ResetFigure(Figure_src, i, Figure_width, Figure_Float, Figure_Other);
+        ResetFigure(Figure_src, i, Figure_width, Figure_Other);
 
     }
 
@@ -184,7 +184,8 @@ function SetFileContents(FileContent: string) :void{
 
 //やるべきことはUploader.js内のhandleFileSelect()と同じなのだが、抽出元が違うため、異なる関数を用意
 //非効率の極み
-function ResetFigure(FigureDataURL: string, FigureNumber: number, Width: string, Float: string, Others: string){
+//Floatに関する操作を消去
+function ResetFigure(FigureDataURL: string, FigureNumber: number, Width: string, Others: string){
     
     //入力ウィジェット作成
     var span = document.createElement('span');
@@ -198,31 +199,31 @@ function ResetFigure(FigureDataURL: string, FigureNumber: number, Width: string,
             '" title="SucceededFigure',
             '" id="img_Figure'+FigureNumber+'">',
             //表示位置用コンボボックス
-            '表示位置/Float: <select name="Float" size = "1" ',
-            'id = "Float_Figure' + FigureNumber + '">',
-            '<option>左/Left</option>',
-            '<option>右/Right</option>',
-            '<option>行内/In line</option>',
-            '</select>',
+            //'表示位置/Float: <select name="Float" size = "1" ',
+            //'id = "Float_Figure' + FigureNumber + '">',
+            //'<option>左/Left</option>',
+            //'<option>右/Right</option>',
+            //'<option>行内/In line</option>',
+            //'</select>',
             //大きさ変更
             '幅/Width: <input type="number" id="Width_Figure' + FigureNumber
-            +'" min = "10" value = "100">'+'<br>',
-            //その他用のテキストボックス
-            'その他のオプション/Other options: <input type = "text" '+
-            'id="Others_Figure'+FigureNumber+ '"> <br>',
+            +'" min = "10" value = "100">',
+            //その他用のテキストボックス。隠れパラメータになっている.
+            '<!--その他のオプション/Other options: --><input type = "text" class="HiddenItems"'+
+            'id="Others_Figure'+FigureNumber+ '"><br>',
             //画像追加用ボタン
-            '<button onclick="AddText(\'<Figure'+ FigureNumber+
-            '>\')"> Add this figure</button> ',
+            '<button class="AddFigureButton" onclick="AddText(\'<Figure'+ FigureNumber+
+            '>\')"> Add </button> ',
             //画像削除用ボタン
-            '<button onclick="DeleteFigure(\'Figure'+ FigureNumber+
-            '\')"> Delete this figure</button>',
+            '<button class="DeleteFigureButton" onclick="DeleteFigure(\'Figure'+ FigureNumber+
+            '\')"> Delete </button><br>',
             //最後にdiv閉じタグと改行
             '<br><br></div>'
         ].join('');
     document.getElementById('ThumbList').insertBefore(span, null);
 
     //ゴミゴミの実のゴミコード
-    switch(Float){
+    /*switch(Float){
         case '':
             Float = '行内/In line';
             break;
@@ -232,11 +233,11 @@ function ResetFigure(FigureDataURL: string, FigureNumber: number, Width: string,
         case 'right':
             Float = '右/Right';
             break;
-    }
+    }*/
 
     //入力ウィジェットの値代入
     (<HTMLInputElement>document.getElementById('Width_Figure'+ FigureNumber)).value=Width;
-    (<HTMLInputElement>document.getElementById('Float_Figure'+ FigureNumber)).value=Float;
+    //(<HTMLInputElement>document.getElementById('Float_Figure'+ FigureNumber)).value=Float;
     (<HTMLInputElement>document.getElementById('Others_Figure'+ FigureNumber)).value=Others;
     //(<HTMLInputElement>document.getElementById('Width_Figure'+ FigureNumber)).value;
 

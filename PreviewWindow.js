@@ -218,7 +218,7 @@ function FindOutWidgetValue(I_LocalFigNum, S_WidgetName){
     return S_TargettedTag;
 }
 
-function Converter_Float(I_LocalFigNum){
+/*function Converter_Float(I_LocalFigNum){
 
     var S_FloatType = FindOutWidgetValue(I_LocalFigNum, 'Float');
 
@@ -230,7 +230,7 @@ function Converter_Float(I_LocalFigNum){
         case '行内/In line':
             return '';
     }
-}
+}*/
 
 function Converter_Width(I_LocalFigNum){
     var S_Width = FindOutWidgetValue(I_LocalFigNum, 'Width');
@@ -241,7 +241,7 @@ function Converter_Width(I_LocalFigNum){
 function ConvertWidgetToStyle(I_LocalFigNum){
     var S_Style = '';
 
-    S_Style += Converter_Float(I_LocalFigNum);
+    //S_Style += Converter_Float(I_LocalFigNum);
 
     S_Style += Converter_Width(I_LocalFigNum);
 

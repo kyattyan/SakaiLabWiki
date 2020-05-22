@@ -171,3 +171,15 @@
     text-align: center;
 }
 
+.HiddenItems{
+    visibility: hidden;
+    width: 0;
+}
+
+.AddFigureButton{
+    width: 50;
+}
+
+.DeleteFigureButton{
+    width: 50;
+}
