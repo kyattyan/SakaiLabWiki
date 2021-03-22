@@ -1,4 +1,4 @@
-//このJSの肝の部分。Editer部分のテキストを読み込んで一部文字列を置換後、Preview部分にのHTMLソースとして加える
+﻿//このJSの肝の部分。Editer部分のテキストを読み込んで一部文字列を置換後、Preview部分にのHTMLソースとして加える
 
 function UpdatePreview(){
     console.log('Update');

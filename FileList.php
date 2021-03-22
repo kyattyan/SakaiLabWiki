@@ -1,4 +1,4 @@
-<!-----------------------概要-------------------------
+﻿<!-----------------------概要-------------------------
 Filesディレクトリ以下のファイル、ディレクトリを列挙し、
 さらにサブディレクトリ内部のファイル、ディレクトリも回帰的に列挙する。
 さらに、ファイルに対しては対応するリンクを付けた<a>を付ける。
@@ -41,7 +41,7 @@ Filesディレクトリ以下のファイル、ディレクトリを列挙し、
             }
             $FileList=[];
             //システムのフォルダへのパス
-            $AbsolutePathToSystem = "http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/";
+            $AbsolutePathToSystem = "http://chanx-2598.chips.jp/chanx/";
 
 
             function SearchDirectory($DirName, $Level){
@@ -102,7 +102,8 @@ Filesディレクトリ以下のファイル、ディレクトリを列挙し、
                     $isExceptional = false;
                     
                     if(is_file($Members)){
-                        $FileName = basename($Members); #上階層のディレクトリを除いた、拡張子ありのファイル名
+                        //$FileName = basename($Members); #上階層のディレクトリを除いた、拡張子ありのファイル名
+                        $FileName = substr((string)$Members, strrpos($Members, '/')+1 );
                         $ExtractedFilename = substr($FileName, 0, strrpos($FileName, '.') ); # 拡張子削除
                         $Extension = substr($FileName, strrpos($FileName, '.') +1); #拡張子
                         
@@ -121,6 +122,8 @@ Filesディレクトリ以下のファイル、ディレクトリを列挙し、
                         /*for($i=0;$i<=$Level;$i++){
                             $ReturnValue.=("&emsp;");
                         }*/
+                        
+                        $ReturnValue.= "<!--ファイル名: ".(string)$Members."-->";
 
                         //拡張子に依存してaタグ内の挙動、表示を変更
                         $ReturnValue.= '•'."<a href=\"".$AbsolutePathToSystem;

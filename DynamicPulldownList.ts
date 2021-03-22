@@ -1,4 +1,4 @@
-//細目編集はこちらから。完全手作業。受け取り側ＰＨＰ(Uploader.php)も要編集
+﻿//細目編集はこちらから。完全手作業。受け取り側ＰＨＰ(Uploader.php)も要編集
 
 
 function UpdatePullDownList() :void{

@@ -1,4 +1,4 @@
-/*-----------------------------概要-------------------------------------
+﻿/*-----------------------------概要-------------------------------------
 クエリを通して再編集するファイルへのパスを決める。
 そのパスをサーバーへ送信してファイル内容を取得する（GetFileContent.php)。
 その内容のうち、編集すべき内容を抜き出す。
@@ -39,7 +39,7 @@ function InputValuesForReedit() : void{
     Path.append("Path", ExactPath);
 
     var Request :XMLHttpRequest =new XMLHttpRequest();
-    Request.open("POST" , "http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Files/GetFileContent.php");
+    Request.open("POST" , "http://chanx-2598.chips.jp/chanx/Files/GetFileContent.php");
     Request.send(Path);
     
     Request.onload=function(){

@@ -1,4 +1,4 @@
-//クラス試作・Typescript練習
+﻿//クラス試作・Typescript練習
 var FLOAT_LEFT = "左/Left";
 var FLOAT_RIGHT = "右/Right";
 var FLOAT_IN_LINE = "行内/In line";

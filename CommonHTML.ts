@@ -1,4 +1,4 @@
-/*-----------------------概要-------------------------
+﻿/*-----------------------概要-------------------------
 すべてのHTMLに対応する、汎用部分の記述・動作を担う。具体的には
 ・左に表示するメニューバー（ファイルリスト、新規作成ボタン、ファイルアップロードボタン、削除ボタン）
 ・右上に表示する編集ボタン
@@ -9,7 +9,7 @@
 
 現在のところ、Commonbody_Bottom()に大した役割はない。
 ----------------------------------------------------*/
-const RootDir = 'http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/';
+const RootDir = 'http://chanx-2598.chips.jp/chanx/';
 
 /*
 ・メニューバーの作成（途中でPHPへのhttpリクエストを送る）
@@ -78,14 +78,16 @@ function CommonBody_Top(){
     document.write('</a></Center></div>');
 
     var AbsolutePath :string = location.href;
-
+    console.log(AbsolutePath);
     var SplittedPath :string[] = AbsolutePath.split('/');
 
     //編集ボタン
     //File以降のディレクトリ取得
     var RelativePath :string ="";
 
-    for(var i:number =6;i<SplittedPath.length;i++){
+    //http://chanx-2598.chips.jp/chanx/まで削除
+    for(var i:number =5;i<SplittedPath.length;i++){
+        console.log(SplittedPath[i])
         RelativePath += SplittedPath[i];
         if(i+1==SplittedPath.length){
             break;

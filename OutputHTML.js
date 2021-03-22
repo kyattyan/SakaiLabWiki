@@ -1,4 +1,4 @@
-function OutputHTML(){
+﻿function OutputHTML(){
     //メモ
     //ActiveXObject: IEでのみ使用可能。産廃。
     //WSH: コマンドプロンプト上のみ？Win環境前提
@@ -104,7 +104,7 @@ function OutputHTML(){
 
     var FileExistCheck = new XMLHttpRequest();
 
-    FileExistCheck.open("POST" , "http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Files/FileExistChecker.php");
+    FileExistCheck.open("POST" , "http://chanx-2598.chips.jp/chanx/Files/FileExistChecker.php");
 
     // ------------------------------------------------------------
     // XMLHttpRequest オブジェクトを作成
@@ -127,7 +127,7 @@ function OutputHTML(){
     // ------------------------------------------------------------
     // 「POST メソッド」「接続先 URL」を指定
     // ------------------------------------------------------------
-    xhr.open("POST" , "http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Files/Uploader.php");
+    xhr.open("POST" , "http://chanx-2598.chips.jp/chanx/Files/Uploader.php");
 
 
 

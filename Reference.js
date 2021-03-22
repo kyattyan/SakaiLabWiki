@@ -1,4 +1,4 @@
-//リファレンス番号振り直し
+﻿//リファレンス番号振り直し
 function UpdateRefNumbers(){
     //どんどん書き換えていって、最終的にinnerHTMLに戻す
     var S_RefList = String(document.getElementById('RefList').innerHTML);

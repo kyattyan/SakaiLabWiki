@@ -1,4 +1,4 @@
-//クラス試作・Typescript練習
+﻿//クラス試作・Typescript練習
 
 const FLOAT_LEFT: string ="左/Left";
 const FLOAT_RIGHT: string ="右/Right";
@@ -71,92 +71,83 @@ function UpdateLocalFigNum(){
 
     var i:number =1;
     
-    while(HTMLSource.match(/id="Figure\d{1,}"/)){
+    while(HTMLSource.match(/id="LocalFigure\d{1,}"/)){
         
-        S_FigureID=HTMLSource.match(/id="Figure\d{1,}"/)[0];
-        //console.log(S_FigureID);
+        S_FigureID=HTMLSource.match(/id="LocalFigure\d{1,}"/)[0]
+        console.log(S_FigureID);
         
-        S_FigureID = S_FigureID.slice(4,-1); //(Figure00)
+        S_FigureID = S_FigureID.slice(4,-1); //(LocalFigure00)
 
         var S_FigNum: string
         var FigWidth: string;
         var FigFloat: string;
         var FigOthers: string;
 
-        S_FigNum = S_FigureID.slice('Figure'.length,-1); //(00)
+        S_FigNum = S_FigureID.slice(15,-1); //(00)
         console.log(S_FigureID);
         FigWidth = (<HTMLInputElement>document.getElementById("Width_"+S_FigureID)).value
-        //FigFloat = (<HTMLInputElement>document.getElementById("Float_"+S_FigureID)).value
+        FigFloat = (<HTMLInputElement>document.getElementById("Float_"+S_FigureID)).value
         FigOthers = (<HTMLInputElement>document.getElementById("Others_"+S_FigureID)).value
 
         Figures[i-1]=(new figure(S_FigNum,FigWidth,FigFloat,FigOthers));
 
-        //ここで直後一文字も含めて指定しないと、FIgure1の置換でFigure10も置換される
-        HTMLSource=ReplaceAll(HTMLSource, S_FigureID+"\"", "Figure_tmp"+String(i)+"\""); //大体置換
-        HTMLSource=ReplaceAll(HTMLSource, S_FigureID+"<br>", "Figure_tmp"+String(i)+"<br>"); //表示部分
-        HTMLSource=ReplaceAll(HTMLSource, S_FigureID+">", "Figure_tmp"+String(i)+">"); //Add this figure
-        HTMLSource=ReplaceAll(HTMLSource, S_FigureID+"\'", "Figure_tmp"+String(i)+"\'"); //delete this figure
-
+        HTMLSource=ReplaceAll(HTMLSource, S_FigureID, "Local_Figure"+String(i));
+        
         i++;
     }
 
-    HTMLSource=ReplaceAll(HTMLSource, "Figure_tmp", "Figure");
+    HTMLSource=ReplaceAll(HTMLSource, "Local_Figure", "LocalFigure");
     
     document.getElementById('ThumbList').outerHTML = HTMLSource;
 
     var j:number;
     for(j=1;j<=Figures.length;j++){
-        (<HTMLInputElement>document.getElementById("Width_Figure"+j)).value=Figures[j-1].Width;
-        //(<HTMLInputElement>document.getElementById("Float_Figure"+j)).value=Figures[j-1].Float;
-        (<HTMLInputElement>document.getElementById("Others_Figure"+j)).value=Figures[j-1].Others;
+        (<HTMLInputElement>document.getElementById("Width_LocalFigure"+j)).value=Figures[j-1].Width;
+        (<HTMLInputElement>document.getElementById("Float_LocalFigure"+j)).value=Figures[j-1].Float;
+        (<HTMLInputElement>document.getElementById("Others_LocalFigure"+j)).value=Figures[j-1].Others;
     }
 
     return;
 }
 
-function DeleteFigure(FigID :string):void{
-    //var ThumbList :Element = document.getElementById('ThumbList');
+/*
+function UpdateLocalFigNum(){
+    var S_HTMLSource = document.getElementById('ThumbList').outerHTML;
     
-    //番号だけ抜き出し
-    var FigNum :number = parseInt(FigID.slice('Figure'.length));
+    var S_FigID;
+    var i = 1; //while出てからも使用
 
-    if(FigNum==NaN){
-        alert('NaN has been detected.');
-        return;
+    //input系の値一時避難場所
+    var S_Width=[];
+    
+    //疑似do-while。比較ではなく代入演算子
+    while(S_FigID=S_HTMLSource.match(/id="LocalFigure\d{1,}"/)){
+        var S_FigNum = String(S_FigID).slice(4,-1);
+        alert(S_FigNum);
+        S_Width.push(document.getElementById("Width_"+S_FigNum).value);
+        
+        
+        /*while (S_HTMLSource != S_HTMLSource.replace(S_FigNum, 'Local_Figure'+String(i))){
+            S_HTMLSource = S_HTMLSource.replace(S_FigNum, 'Local_Figure'+String(i))
+        };*
+        S_HTMLSource = ReplaceAll(S_HTMLSource,S_FigNum,'Local_Figure'+String(i));
+        //alert(S_FigNum + '--Local_Figure'+String(i));
+        i++;
+    }
+    
+    //S_HTMLSource = S_HTMLSource.replace('Local_Figure', 'LocalFigure');
+    S_HTMLSource = ReplaceAll(S_HTMLSource,'Local_Figure', 'LocalFigure');
+    document.getElementById('ThumbList').outerHTML = S_HTMLSource;
+
+    //避難した値を戻す
+    var j;
+    for(j=1;j<i;j++){
+        alert(j);
+        document.getElementById("Width_LocalFigure"+j).value=S_Width[j-1];
+        alert(S_Width[j-1]);
     }
 
-    //ThumbListから削除
-    var RemovedThumb :Element = document.getElementById(FigID);
-    RemovedThumb.parentNode.removeChild(RemovedThumb);
-
-    UpdateLocalFigNum();
-
-    //TextAreaから削除
-    var LiveEditor :HTMLInputElement = <HTMLInputElement>document.getElementById('liveeditor');
-    var ProcessedLiveEditorText :string = LiveEditor.value;
-    ProcessedLiveEditorText = ReplaceAll(ProcessedLiveEditorText, '<'+FigID+'>', '');
-
-    //消す対象より大きい図番号のタグを1減らす
-    var FigureTags :RegExpMatchArray = ProcessedLiveEditorText.match(/<Figure\d{1,}>/g);
-
-    if(FigureTags){
-        for(var i:number =0;i<FigureTags.length;i++){
-            var NumberOfFigTag :number = Number (FigureTags[i].slice('<Figure'.length, -1*'>'.length));
-            console.log(NumberOfFigTag);
-
-            if(NumberOfFigTag>FigNum){
-                ProcessedLiveEditorText 
-                    = ReplaceAll(ProcessedLiveEditorText,'<Figure'+NumberOfFigTag+'>', '<Figure_'+ (NumberOfFigTag-1) +'>');
-            }
-        }    
-    }
-
-    ProcessedLiveEditorText = ProcessedLiveEditorText.replace(/<Figure_/g, '<Figure');
-
-
-    //最終的なテキストをliveeditorに戻す
-    LiveEditor.value=ProcessedLiveEditorText;
-
-
+    //alert(S_HTMLSource);
     return;
 }
+*/ 

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
     /*define("TESTFILE","TEST.txt");
     $s = "上書き";
     print_r("file_put_tcontents関数\n");
@@ -47,9 +47,9 @@
     $HTML_Source = 
         "<head>\n".
         "    <meta charset = \"UTF-8\">\n".
-        "    <script type=\"text/javascript\" src=\"http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/CommonHTML.js\"></script>".
-        "    <link rel = \"stylesheet\" type = \"text/css\" href = \"http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/OriginalTags.css\">".
-        "    <link rel = \"stylesheet\" type = \"text/css\" href = \"http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/Main.css\">".
+        "    <script type=\"text/javascript\" src=\"http://chanx-2598.chips.jp/chanx/CommonHTML.js\"></script>".
+        "    <link rel = \"stylesheet\" type = \"text/css\" href = \"http://chanx-2598.chips.jp/chanx/OriginalTags.css\">".
+        "    <link rel = \"stylesheet\" type = \"text/css\" href = \"http://chanx-2598.chips.jp/chanx/Main.css\">".
         "<title>".
         $_POST["FileName"].
         "</title>".

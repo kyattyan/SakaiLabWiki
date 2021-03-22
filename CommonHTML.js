@@ -9,7 +9,7 @@
 
 現在のところ、Commonbody_Bottom()に大した役割はない。
 ----------------------------------------------------*/
-var RootDir = 'http://www.scc.kyushu-u.ac.jp/Sakutai/TestForYatsuduka/';
+var RootDir = 'http://chanx-2598.chips.jp/chanx/';
 /*
 ・メニューバーの作成（途中でPHPへのhttpリクエストを送る）
 ・削除ボタンの作成
@@ -56,11 +56,14 @@ function CommonBody_Top() {
     document.write('<img src="' + RootDir + 'title.png" width="70%">');
     document.write('</a></Center></div>');
     var AbsolutePath = location.href;
+    console.log(AbsolutePath);
     var SplittedPath = AbsolutePath.split('/');
     //編集ボタン
     //File以降のディレクトリ取得
     var RelativePath = "";
-    for (var i = 6; i < SplittedPath.length; i++) {
+    //http://chanx-2598.chips.jp/chanx/まで削除
+    for (var i = 5; i < SplittedPath.length; i++) {
+        console.log(SplittedPath[i]);
         RelativePath += SplittedPath[i];
         if (i + 1 == SplittedPath.length) {
             break;
