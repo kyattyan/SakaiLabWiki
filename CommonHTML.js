@@ -51,6 +51,7 @@ function CommonBody_Top() {
     document.write('</div>');
     //ここからメイン画面
     document.write('<div id="Main">');
+    document.write('累計閲覧数：<img src="http://accnt.chanx-2598.chips.jp/cnt/accnt.php?cnt_id=2123896&ac_id=LAA1279663&mode=total">');
     //タイトル
     document.write('<div class="Title"><Center><a href="' + RootDir + 'Files/0はじめに%20Read%20us/Home.html">');
     document.write('<img src="' + RootDir + 'title.png" width="70%">');
