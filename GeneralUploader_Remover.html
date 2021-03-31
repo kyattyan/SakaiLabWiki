@@ -86,7 +86,7 @@
             <script>
                 //FileListを取得し、タグを置換する。Current updateはタグのvisibiityで消す。
                 document.write(GetFileList());
-                document.getElementById("PHP").innerHTML=document.getElementById("PHP").innerHTML.replace(/<a href=\"http:\/\/www.scc.kyushu-u.ac.jp\/Sakutai\/TestForYatsuduka\/Files\//g , "<a href=\"JavaScript:DeletePage('");
+                document.getElementById("PHP").innerHTML=document.getElementById("PHP").innerHTML.replace(/<a href=\"http:\/\/chanx-2598.chips.jp\/chanx\/Files\//g , "<a href=\"JavaScript:DeletePage('");
                 document.getElementById("PHP").innerHTML=document.getElementById("PHP").innerHTML.replace(/.html">/g , ".html')\">");
                 document.getElementById("PHP").innerHTML=document.getElementById("PHP").innerHTML.replace(/.pdf" target=\"_blank\">/g , ".pdf')\">");
                 document.getElementById("PHP").innerHTML=document.getElementById("PHP").innerHTML.replace("<div id = \"CurrentUpdates_Title\">最近の更新/Currently updated</div>", "");
